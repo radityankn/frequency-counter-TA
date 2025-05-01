@@ -1,0 +1,41 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "uart_tx_ext",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[0]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[1]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[2]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[4]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[6]",
+					"strict" : false
+				},
+				{
+					"name" : "async_rst_ext",
+					"strict" : false
+				},
+				{
+					"name" : "uart_rx_ext",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
