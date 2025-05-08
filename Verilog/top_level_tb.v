@@ -36,7 +36,7 @@ module freq_count_tb;
 	// Instantiate the Unit Under Test (UUT)
     top_level uut (
 		.clk_i_ext(clk_i_ext),
-        .async_rst_ext(async_rst_i),
+        .rst_ext(async_rst_i),
         .uart_rx_ext(uart_rx),
         .uart_tx_ext(uart_tx),
         .led_port(led_output)
@@ -47,10 +47,10 @@ module freq_count_tb;
 		$dumpvars(0, freq_count_tb);
 		// Initialize Inputs
 		// Wait 10 ns for global reset to finish
-		async_rst_i = 1;
+		async_rst_i = 0;
         clk_i_ext = 0;
-        #1 async_rst_i = 0;
-        #10 async_rst_i = 1;
+        #25 async_rst_i = 1;
+        //#10 async_rst_i = 1;
         #2000000 $finish;
 	end
 	always #5 clk_i_ext = !clk_i_ext;

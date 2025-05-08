@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module uart_interface(
-    input async_rst_i,
+    input ext_rst_i,
     output uart_tx,
     input uart_rx,
     output uart_led_tx,
@@ -50,7 +50,7 @@ module uart_interface(
     reg [8:0] uart_buffer_tx_internal;
     reg [7:0] uart_read_buffer_internal;
     reg bus_acknowledge;
-    reg uart_frame_sent_clear_reg;
+    reg uart_frame_sent_previous_reg;
     reg [7:0] uart_status_indicator;
 	
     wire uart_frame_receive_complete;
@@ -58,28 +58,16 @@ module uart_interface(
     wire uart_parity_error_flag;
     wire uart_frame_sent_clear;
     wire [8:0] uart_rx_data_out;
-
-    uart_rx_module rx_module(
-        .rx_data_line(uart_rx),
-        .clk_i(clk_i),
-        .rst_i(rst_i),
-        .async_rst_i(async_rst_i),
-        .rx_ctrl_reg(uart_rx_ctrl_reg),
-        .baud_rate_divider_constant(baud_rate_divider_constant),
-        .rx_data_out(uart_rx_data_out),
-        .frame_receive_complete(uart_frame_receive_complete),
-        .parity_error_flag(uart_parity_error_flag)
-    );
+    wire uart_status_frame_sent_write;
 
     uart_tx_module tx_module(
         .tx_data_line(uart_tx),
         .clk_i(clk_i),
         .rst_i(rst_i),
-        .async_rst_i(async_rst_i),
+        .ext_rst_i(ext_rst_i),
         .tx_ctrl_reg(uart_tx_ctrl_reg),
         .baud_rate_divider_constant(baud_rate_divider_constant),
         .tx_data_in(uart_buffer_tx),
-        .frame_sent_clear(uart_frame_sent_clear),
         .frame_sent_complete(uart_frame_sent_complete)
     );
 
@@ -96,9 +84,9 @@ module uart_interface(
     //- Bit 6 : RX Parity error
     //- Bit 5 : TX Frame sent complete
 
-    always @(posedge (clk_i)) begin
+    always @(posedge clk_i) begin
         //below is the code for writing the register
-        if (rst_i == 1 || async_rst_i == 0) begin
+        if (rst_i == 1 || ext_rst_i == 0) begin
             baud_rate_divider_constant <= 0;
             uart_buffer_tx <= 9'b000000000;
             uart_rx_ctrl_reg <= 8'b00000000;
@@ -106,7 +94,9 @@ module uart_interface(
             uart_read_buffer_internal <= 8'b00000000;
             uart_status_reg <= 8'b00000000;
             uart_status_indicator <= 8'b00000000;
-        end else if (we_i == 1 && stb_i == 1) begin 
+        end
+        
+        if (we_i == 1 && stb_i == 1) begin 
             if (addr_i == 32'h2) begin
                 uart_rx_ctrl_reg <= dat_i[7:0];
                 bus_acknowledge <= 1;
@@ -153,25 +143,6 @@ module uart_interface(
                 uart_status_indicator <= 8'b00000100;
             end else if (addr_i == 32'h5) begin 
                 uart_read_buffer_internal <= uart_status_reg;
-                if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
-                    uart_buffer_rx <= uart_rx_data_out[7:0];
-                    uart_rx_ctrl_reg[7] <= 0;
-                    uart_status_reg[7] <= 1;
-                    //uart_status_indicator <= 8'b01010101;
-                    //bus_acknowledge <= 0;
-                end else if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
-                    uart_status_reg[6] <= 1;
-                    //uart_status_indicator <= 8'b01010101;
-                    //bus_acknowledge <= 0;
-                end else if (uart_frame_sent_complete == 1 && uart_status_reg[5] == 0) begin
-                    uart_tx_ctrl_reg[7] <= 0;
-                    uart_frame_sent_clear_reg <= 1;
-                    uart_status_reg[5] <= 1;
-                    //uart_status_indicator <= 8'b01010101;
-                    //bus_acknowledge <= 0;
-                end else begin 
-                    uart_frame_sent_clear_reg <= 0;
-                end
                 bus_acknowledge <= 1;
                 uart_status_indicator <= 8'b00000101;
             end else if (addr_i == 32'h6) begin 
@@ -188,187 +159,42 @@ module uart_interface(
                 //uart_status_indicator <= 8'b10000001;
             end
         end
-
-        //below is the reaction based on the module's flag
-        else begin 
-             if (uart_rx_ctrl_reg[3] == 1) begin
-                uart_rx_ctrl_reg[3] <= 0;
-                uart_status_indicator <= 8'b01010101;
-            end else if (uart_tx_ctrl_reg[3] == 1) begin
-                uart_tx_ctrl_reg[3] <= 0;
-                uart_status_indicator <= 8'b01010101;
-				end else if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
-                uart_buffer_rx <= uart_rx_data_out[7:0];
-                uart_rx_ctrl_reg[7] <= 0;
-                uart_status_reg[7] <= 1;
-                //uart_status_indicator <= 8'b01010101;
-                //bus_acknowledge <= 0;
-            end else if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
-                uart_status_reg[6] <= 1;
-                //uart_status_indicator <= 8'b01010101;
-                //bus_acknowledge <= 0;
-            end else if (uart_frame_sent_complete == 1 && uart_status_reg[5] == 0) begin
-                uart_tx_ctrl_reg[7] <= 0;
-                uart_frame_sent_clear_reg <= 1;
-                uart_status_reg[5] <= 1;
-                //uart_status_indicator <= 8'b01010101;
-                //bus_acknowledge <= 0;
-            end else begin 
-                uart_frame_sent_clear_reg <= 0;
-                uart_status_indicator <= 8'b01010101;
-            end
-        end
-	end
-
-    assign dat_o[7:0] = uart_read_buffer_internal;
-    assign uart_frame_sent_clear = uart_frame_sent_clear_reg;
-    assign ack_o = bus_acknowledge;
-endmodule
-
-module uart_rx_module(input rx_data_line, 
-                        input async_rst_i,
-                        input clk_i, 
-                        input rst_i,
-                        input [7:0] rx_ctrl_reg,
-                        input [31:0] baud_rate_divider_constant, 
-                        output [8:0] rx_data_out, 
-                        output frame_receive_complete,
-                        output parity_error_flag);
-
-    //rx_control register control operation such as receive enable, parity bit odd/even, data bit numbers (8 or 9)
-    //bit 7 is receive enable, bit 6 is parity enable, bit 5 is parity odd/even, bit 4 is data length (0 -> 8b, 1 -> 9b)\
-    //bit 3 is rx_reset
-    //rx_status_reg is a register containing the operational status of the UART RX Module
-    //bit 7 is parity error, bit 6 is frame receive complete
-
-    reg [9:0] data_received_internal;
-    reg [31:0] baud_rate_counter_internal;
-    reg [3:0] rx_fsm_internal;
-    reg frame_start_detect;
-    reg frame_receive_complete_internal;
-    reg parity_error_flag_internal;
-
-    wire clk_in_internal;
-    wire rx_data_line_gated_internal;
-    wire rx_rst_i;
-    wire parity_check_internal;
-
-    //parity detection using the modulee provided at the bottom of the file
-    //it is purely combinational, no need to provide a clock
-
-    parity_detector parity_module(.data(data_received_internal[9:1]), 
-                                    .mode_bits(rx_ctrl_reg[4]),
-                                    .mode_odd_even(rx_ctrl_reg[5]),
-                                    .result(parity_check_internal)
-    );
-
-    //start-of-frame detection
-    //using latches that hold until the flip flop is cleared
-
-    always @(negedge (rx_data_line_gated_internal ^ async_rst_i)) begin
-        if (rst_i == 1 || rx_rst_i == 1 || async_rst_i == 0) frame_start_detect <= 0;
-        else if (frame_receive_complete_internal == 1) frame_start_detect <= 0;
-        else frame_start_detect <= 1;
-    end
-
-    //we do the gating to make sure that the module is only active when needed, and hence we limit the clock tree 
-    //using and gate in order to let the signal only after RX function is activated
-
-    always @(posedge (clk_in_internal ^ ~async_rst_i)) begin 
-        if (rst_i == 1 || rx_rst_i == 1 || async_rst_i == 0) baud_rate_counter_internal = 32'd0;
-        else baud_rate_counter_internal = baud_rate_counter_internal + baud_rate_divider_constant;
-    end
-
-    //this is the state machine for UART RX. It will begin looping when it detects a rising edge pulse from the baud rate counter
-    //if the clock is gated, we can control its activities
-    //the state machine only has 12 state maximum, in accordance with the maximum bit that it can transmit (9 bit UART + Parity + )
-
-    always @(posedge (baud_rate_counter_internal[15] ^ ~async_rst_i)) begin
-        if (rst_i == 1 || rx_rst_i == 1 || async_rst_i == 0) begin  
-            rx_fsm_internal <= 4'b0;
-            data_received_internal <= 9'b000000000;
-            frame_receive_complete_internal <= 0;
-        end else if (rx_data_line == 1 && rx_fsm_internal == 4'b0) begin
-            rx_fsm_internal <= rx_fsm_internal; 
-            frame_receive_complete_internal <= 0;
+ 
+        if (uart_rx_ctrl_reg[3] == 1) begin
+            uart_rx_ctrl_reg[3] <= 0;
+            uart_status_indicator <= 8'b01010101;
+        end else if (uart_tx_ctrl_reg[3] == 1) begin
+            uart_tx_ctrl_reg[3] <= 0;
+            uart_status_indicator <= 8'b01010101;
+        end else if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
+            uart_buffer_rx <= uart_rx_data_out[7:0];
+            uart_rx_ctrl_reg[7] <= 0;
+            uart_status_reg[7] <= 1;
+            //uart_status_indicator <= 8'b01010101;
+            //bus_acknowledge <= 0;
+        end else if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
+            uart_status_reg[6] <= 1;
+            //uart_status_indicator <= 8'b01010101;
+            //bus_acknowledge <= 0;
+        end else if (uart_status_frame_sent_write == 1 && uart_status_reg[5] == 0) begin
+            uart_status_reg[5] <= 1'b1;
+            uart_tx_ctrl_reg[7] <= 0;
+            //uart_status_indicator <= 8'b01010101;
+            //bus_acknowledge <= 0;
         end else begin 
-        //this is where the state machine begin
-        //case 1 : when in 9 bit configuration with single parity bit
-            if (rx_ctrl_reg[6] == 1 && rx_ctrl_reg[4] == 1) begin
-                if (rx_fsm_internal == 4'b1011) begin
-                    rx_fsm_internal <= 4'b0000;
-                    frame_receive_complete_internal <= 1;
-                    parity_error_flag_internal = (parity_check_internal ^ data_received_internal[0])|(~parity_check_internal ^ ~data_received_internal[0]);
-                end else if (rx_fsm_internal == 4'b0000 && frame_start_detect == 1) begin 
-                    rx_fsm_internal <= rx_fsm_internal + 4'b0001;
-                end else begin
-                    data_received_internal[0] <= rx_data_line;
-                    data_received_internal[1] <= data_received_internal[0];
-                    data_received_internal[2] <= data_received_internal[1];
-                    data_received_internal[3] <= data_received_internal[2];
-                    data_received_internal[4] <= data_received_internal[3];
-                    data_received_internal[5] <= data_received_internal[4];
-                    data_received_internal[6] <= data_received_internal[5];
-                    data_received_internal[7] <= data_received_internal[6];
-                    data_received_internal[8] <= data_received_internal[7];
-                    data_received_internal[9] <= data_received_internal[8];
-                    rx_fsm_internal <= rx_fsm_internal + 1'b1;
-                end
-            //case 2 : if the configuration is 8-bit data with parity, or 9 bit data without parity
-            end else if ((rx_ctrl_reg[6] == 1 && rx_ctrl_reg[4] == 0) || rx_ctrl_reg[6] == 0 && rx_ctrl_reg[4] == 1 ) begin
-                if (rx_fsm_internal == 4'b1010) begin
-                    rx_fsm_internal <= 4'b0;
-                    frame_receive_complete_internal <= 1;
-                    parity_error_flag_internal = (parity_check_internal ^ data_received_internal[0])|(~parity_check_internal ^ ~data_received_internal[0]);
-                end else if (rx_fsm_internal == 4'b0000 && frame_start_detect == 1) begin 
-                    rx_fsm_internal <= rx_fsm_internal + 4'b0001;
-                end else begin
-                    data_received_internal[0] <= rx_data_line;
-                    data_received_internal[1] <= data_received_internal[0];
-                    data_received_internal[2] <= data_received_internal[1];
-                    data_received_internal[3] <= data_received_internal[2];
-                    data_received_internal[4] <= data_received_internal[3];
-                    data_received_internal[5] <= data_received_internal[4];
-                    data_received_internal[6] <= data_received_internal[5];
-                    data_received_internal[7] <= data_received_internal[6];
-                    data_received_internal[8] <= data_received_internal[7];
-                    data_received_internal[9] <= data_received_internal[8];
-                    rx_fsm_internal <= rx_fsm_internal + 1'b1;
-                end
-            //case 3 : if the config is 8-bit data with no parity
-            end else begin
-                if (rx_fsm_internal == 4'b1001) begin
-                    rx_fsm_internal <= 4'b0;
-                    frame_receive_complete_internal <= 1;
-                    parity_error_flag_internal = (parity_check_internal ^ data_received_internal[0])|(~parity_check_internal ^ ~data_received_internal[0]);
-                end else if (rx_fsm_internal == 4'b0000 && frame_start_detect == 1) begin 
-                    rx_fsm_internal <= rx_fsm_internal + 4'b0001;
-                end else begin
-                    data_received_internal[0] <= rx_data_line;
-                    data_received_internal[1] <= data_received_internal[0];
-                    data_received_internal[2] <= data_received_internal[1];
-                    data_received_internal[3] <= data_received_internal[2];
-                    data_received_internal[4] <= data_received_internal[3];
-                    data_received_internal[5] <= data_received_internal[4];
-                    data_received_internal[6] <= data_received_internal[5];
-                    data_received_internal[7] <= data_received_internal[6];
-                    data_received_internal[8] <= data_received_internal[7];
-                    data_received_internal[9] <= data_received_internal[8];
-                    rx_fsm_internal <= rx_fsm_internal + 1'b1;
-                end
-            end
+            uart_status_indicator <= 8'b01010101;
         end
+
+        if (uart_frame_sent_complete == 1) uart_frame_sent_previous_reg <= 1;
+        else if (uart_frame_sent_complete == 0) uart_frame_sent_previous_reg <= 0;
+        else if (rst_i == 1 || ext_rst_i == 0) uart_frame_sent_previous_reg <= 0;
+        else uart_frame_sent_previous_reg <= uart_frame_sent_previous_reg;
+
     end
 
-    //here is the combinational logic to control the signal flow from internal register to outside the RX module
-    //simple gating, only added as needed to ensure simplicity and easy-to-read format
-
-    assign rx_data_out[8:0] = data_received_internal[9:1];
-    assign parity_error_flag = parity_error_flag_internal;
-    assign frame_receive_complete = frame_receive_complete_internal;
-    assign rx_data_line_gated_internal = rx_data_line & ~frame_start_detect;
-    assign clk_in_internal = clk_i & rx_ctrl_reg[7];
-    assign rx_rst_i = rx_ctrl_reg[3];
+    assign uart_status_frame_sent_write = uart_frame_sent_complete & ~uart_frame_sent_previous_reg;
+    assign dat_o[7:0] = uart_read_buffer_internal;
+    assign ack_o = bus_acknowledge;
 endmodule
 
 //the module below is for TX functionality. we try to standardize each module format so that it can be easily understandable. 
@@ -376,13 +202,12 @@ endmodule
 //module will be occasionaly seen
 
 module uart_tx_module(output tx_data_line,
-                        input async_rst_i,
+                        input ext_rst_i,
                         input clk_i, 
                         input rst_i,
                         input [7:0] tx_ctrl_reg,
                         input [31:0] baud_rate_divider_constant, 
                         input [8:0] tx_data_in, 
-                        input frame_sent_clear,
                         output frame_sent_complete
                         );
 
@@ -408,17 +233,13 @@ module uart_tx_module(output tx_data_line,
                                     .result(parity_internal)
     );
 
-	always @(posedge (clk_in_internal ^ ~async_rst_i)) begin 
-        if (rst_i == 1 || tx_rst_i == 1 || async_rst_i == 0) baud_rate_counter_internal = 32'd0;
+	always @(posedge clk_in_internal) begin 
+        if (rst_i == 1 || tx_rst_i == 1 || ext_rst_i == 0) baud_rate_counter_internal = 32'd0;
         else baud_rate_counter_internal = baud_rate_counter_internal + baud_rate_divider_constant;
     end
 	
-	always @(posedge (baud_rate_counter_internal[31] ^ (~async_rst_i | frame_sent_clear))) begin 
-        if (rst_i == 1 || tx_rst_i == 1 || async_rst_i == 0) begin
-            tx_fsm_internal <= 4'b0000;
-            frame_sent_complete_internal <= 0;
-            tx_data_line_internal <= 1;
-        end else if (tx_ctrl_reg[7] == 1 && frame_sent_complete_internal == 0) begin
+	always @(posedge (baud_rate_counter_internal[31])) begin 
+        if (tx_ctrl_reg[7] == 1) begin
             if (tx_ctrl_reg[4] == 1) begin
                 case (tx_fsm_internal)
                     //start bit
@@ -545,7 +366,11 @@ module uart_tx_module(output tx_data_line,
                     end
                 endcase
             end
-        end else if (frame_sent_clear == 1'b1) frame_sent_complete_internal <= 0; 
+        end else begin
+            tx_fsm_internal <= 4'b0000;
+            frame_sent_complete_internal <= 0;
+            tx_data_line_internal <= 1;
+        end
 	end
 
     assign frame_sent_complete = frame_sent_complete_internal;

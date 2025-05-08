@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module control_unit(
-    input async_rst_i,
+    input ext_rst_i,
     input rst_i,
     input clk_i,
     output [31:0] addr_o,
@@ -48,8 +48,8 @@ module control_unit(
     reg [9:0] one_hot;
 	reg repetition;
 
-    always @(posedge (clk_i ^ ~async_rst_i)) begin
-        if (rst_i == 1'b1) begin
+    always @(posedge clk_i) begin
+        if (rst_i == 1'b1 || ext_rst_i == 1'b0) begin
             cu_fsm_internal <= 5'd0;
             next_fsm_step <= 5'd0;
             addr_o_internal <= 32'd0;
@@ -58,41 +58,29 @@ module control_unit(
             stb_o_internal <= 0;
             we_o_internal <= 0;
             one_hot <= 10'd0;
-				repetition <= 0;
-        end else if (async_rst_i == 1'b0) begin
-            cu_fsm_internal <= 5'd0;
-            next_fsm_step <= 5'd0;
-            addr_o_internal <= 32'd0;
-            dat_o_internal <= 32'd0;
-            counter_timer_internal <= 32'd0;
-            stb_o_internal <= 0;
-            we_o_internal <= 0;
-            one_hot <= 10'd0;
-				repetition <= 0;
+			repetition <= 0;
         end else begin
             case (cu_fsm_internal)
                 //fill the baud rate register
                 5'd0 : begin
-					if (repetition == 0) begin
-						we_o_internal <= 1;
-						stb_o_internal <= 1;
-						addr_o_internal <= 32'h4;
-						dat_o_internal <= 32'h1d7dbf5a;
-						cu_fsm_internal <= cu_fsm_internal;
-						repetition <= 1; 
-						one_hot <= 10'b0000000001;
-					end else if (repetition == 1) begin 
-						we_o_internal <= 1;
-						stb_o_internal <= 1;
-						addr_o_internal <= 32'h4;
-						dat_o_internal <= 32'h1d7dbf5a;
-						cu_fsm_internal <= cu_fsm_internal + 1'b1;
-						repetition <= 0; 
-						one_hot <= 10'b0000000001;
-					end
-                end
-                //display buffer
+					we_o_internal <= 1;
+					stb_o_internal <= 1;
+					addr_o_internal <= 32'h4;
+					dat_o_internal <= 32'h40000000;
+					cu_fsm_internal <= cu_fsm_internal + 1'b1;
+					one_hot <= 10'b0000000001;
+				end
+                //fill the TX buffer
                 5'd1 : begin
+					we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd65;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    //one_hot <= 10'b0000000010;
+				end
+                //display buffer
+                5'd2 : begin
                     we_o_internal <= 0;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
@@ -100,45 +88,14 @@ module control_unit(
                     one_hot <= 32'd65;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
-                //fill the TX buffer
-                5'd2 : begin
-					if (repetition == 0) begin
-					    we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h7;
-                        dat_o_internal <= one_hot;
-                        cu_fsm_internal <= cu_fsm_internal;
-					    repetition <= 1;
-                        //one_hot <= 10'b0000000010;
-					end else if (repetition == 1) begin
-					    we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h7;
-                        dat_o_internal <= one_hot;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
-						repetition <= 0;
-                        //one_hot <= 10'b0000000010;
-					end
-                end
                 //start sending
                 5'd3 : begin
-					if (repetition == 0) begin
-						we_o_internal <= 1;
-						stb_o_internal <= 1;
-						addr_o_internal <= 32'h3;
-						dat_o_internal <= 32'h80;
-						repetition <= 1;
-						cu_fsm_internal <= cu_fsm_internal;
-						//one_hot <= 10'b1000000000;
-					end else if (repetition == 1) begin
-						we_o_internal <= 1;
-						stb_o_internal <= 1;
-						addr_o_internal <= 32'h3;
-						dat_o_internal <= 32'h80;
-						repetition <= 0;
-						cu_fsm_internal <= cu_fsm_internal + 1'b1;
-						//one_hot <= 10'b1000000000;
-					end
+					we_o_internal <= 1;
+					stb_o_internal <= 1;
+					addr_o_internal <= 32'h3;
+					dat_o_internal <= 32'h80;
+					cu_fsm_internal <= cu_fsm_internal + 1'b1;
+					//one_hot <= 10'b1000000000;
                 end
                 //poll the status register
                 5'd4 : begin
@@ -152,26 +109,24 @@ module control_unit(
                 end
                 //clear UART flag
                 5'd5 : begin
-					if (repetition == 0) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h5;
-                        dat_o_internal <= 32'h0;
-                        //one_hot <= 10'b100000001;
-						repetition <= 1;
-                        cu_fsm_internal <= cu_fsm_internal;
-                    end else if (repetition == 1) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h5;
-                        dat_o_internal <= 32'h0;
-                        //one_hot <= 10'b100000001;
-						repetition <= 0;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    end
+                    we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h5;
+                    dat_o_internal <= 32'h0;
+                    //one_hot <= 10'b100000001;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                end
+                //fill the TX buffer
+                5'd6 : begin
+					we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd82;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    //one_hot <= 10'b0000000010;
                 end
                 //display buffer
-                5'd6 : begin
+                5'd7 : begin
                     we_o_internal <= 0;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
@@ -179,45 +134,14 @@ module control_unit(
                     one_hot <= 32'd82;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
-                //fill the TX buffer
-                5'd7 : begin
-						if (repetition == 0) begin
-						    we_o_internal <= 1;
-                            stb_o_internal <= 1;
-                            addr_o_internal <= 32'h7;
-                            dat_o_internal <= one_hot;
-                            cu_fsm_internal <= cu_fsm_internal;
-						    repetition <= 1;
-                            //one_hot <= 10'b0000000010;
-						end else if (repetition == 1) begin
-						    we_o_internal <= 1;
-                            stb_o_internal <= 1;
-                            addr_o_internal <= 32'h7;
-                            dat_o_internal <= one_hot;
-                            cu_fsm_internal <= cu_fsm_internal + 1'b1;
-						    repetition <= 0;
-                            //one_hot <= 10'b0000000010;
-						end
-                end
                 //start sending
                 5'd8 : begin
-					if (repetition == 0) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h3;
-                        dat_o_internal <= 32'h80;
-						repetition <= 1;
-                        cu_fsm_internal <= cu_fsm_internal;
-                        //one_hot <= 10'b1000000000;
-					end else if (repetition == 1) begin
-					    we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h3;
-                        dat_o_internal <= 32'h80;
-						repetition <= 0;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                        //one_hot <= 10'b1000000000;
-					end
+					we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h3;
+                    dat_o_internal <= 32'h80;
+					cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    //one_hot <= 10'b1000000000;
                 end
                 //poll the status register
                 5'd9 : begin
@@ -231,26 +155,25 @@ module control_unit(
                 end
                 //clear UART flag
                 5'd10 : begin
-					if (repetition == 0) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h5;
-                        dat_o_internal <= 32'h0;
-                        //one_hot <= 10'b100000001;
-						repetition <= 1;
-                        cu_fsm_internal <= cu_fsm_internal;
-                    end else if (repetition == 1) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h5;
-                        dat_o_internal <= 32'h0;
-                        //one_hot <= 10'b100000001;
-					    repetition <= 0;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    end
+                    we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h5;
+                    dat_o_internal <= 32'h0;
+                    //one_hot <= 10'b100000001;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                end
+                //fill the TX buffer
+                5'd11 : begin
+					we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd85;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+					repetition <= 0;
+                    //one_hot <= 10'b0000000010;
                 end
                 //display buffer
-                5'd11 : begin
+                5'd12 : begin
                     we_o_internal <= 0;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
@@ -258,45 +181,14 @@ module control_unit(
                     one_hot <= 32'd85;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
-                //fill the TX buffer
-                5'd12 : begin
-						if (repetition == 0) begin
-						    we_o_internal <= 1;
-                            stb_o_internal <= 1;
-                            addr_o_internal <= 32'h7;
-                            dat_o_internal <= one_hot;
-                            cu_fsm_internal <= cu_fsm_internal;
-						    repetition <= 1;
-                            //one_hot <= 10'b0000000010;
-						end else if (repetition == 1) begin
-						    we_o_internal <= 1;
-                            stb_o_internal <= 1;
-                            addr_o_internal <= 32'h7;
-                            dat_o_internal <= one_hot;
-                            cu_fsm_internal <= cu_fsm_internal + 1'b1;
-						    repetition <= 0;
-                            //one_hot <= 10'b0000000010;
-						end
-                end
                 //start sending
                 5'd13 : begin
-					if (repetition == 0) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h3;
-                        dat_o_internal <= 32'h80;
-						repetition <= 1;
-                        cu_fsm_internal <= cu_fsm_internal;
-                        //one_hot <= 10'b1000000000;
-					end else if (repetition == 1) begin
-						we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h3;
-                        dat_o_internal <= 32'h80;
-					    repetition <= 0;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                        //one_hot <= 10'b1000000000;
-					end
+					we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h3;
+                    dat_o_internal <= 32'h80;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    //one_hot <= 10'b1000000000;
                 end
                 //poll the status register
                 5'd14 : begin
@@ -310,23 +202,13 @@ module control_unit(
                 end
                 //clear UART flag
                 5'd15 : begin
-					if (repetition == 0) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h5;
-                        dat_o_internal <= 32'h0;
-                        //one_hot <= 10'b100000001;
-					    repetition <= 1;
-                        cu_fsm_internal <= cu_fsm_internal;
-                    end else if (repetition == 1) begin
-                        we_o_internal <= 1;
-                        stb_o_internal <= 1;
-                        addr_o_internal <= 32'h5;
-                        dat_o_internal <= 32'h0;
-                        //one_hot <= 10'b100000001;
-					    repetition <= 0;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    end
+                    we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h5;
+                    dat_o_internal <= 32'h0;
+                    //one_hot <= 10'b100000001;
+					repetition <= 0;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
                 //delay for 1 second
                 5'd16 : begin

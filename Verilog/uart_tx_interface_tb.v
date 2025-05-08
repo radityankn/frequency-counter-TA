@@ -30,7 +30,7 @@ module freq_count_tb;
 	reg [31:0] addr_i;
 	reg [31:0] dat_i;
 	reg we_i;
-	reg [7:0] sel_i;
+	reg [3:0] sel_i;
 	reg cyc_i;
 	reg stb_i;
 	reg lock_i;
@@ -87,7 +87,7 @@ module freq_count_tb;
 		#85 we_i = 1;
 		stb_i = 1;
 		addr_i = 32'h4;
-		dat_i = 32'd32766;
+		dat_i = 32'h40000000;
 		#5 stb_i = 0;
         //send payload to TX buffer (0x07)
         #5 stb_i = 1;

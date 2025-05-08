@@ -19,21 +19,21 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module top_level(input async_rst_ext,
-               input clk_i_ext,
-					input measure_signal_i,
-               input uart_rx_ext,
-               output uart_tx_ext,
-               output [9:0] led_port
+module top_level(input rst_ext,
+            	input clk_i_ext,
+				input measure_signal_i,
+            	input uart_rx_ext,
+            	output uart_tx_ext,
+            	output [9:0] led_port
 );
 
    // WB interconnect definition
-   wire async_rst_internal;
+	wire async_rst_internal;
 	wire rst_i;
 	wire clk_i;
 	wire tagn_i;
-   wire [31:0] dat_o;
-   wire [31:0] addr_i;
+	wire [31:0] dat_o;
+	wire [31:0] addr_i;
 	wire [31:0] dat_i;
 	wire we_i;
 	wire [3:0] sel_i;
@@ -46,8 +46,8 @@ module top_level(input async_rst_ext,
 	wire tagn_o;
 
     control_unit control_module (
-      .async_rst_i(async_rst_internal),
-      .rst_i(rst_i), 
+    	.ext_rst_i(rst_ext),
+    	.rst_i(rst_i), 
 		.clk_i(clk_i), 
 		.addr_o(addr_i), 
 		.dat_o(dat_i), 
@@ -62,7 +62,7 @@ module top_level(input async_rst_ext,
 		.ack_i(ack_o), 
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
-      .out_led(led_port)
+    	.out_led(led_port)
     );
 	
 	wire [31:0] uart_dat_o;
@@ -71,7 +71,7 @@ module top_level(input async_rst_ext,
 	wire uart_err_o;
 
     uart_interface uart_module (
-        .async_rst_i(async_rst_internal),
+        .ext_rst_i(rst_ext),
 		.rst_i(rst_i), 
 		.clk_i(clk_i), 
 		.addr_i(addr_i), 
@@ -130,7 +130,6 @@ module top_level(input async_rst_ext,
 	);
 	*/
 	
-	assign async_rst_internal = async_rst_ext;
 	assign clk_i = clk_i_ext;
 	assign dat_o = (uart_dat_o | counter_dat_o);
 	assign err_o = (uart_err_o | counter_err_o);
