@@ -66,7 +66,7 @@ module control_unit(
 					we_o_internal <= 1;
 					stb_o_internal <= 1;
 					addr_o_internal <= 32'h4;
-					dat_o_internal <= 32'h40000000;
+					dat_o_internal <= 32'h96feb5;
 					cu_fsm_internal <= cu_fsm_internal + 1'b1;
 					one_hot <= 10'b0000000001;
 				end
@@ -75,7 +75,8 @@ module control_unit(
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= 32'd65;
+                    dat_o_internal <= 32'd82;
+                    next_fsm_step <= 5'd6;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                     //one_hot <= 10'b0000000010;
 				end
@@ -114,104 +115,84 @@ module control_unit(
                     addr_o_internal <= 32'h5;
                     dat_o_internal <= 32'h0;
                     //one_hot <= 10'b100000001;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    cu_fsm_internal <= next_fsm_step;
                 end
                 //fill the TX buffer
                 5'd6 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= 32'd82;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    dat_o_internal <= 32'd65;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd7;
                     //one_hot <= 10'b0000000010;
                 end
-                //display buffer
+                //fill the TX buffer
                 5'd7 : begin
-                    we_o_internal <= 0;
+					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= 32'h0;
-                    one_hot <= 32'd82;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    dat_o_internal <= 32'd68;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd8;
+                    //one_hot <= 10'b0000000010;
                 end
-                //start sending
                 5'd8 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
-                    addr_o_internal <= 32'h3;
-                    dat_o_internal <= 32'h80;
-					cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    //one_hot <= 10'b1000000000;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd73;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd9;
+                    //one_hot <= 10'b0000000010;
                 end
-                //poll the status register
                 5'd9 : begin
-                    we_o_internal <= 0;
+					we_o_internal <= 1;
                     stb_o_internal <= 1;
-                    addr_o_internal <= 32'h5;
-                    dat_o_internal <= 32'h0;
-                    //one_hot <= 10'b0000000011;
-                    if (dat_i[5] == 1) cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    else if (dat_i[5] == 0) cu_fsm_internal <= cu_fsm_internal;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd84;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd10;
+                    //one_hot <= 10'b0000000010;
                 end
-                //clear UART flag
                 5'd10 : begin
-                    we_o_internal <= 1;
+					we_o_internal <= 1;
                     stb_o_internal <= 1;
-                    addr_o_internal <= 32'h5;
-                    dat_o_internal <= 32'h0;
-                    //one_hot <= 10'b100000001;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd89;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd11;
+                    //one_hot <= 10'b0000000010;
                 end
-                //fill the TX buffer
                 5'd11 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= 32'd85;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
-					repetition <= 0;
+                    dat_o_internal <= 32'd65;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd12;
                     //one_hot <= 10'b0000000010;
                 end
-                //display buffer
                 5'd12 : begin
-                    we_o_internal <= 0;
+					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= 32'h0;
-                    one_hot <= 32'd85;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    dat_o_internal <= 32'd10;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd13;
+                    //one_hot <= 10'b0000000010;
                 end
-                //start sending
                 5'd13 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
-                    addr_o_internal <= 32'h3;
-                    dat_o_internal <= 32'h80;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    //one_hot <= 10'b1000000000;
-                end
-                //poll the status register
-                5'd14 : begin
-                    we_o_internal <= 0;
-                    stb_o_internal <= 1;
-                    addr_o_internal <= 32'h5;
-                    dat_o_internal <= 32'h0;
-                    //one_hot <= 10'b0000000011;
-                    if (dat_i[5] == 1) cu_fsm_internal <= cu_fsm_internal + 1'b1;
-                    else if (dat_i[5] == 0) cu_fsm_internal <= cu_fsm_internal;
-                end
-                //clear UART flag
-                5'd15 : begin
-                    we_o_internal <= 1;
-                    stb_o_internal <= 1;
-                    addr_o_internal <= 32'h5;
-                    dat_o_internal <= 32'h0;
-                    //one_hot <= 10'b100000001;
-					repetition <= 0;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= 32'd13;
+                    cu_fsm_internal <= 5'd2;
+                    next_fsm_step <= 5'd14;
+                    //one_hot <= 10'b0000000010;
                 end
                 //delay for 1 second
-                5'd16 : begin
+                5'd14 : begin
                     //one_hot <= 10'b100100101;
                     counter_timer_internal <= counter_timer_internal + 32'h10cc;
                     if (counter_timer_internal[31] == 1'b1) begin 

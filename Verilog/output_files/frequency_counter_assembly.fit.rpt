@@ -1,5 +1,5 @@
 Fitter report for frequency_counter_assembly
-Tue Apr 29 16:41:44 2025
+Thu May  8 23:53:57 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -10,40 +10,39 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   2. Fitter Summary
   3. Fitter Settings
   4. Parallel Compilation
-  5. Incremental Compilation Preservation Summary
-  6. Incremental Compilation Partition Settings
-  7. Incremental Compilation Placement Preservation
-  8. Pin-Out File
-  9. Fitter Resource Usage Summary
- 10. Fitter Partition Statistics
- 11. Input Pins
- 12. Output Pins
- 13. Dual Purpose and Dedicated Pins
- 14. I/O Bank Usage
- 15. All Package Pins
- 16. PLL Summary
- 17. PLL Usage
- 18. I/O Assignment Warnings
- 19. Fitter Resource Utilization by Entity
- 20. Delay Chain Summary
- 21. Pad To Core Delay Chain Fanout
- 22. Control Signals
- 23. Global & Other Fast Signals
- 24. Routing Usage Summary
- 25. LAB Logic Elements
- 26. LAB-wide Signals
- 27. LAB Signals Sourced
- 28. LAB Signals Sourced Out
- 29. LAB Distinct Inputs
- 30. I/O Rules Summary
- 31. I/O Rules Details
- 32. I/O Rules Matrix
- 33. Fitter Device Options
- 34. Operating Settings and Conditions
- 35. Estimated Delay Added for Hold Timing Summary
- 36. Estimated Delay Added for Hold Timing Details
- 37. Fitter Messages
- 38. Fitter Suppressed Messages
+  5. Ignored Assignments
+  6. Incremental Compilation Preservation Summary
+  7. Incremental Compilation Partition Settings
+  8. Incremental Compilation Placement Preservation
+  9. Pin-Out File
+ 10. Fitter Resource Usage Summary
+ 11. Fitter Partition Statistics
+ 12. Input Pins
+ 13. Output Pins
+ 14. Dual Purpose and Dedicated Pins
+ 15. I/O Bank Usage
+ 16. All Package Pins
+ 17. I/O Assignment Warnings
+ 18. Fitter Resource Utilization by Entity
+ 19. Delay Chain Summary
+ 20. Pad To Core Delay Chain Fanout
+ 21. Control Signals
+ 22. Global & Other Fast Signals
+ 23. Routing Usage Summary
+ 24. LAB Logic Elements
+ 25. LAB-wide Signals
+ 26. LAB Signals Sourced
+ 27. LAB Signals Sourced Out
+ 28. LAB Distinct Inputs
+ 29. I/O Rules Summary
+ 30. I/O Rules Details
+ 31. I/O Rules Matrix
+ 32. Fitter Device Options
+ 33. Operating Settings and Conditions
+ 34. Estimated Delay Added for Hold Timing Summary
+ 35. Estimated Delay Added for Hold Timing Details
+ 36. Fitter Messages
+ 37. Fitter Suppressed Messages
 
 
 
@@ -70,22 +69,22 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Fitter Status                      ; Successful - Tue Apr 29 16:41:44 2025           ;
+; Fitter Status                      ; Successful - Thu May  8 23:53:57 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; frequency_counter_assembly                      ;
 ; Top-level Entity Name              ; top_level                                       ;
 ; Family                             ; MAX 10                                          ;
 ; Device                             ; 10M50DAF484C7G                                  ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 251 / 49,760 ( < 1 % )                          ;
-;     Total combinational functions  ; 239 / 49,760 ( < 1 % )                          ;
-;     Dedicated logic registers      ; 149 / 49,760 ( < 1 % )                          ;
-; Total registers                    ; 149                                             ;
+; Total logic elements               ; 182 / 49,760 ( < 1 % )                          ;
+;     Total combinational functions  ; 181 / 49,760 ( < 1 % )                          ;
+;     Dedicated logic registers      ; 118 / 49,760 ( < 1 % )                          ;
+; Total registers                    ; 118                                             ;
 ; Total pins                         ; 15 / 360 ( 4 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                           ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                                 ;
-; Total PLLs                         ; 1 / 4 ( 25 % )                                  ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                   ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                                   ;
 ; ADC blocks                         ; 0 / 2 ( 0 % )                                   ;
 +------------------------------------+-------------------------------------------------+
@@ -156,16 +155,23 @@ on the Quartus Prime software download page.
 ; Number detected on machine ; 12          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
-; Average used               ; 1.33        ;
+; Average used               ; 1.10        ;
 ; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   3.3%      ;
-;     Processor 3            ;   3.1%      ;
-;     Processor 4            ;   3.0%      ;
-;     Processors 5-12        ;   2.9%      ;
+;     Processor 2            ;   0.9%      ;
+;     Processors 3-12        ;   0.9%      ;
 +----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------+
+; Ignored Assignments                                                                       ;
++----------+----------------+--------------+---------------+---------------+----------------+
+; Name     ; Ignored Entity ; Ignored From ; Ignored To    ; Ignored Value ; Ignored Source ;
++----------+----------------+--------------+---------------+---------------+----------------+
+; Location ;                ;              ; async_rst_ext ; PIN_B8        ; QSF Assignment ;
++----------+----------------+--------------+---------------+---------------+----------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -174,8 +180,8 @@ on the Quartus Prime software download page.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 444 ) ; 0.00 % ( 0 / 444 )         ; 0.00 % ( 0 / 444 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 444 ) ; 0.00 % ( 0 / 444 )         ; 0.00 % ( 0 / 444 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 350 ) ; 0.00 % ( 0 / 350 )         ; 0.00 % ( 0 / 350 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 350 ) ; 0.00 % ( 0 / 350 )         ; 0.00 % ( 0 / 350 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -198,15 +204,15 @@ on the Quartus Prime software download page.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 426 )    ; N/A                     ; Source File       ; N/A                 ;       ;
-; hard_block:auto_generated_inst ; 0.00 % ( 0 / 18 )     ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 334 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; hard_block:auto_generated_inst ; 0.00 % ( 0 / 16 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
 
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/output_files/frequency_counter_assembly.pin.
+The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/output_files/frequency_counter_assembly.pin.
 
 
 +----------------------------------------------------------------------+
@@ -214,26 +220,26 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 +---------------------------------------------+------------------------+
 ; Resource                                    ; Usage                  ;
 +---------------------------------------------+------------------------+
-; Total logic elements                        ; 251 / 49,760 ( < 1 % ) ;
-;     -- Combinational with no register       ; 102                    ;
-;     -- Register only                        ; 12                     ;
-;     -- Combinational with a register        ; 137                    ;
+; Total logic elements                        ; 182 / 49,760 ( < 1 % ) ;
+;     -- Combinational with no register       ; 64                     ;
+;     -- Register only                        ; 1                      ;
+;     -- Combinational with a register        ; 117                    ;
 ;                                             ;                        ;
 ; Logic element usage by number of LUT inputs ;                        ;
-;     -- 4 input functions                    ; 92                     ;
-;     -- 3 input functions                    ; 78                     ;
-;     -- <=2 input functions                  ; 69                     ;
-;     -- Register only                        ; 12                     ;
+;     -- 4 input functions                    ; 68                     ;
+;     -- 3 input functions                    ; 56                     ;
+;     -- <=2 input functions                  ; 57                     ;
+;     -- Register only                        ; 1                      ;
 ;                                             ;                        ;
 ; Logic elements by mode                      ;                        ;
-;     -- normal mode                          ; 164                    ;
-;     -- arithmetic mode                      ; 75                     ;
+;     -- normal mode                          ; 121                    ;
+;     -- arithmetic mode                      ; 60                     ;
 ;                                             ;                        ;
-; Total registers*                            ; 149 / 51,509 ( < 1 % ) ;
-;     -- Dedicated logic registers            ; 149 / 49,760 ( < 1 % ) ;
+; Total registers*                            ; 118 / 51,509 ( < 1 % ) ;
+;     -- Dedicated logic registers            ; 118 / 49,760 ( < 1 % ) ;
 ;     -- I/O registers                        ; 0 / 1,749 ( 0 % )      ;
 ;                                             ;                        ;
-; Total LABs:  partially or completely used   ; 21 / 3,110 ( < 1 % )   ;
+; Total LABs:  partially or completely used   ; 14 / 3,110 ( < 1 % )   ;
 ; Virtual pins                                ; 0                      ;
 ; I/O pins                                    ; 15 / 360 ( 4 % )       ;
 ;     -- Clock pins                           ; 1 / 8 ( 13 % )         ;
@@ -245,20 +251,20 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 ; Total block memory bits                     ; 0 / 1,677,312 ( 0 % )  ;
 ; Total block memory implementation bits      ; 0 / 1,677,312 ( 0 % )  ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 288 ( 0 % )        ;
-; PLLs                                        ; 1 / 4 ( 25 % )         ;
-; Global signals                              ; 6                      ;
-;     -- Global clocks                        ; 6 / 20 ( 30 % )        ;
+; PLLs                                        ; 0 / 4 ( 0 % )          ;
+; Global signals                              ; 2                      ;
+;     -- Global clocks                        ; 2 / 20 ( 10 % )        ;
 ; JTAGs                                       ; 0 / 1 ( 0 % )          ;
 ; CRC blocks                                  ; 0 / 1 ( 0 % )          ;
 ; Remote update blocks                        ; 0 / 1 ( 0 % )          ;
 ; Oscillator blocks                           ; 0 / 1 ( 0 % )          ;
 ; Impedance control blocks                    ; 0 / 1 ( 0 % )          ;
-; Average interconnect usage (total/H/V)      ; 0.3% / 0.2% / 0.5%     ;
-; Peak interconnect usage (total/H/V)         ; 8.1% / 6.3% / 10.4%    ;
-; Maximum fan-out                             ; 68                     ;
-; Highest non-global fan-out                  ; 68                     ;
-; Total fan-out                               ; 1269                   ;
-; Average fan-out                             ; 2.78                   ;
+; Average interconnect usage (total/H/V)      ; 0.1% / 0.1% / 0.1%     ;
+; Peak interconnect usage (total/H/V)         ; 1.2% / 1.3% / 1.1%     ;
+; Maximum fan-out                             ; 112                    ;
+; Highest non-global fan-out                  ; 35                     ;
+; Total fan-out                               ; 974                    ;
+; Average fan-out                             ; 2.77                   ;
 +---------------------------------------------+------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -271,54 +277,53 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 +---------------------------------------------+-----------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                   ; Low                            ;
 ;                                             ;                       ;                                ;
-; Total logic elements                        ; 251 / 49760 ( < 1 % ) ; 0 / 49760 ( 0 % )              ;
-;     -- Combinational with no register       ; 102                   ; 0                              ;
-;     -- Register only                        ; 12                    ; 0                              ;
-;     -- Combinational with a register        ; 137                   ; 0                              ;
+; Total logic elements                        ; 182 / 49760 ( < 1 % ) ; 0 / 49760 ( 0 % )              ;
+;     -- Combinational with no register       ; 64                    ; 0                              ;
+;     -- Register only                        ; 1                     ; 0                              ;
+;     -- Combinational with a register        ; 117                   ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Logic element usage by number of LUT inputs ;                       ;                                ;
-;     -- 4 input functions                    ; 92                    ; 0                              ;
-;     -- 3 input functions                    ; 78                    ; 0                              ;
-;     -- <=2 input functions                  ; 69                    ; 0                              ;
-;     -- Register only                        ; 12                    ; 0                              ;
+;     -- 4 input functions                    ; 68                    ; 0                              ;
+;     -- 3 input functions                    ; 56                    ; 0                              ;
+;     -- <=2 input functions                  ; 57                    ; 0                              ;
+;     -- Register only                        ; 1                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Logic elements by mode                      ;                       ;                                ;
-;     -- normal mode                          ; 164                   ; 0                              ;
-;     -- arithmetic mode                      ; 75                    ; 0                              ;
+;     -- normal mode                          ; 121                   ; 0                              ;
+;     -- arithmetic mode                      ; 60                    ; 0                              ;
 ;                                             ;                       ;                                ;
-; Total registers                             ; 149                   ; 0                              ;
-;     -- Dedicated logic registers            ; 149 / 49760 ( < 1 % ) ; 0 / 49760 ( 0 % )              ;
+; Total registers                             ; 118                   ; 0                              ;
+;     -- Dedicated logic registers            ; 118 / 49760 ( < 1 % ) ; 0 / 49760 ( 0 % )              ;
 ;     -- I/O registers                        ; 0                     ; 0                              ;
 ;                                             ;                       ;                                ;
-; Total LABs:  partially or completely used   ; 21 / 3110 ( < 1 % )   ; 0 / 3110 ( 0 % )               ;
+; Total LABs:  partially or completely used   ; 14 / 3110 ( < 1 % )   ; 0 / 3110 ( 0 % )               ;
 ;                                             ;                       ;                                ;
 ; Virtual pins                                ; 0                     ; 0                              ;
 ; I/O pins                                    ; 15                    ; 0                              ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 288 ( 0 % )       ; 0 / 288 ( 0 % )                ;
 ; Total memory bits                           ; 0                     ; 0                              ;
 ; Total RAM block bits                        ; 0                     ; 0                              ;
-; PLL                                         ; 0 / 4 ( 0 % )         ; 1 / 4 ( 25 % )                 ;
-; Clock control block                         ; 5 / 24 ( 20 % )       ; 1 / 24 ( 4 % )                 ;
+; Clock control block                         ; 2 / 24 ( 8 % )        ; 0 / 24 ( 0 % )                 ;
 ; User Flash Memory                           ; 1 / 1 ( 100 % )       ; 0 / 1 ( 0 % )                  ;
 ; Analog-to-Digital Converter                 ; 2 / 2 ( 100 % )       ; 0 / 2 ( 0 % )                  ;
 ;                                             ;                       ;                                ;
 ; Connections                                 ;                       ;                                ;
-;     -- Input Connections                    ; 31                    ; 2                              ;
-;     -- Registered Input Connections         ; 28                    ; 0                              ;
-;     -- Output Connections                   ; 2                     ; 31                             ;
+;     -- Input Connections                    ; 0                     ; 0                              ;
+;     -- Registered Input Connections         ; 0                     ; 0                              ;
+;     -- Output Connections                   ; 0                     ; 0                              ;
 ;     -- Registered Output Connections        ; 0                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Internal Connections                        ;                       ;                                ;
-;     -- Total Connections                    ; 1273                  ; 43                             ;
-;     -- Registered Connections               ; 502                   ; 0                              ;
+;     -- Total Connections                    ; 980                   ; 8                              ;
+;     -- Registered Connections               ; 398                   ; 0                              ;
 ;                                             ;                       ;                                ;
 ; External Connections                        ;                       ;                                ;
-;     -- Top                                  ; 0                     ; 33                             ;
-;     -- hard_block:auto_generated_inst       ; 33                    ; 0                              ;
+;     -- Top                                  ; 0                     ; 0                              ;
+;     -- hard_block:auto_generated_inst       ; 0                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Partition Interface                         ;                       ;                                ;
-;     -- Input Ports                          ; 4                     ; 2                              ;
-;     -- Output Ports                         ; 11                    ; 1                              ;
+;     -- Input Ports                          ; 4                     ; 0                              ;
+;     -- Output Ports                         ; 11                    ; 0                              ;
 ;     -- Bidir Ports                          ; 0                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Registered Ports                            ;                       ;                                ;
@@ -342,10 +347,10 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 +------------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+-----------+
 ; Name             ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Power Up High ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +------------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+-----------+
-; async_rst_ext    ; B8    ; 7        ; 46           ; 54           ; 28           ; 68                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ; 0         ;
-; clk_i_ext        ; P11   ; 3        ; 34           ; 0            ; 28           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ; 0         ;
-; measure_signal_i ; Y1    ; 3        ; 16           ; 0            ; 21           ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; 0         ;
-; uart_rx_ext      ; AB5   ; 3        ; 29           ; 0            ; 28           ; 5                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ; 0         ;
+; clk_i_ext        ; P11   ; 3        ; 34           ; 0            ; 28           ; 112                   ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ; 0         ;
+; measure_signal_i ; AB7   ; 3        ; 29           ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ; 0         ;
+; rst_ext          ; C8    ; 8        ; 36           ; 39           ; 28           ; 35                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ; 0         ;
+; uart_rx_ext      ; AB5   ; 3        ; 29           ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ; 0         ;
 +------------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+-----------+
 
 
@@ -396,8 +401,8 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 ; 4        ; 0 / 48 ( 0 % )   ; 2.5V          ; --           ;
 ; 5        ; 0 / 40 ( 0 % )   ; 2.5V          ; --           ;
 ; 6        ; 0 / 60 ( 0 % )   ; 2.5V          ; --           ;
-; 7        ; 11 / 52 ( 21 % ) ; 2.5V          ; --           ;
-; 8        ; 4 / 36 ( 11 % )  ; 2.5V          ; --           ;
+; 7        ; 10 / 52 ( 19 % ) ; 2.5V          ; --           ;
+; 8        ; 5 / 36 ( 14 % )  ; 2.5V          ; --           ;
 +----------+------------------+---------------+--------------+
 
 
@@ -456,7 +461,7 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 ; AB4      ; 155        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; AB5      ; 159        ; 3        ; uart_rx_ext                                    ; input  ; 2.5 V                 ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; AB6      ; 161        ; 3        ; uart_tx_ext                                    ; output ; 2.5 V                 ;         ; Column I/O ; Y               ; no       ; Off          ;
-; AB7      ; 163        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; AB7      ; 163        ; 3        ; measure_signal_i                               ; input  ; 2.5 V                 ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; AB8      ; 167        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; AB9      ; 171        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; AB10     ; 177        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
@@ -479,7 +484,7 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 ; B5       ; 485        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; B6       ;            ;          ; GND                                            ; gnd    ;                       ;         ; --         ;                 ; --       ; --           ;
 ; B7       ; 469        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
-; B8       ; 451        ; 7        ; async_rst_ext                                  ; input  ; 2.5 V                 ;         ; Column I/O ; Y               ; no       ; Off          ;
+; B8       ; 451        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; B9       ;            ;          ; GND                                            ; gnd    ;                       ;         ; --         ;                 ; --       ; --           ;
 ; B10      ; 448        ; 7        ; led_port[3]                                    ; output ; 2.5 V                 ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; B11      ; 443        ; 7        ; led_port[9]                                    ; output ; 2.5 V                 ;         ; Column I/O ; Y               ; no       ; Off          ;
@@ -501,7 +506,7 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 ; C5       ; 489        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; C6       ; 477        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; C7       ; 467        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
-; C8       ; 465        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; C8       ; 465        ; 8        ; rst_ext                                        ; input  ; 2.5 V                 ;         ; Column I/O ; N               ; no       ; Off          ;
 ; C9       ; 450        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; C10      ; 442        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; C11      ; 440        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
@@ -868,7 +873,7 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 ; W20      ; 286        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
 ; W21      ;            ;          ; GND                                            ; gnd    ;                       ;         ; --         ;                 ; --       ; --           ;
 ; W22      ; 283        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
-; Y1       ; 129        ; 3        ; measure_signal_i                               ; input  ; 2.5 V                 ;         ; Column I/O ; N               ; no       ; Off          ;
+; Y1       ; 129        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; Y2       ; 131        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; Y3       ; 149        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
 ; Y4       ; 151        ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
@@ -894,62 +899,13 @@ The pin-out file can be found in /home/raditya/Documents/Tugas Akhir/Verilog/out
 Note: Pin directions (input, output or bidir) are based on device operating in user mode.
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; PLL Summary                                                                                                              ;
-+-------------------------------+------------------------------------------------------------------------------------------+
-; Name                          ; pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|pll1 ;
-+-------------------------------+------------------------------------------------------------------------------------------+
-; SDC pin name                  ; pll_module_inst|altpll_component|auto_generated|pll1                                     ;
-; PLL mode                      ; Source Synchronous                                                                       ;
-; Compensate clock              ; clock2                                                                                   ;
-; Compensated input/output pins ; --                                                                                       ;
-; Switchover type               ; --                                                                                       ;
-; Input frequency 0             ; 50.0 MHz                                                                                 ;
-; Input frequency 1             ; --                                                                                       ;
-; Nominal PFD frequency         ; 50.0 MHz                                                                                 ;
-; Nominal VCO frequency         ; 500.0 MHz                                                                                ;
-; VCO post scale K counter      ; 2                                                                                        ;
-; VCO frequency control         ; Auto                                                                                     ;
-; VCO phase shift step          ; 250 ps                                                                                   ;
-; VCO multiply                  ; --                                                                                       ;
-; VCO divide                    ; --                                                                                       ;
-; Freq min lock                 ; 30.0 MHz                                                                                 ;
-; Freq max lock                 ; 65.02 MHz                                                                                ;
-; M VCO Tap                     ; 0                                                                                        ;
-; M Initial                     ; 1                                                                                        ;
-; M value                       ; 10                                                                                       ;
-; N value                       ; 1                                                                                        ;
-; Charge pump current           ; setting 1                                                                                ;
-; Loop filter resistance        ; setting 27                                                                               ;
-; Loop filter capacitance       ; setting 0                                                                                ;
-; Bandwidth                     ; 1.03 MHz to 1.97 MHz                                                                     ;
-; Bandwidth type                ; Medium                                                                                   ;
-; Real time reconfigurable      ; Off                                                                                      ;
-; Scan chain MIF file           ; --                                                                                       ;
-; Preserve PLL counter order    ; Off                                                                                      ;
-; PLL location                  ; PLL_1                                                                                    ;
-; Inclk0 signal                 ; clk_i_ext                                                                                ;
-; Inclk1 signal                 ; --                                                                                       ;
-; Inclk0 signal type            ; Dedicated Pin                                                                            ;
-; Inclk1 signal type            ; --                                                                                       ;
-+-------------------------------+------------------------------------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; PLL Usage                                                                                                                                                                                                                                                                                                                                    ;
-+------------------------------------------------------------------------------------------------------+--------------+------+-----+------------------+-------------+------------------+------------+---------+---------------+--------------+---------------+---------+---------+-------------------------------------------------------------+
-; Name                                                                                                 ; Output Clock ; Mult ; Div ; Output Frequency ; Phase Shift ; Phase Shift Step ; Duty Cycle ; Counter ; Counter Value ; High / Low   ; Cascade Input ; Initial ; VCO Tap ; SDC Pin Name                                                ;
-+------------------------------------------------------------------------------------------------------+--------------+------+-----+------------------+-------------+------------------+------------+---------+---------------+--------------+---------------+---------+---------+-------------------------------------------------------------+
-; pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|wire_pll1_clk[2] ; clock2       ; 1    ; 50  ; 1.0 MHz          ; 0 (0 ps)    ; 0.09 (250 ps)    ; 50/50      ; C0      ; 500           ; 250/250 Even ; --            ; 1       ; 0       ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2] ;
-+------------------------------------------------------------------------------------------------------+--------------+------+-----+------------------+-------------+------------------+------------+---------+---------------+--------------+---------------+---------+---------+-------------------------------------------------------------+
-
-
 +--------------------------------------------------+
 ; I/O Assignment Warnings                          ;
 +------------------+-------------------------------+
 ; Pin Name         ; Reason                        ;
 +------------------+-------------------------------+
 ; measure_signal_i ; Incomplete set of assignments ;
+; uart_rx_ext      ; Incomplete set of assignments ;
 ; uart_tx_ext      ; Incomplete set of assignments ;
 ; led_port[0]      ; Incomplete set of assignments ;
 ; led_port[1]      ; Incomplete set of assignments ;
@@ -961,27 +917,23 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; led_port[7]      ; Incomplete set of assignments ;
 ; led_port[8]      ; Incomplete set of assignments ;
 ; led_port[9]      ; Incomplete set of assignments ;
-; async_rst_ext    ; Incomplete set of assignments ;
 ; clk_i_ext        ; Incomplete set of assignments ;
-; uart_rx_ext      ; Incomplete set of assignments ;
-; measure_signal_i ; Missing location assignment   ;
+; rst_ext          ; Incomplete set of assignments ;
+; rst_ext          ; Missing location assignment   ;
 +------------------+-------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                     ;
-+---------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+------------------------------------------------------------------------------------------------+-------------------+--------------+
-; Compilation Hierarchy Node                  ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; ADC blocks ; Full Hierarchy Name                                                                            ; Entity Name       ; Library Name ;
-+---------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+------------------------------------------------------------------------------------------------+-------------------+--------------+
-; |top_level                                  ; 251 (1)     ; 149 (0)                   ; 0 (0)         ; 0           ; 0    ; 1          ; 0            ; 0       ; 0         ; 15   ; 0            ; 102 (1)      ; 12 (0)            ; 137 (0)          ; 0          ; |top_level                                                                                     ; top_level         ; work         ;
-;    |control_unit:control_module|            ; 89 (89)     ; 53 (53)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 36 (36)      ; 5 (5)             ; 48 (48)          ; 0          ; |top_level|control_unit:control_module                                                         ; control_unit      ; work         ;
-;    |pll_module:pll_module_inst|             ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |top_level|pll_module:pll_module_inst                                                          ; pll_module        ; work         ;
-;       |altpll:altpll_component|             ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |top_level|pll_module:pll_module_inst|altpll:altpll_component                                  ; altpll            ; work         ;
-;          |pll_module_altpll:auto_generated| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |top_level|pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated ; pll_module_altpll ; work         ;
-;    |uart_interface:uart_module|             ; 161 (56)    ; 96 (28)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 65 (28)      ; 7 (7)             ; 89 (18)          ; 0          ; |top_level|uart_interface:uart_module                                                          ; uart_interface    ; work         ;
-;       |uart_rx_module:rx_module|            ; 42 (42)     ; 30 (30)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 12 (12)      ; 0 (0)             ; 30 (30)          ; 0          ; |top_level|uart_interface:uart_module|uart_rx_module:rx_module                                 ; uart_rx_module    ; work         ;
-;       |uart_tx_module:tx_module|            ; 66 (66)     ; 38 (38)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 25 (25)      ; 0 (0)             ; 41 (41)          ; 0          ; |top_level|uart_interface:uart_module|uart_tx_module:tx_module                                 ; uart_tx_module    ; work         ;
-+---------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+------------------------------------------------------------------------------------------------+-------------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                              ;
++------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+----------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node               ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; ADC blocks ; Full Hierarchy Name                                                                          ; Entity Name     ; Library Name ;
++------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+----------------------------------------------------------------------------------------------+-----------------+--------------+
+; |top_level                               ; 182 (1)     ; 118 (0)                   ; 0 (0)         ; 0           ; 0    ; 1          ; 0            ; 0       ; 0         ; 15   ; 0            ; 64 (1)       ; 1 (0)             ; 117 (0)          ; 0          ; |top_level                                                                                   ; top_level       ; work         ;
+;    |control_unit:control_module|         ; 70 (70)     ; 53 (53)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 17 (17)      ; 0 (0)             ; 53 (53)          ; 0          ; |top_level|control_unit:control_module                                                       ; control_unit    ; work         ;
+;    |uart_interface:uart_module|          ; 111 (48)    ; 65 (27)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 46 (21)      ; 1 (0)             ; 64 (23)          ; 0          ; |top_level|uart_interface:uart_module                                                        ; uart_interface  ; work         ;
+;       |uart_tx_module:tx_module|         ; 67 (65)     ; 38 (38)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 25 (24)      ; 1 (1)             ; 41 (40)          ; 0          ; |top_level|uart_interface:uart_module|uart_tx_module:tx_module                               ; uart_tx_module  ; work         ;
+;          |parity_detector:parity_module| ; 2 (2)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 1 (1)            ; 0          ; |top_level|uart_interface:uart_module|uart_tx_module:tx_module|parity_detector:parity_module ; parity_detector ; work         ;
++------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+----------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -991,6 +943,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name             ; Pin Type ; Pad to Core 0 ; Pad to Core 1 ; Pad to Input Register ; TCO ; TCOE ;
 +------------------+----------+---------------+---------------+-----------------------+-----+------+
 ; measure_signal_i ; Input    ; --            ; --            ; --                    ; --  ; --   ;
+; uart_rx_ext      ; Input    ; --            ; --            ; --                    ; --  ; --   ;
 ; uart_tx_ext      ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; led_port[0]      ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; led_port[1]      ; Output   ; --            ; --            ; --                    ; --  ; --   ;
@@ -1002,141 +955,87 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; led_port[7]      ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; led_port[8]      ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; led_port[9]      ; Output   ; --            ; --            ; --                    ; --  ; --   ;
-; async_rst_ext    ; Input    ; (0) 0 ps      ; (0) 0 ps      ; --                    ; --  ; --   ;
-; clk_i_ext        ; Input    ; --            ; --            ; --                    ; --  ; --   ;
-; uart_rx_ext      ; Input    ; (6) 868 ps    ; --            ; --                    ; --  ; --   ;
+; clk_i_ext        ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
+; rst_ext          ; Input    ; (6) 868 ps    ; --            ; --                    ; --  ; --   ;
 +------------------+----------+---------------+---------------+-----------------------+-----+------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------+
-; Pad To Core Delay Chain Fanout                                                                                                ;
-+-------------------------------------------------------------------------------------------------+-------------------+---------+
-; Source Pin / Fanout                                                                             ; Pad To Core Index ; Setting ;
-+-------------------------------------------------------------------------------------------------+-------------------+---------+
-; measure_signal_i                                                                                ;                   ;         ;
-; async_rst_ext                                                                                   ;                   ;         ;
-;      - control_unit:control_module|one_hot[2]                                                   ; 0                 ; 0       ;
-;      - control_unit:control_module|one_hot[4]                                                   ; 0                 ; 0       ;
-;      - control_unit:control_module|one_hot[6]                                                   ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_ctrl_reg[7]                                           ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_ctrl_reg[3]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|cu_fsm_internal[2]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|cu_fsm_internal[4]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|cu_fsm_internal[1]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|cu_fsm_internal[0]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|cu_fsm_internal[3]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|addr_o_internal[0]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|addr_o_internal[1]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|addr_o_internal[2]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|we_o_internal                                                ; 0                 ; 0       ;
-;      - control_unit:control_module|dat_o_internal[7]                                            ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_status_reg[7]                                            ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_status_reg[6]                                            ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_status_reg[5]                                            ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_ctrl_reg[3]                                           ; 0                 ; 0       ;
-;      - control_unit:control_module|repetition                                                   ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_read_buffer_internal[5]                                  ; 0                 ; 0       ;
-;      - control_unit:control_module|dat_o_internal[10]                                           ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_ctrl_reg[7]                                           ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_module:tx_module|frame_sent_complete_internal~0       ; 0                 ; 0       ;
-;      - control_unit:control_module|one_hot~0                                                    ; 0                 ; 0       ;
-;      - control_unit:control_module|one_hot[0]~2                                                 ; 0                 ; 0       ;
-;      - control_unit:control_module|one_hot~3                                                    ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx~0                                              ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx[7]~1                                           ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal~15                   ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_ctrl_reg~1                                            ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx~2                                              ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx~3                                              ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx~4                                              ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_ctrl_reg[5]~8                                         ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx~5                                              ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_tx~6                                              ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_module:tx_module|always1~0                            ; 1                 ; 0       ;
-;      - control_unit:control_module|always0~0                                                    ; 1                 ; 0       ;
-;      - control_unit:control_module|dat_o_internal~1                                             ; 0                 ; 0       ;
-;      - control_unit:control_module|dat_o_internal[10]~3                                         ; 0                 ; 0       ;
-;      - control_unit:control_module|stb_o_internal~0                                             ; 0                 ; 0       ;
-;      - control_unit:control_module|dat_o_internal[6]~6                                          ; 0                 ; 0       ;
-;      - control_unit:control_module|dat_o_internal~8                                             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|always2~2                            ; 0                 ; 0       ;
-;      - control_unit:control_module|counter_timer_internal[25]~90                                ; 0                 ; 0       ;
-;      - control_unit:control_module|counter_timer_internal[25]~91                                ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_ctrl_reg[4]~2                                         ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|always2~0                            ; 1                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~2             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|baud_rate_divider_constant[6]~0                               ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_buffer_rx[5]~4                                           ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|frame_start_detect~0                 ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~4             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|always1~0                            ; 1                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|always0~0                            ; 1                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~5             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~6             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~7             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~8             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~9             ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal~21                   ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|frame_receive_complete_internal~9    ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_frame_sent_clear_reg~3                                   ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal~6                    ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[1]~10         ; 0                 ; 0       ;
-;      - uart_interface:uart_module|uart_tx_module:tx_module|always0~0                            ; 1                 ; 0       ;
-;      - pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|pll1 ; 0                 ; 0       ;
-; clk_i_ext                                                                                       ;                   ;         ;
-; uart_rx_ext                                                                                     ;                   ;         ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[0]~4                 ; 0                 ; 6       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal~2             ; 0                 ; 6       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[1]~3          ; 0                 ; 6       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|always0~0                            ; 0                 ; 6       ;
-;      - uart_interface:uart_module|uart_rx_module:rx_module|frame_receive_complete_internal~9    ; 0                 ; 6       ;
-+-------------------------------------------------------------------------------------------------+-------------------+---------+
++----------------------------------------------------------------------------------------------------+
+; Pad To Core Delay Chain Fanout                                                                     ;
++----------------------------------------------------------------------+-------------------+---------+
+; Source Pin / Fanout                                                  ; Pad To Core Index ; Setting ;
++----------------------------------------------------------------------+-------------------+---------+
+; measure_signal_i                                                     ;                   ;         ;
+; uart_rx_ext                                                          ;                   ;         ;
+; clk_i_ext                                                            ;                   ;         ;
+; rst_ext                                                              ;                   ;         ;
+;      - control_unit:control_module|one_hot[0]                        ; 0                 ; 6       ;
+;      - control_unit:control_module|one_hot[6]                        ; 0                 ; 6       ;
+;      - control_unit:control_module|cu_fsm_internal[0]                ; 0                 ; 6       ;
+;      - control_unit:control_module|cu_fsm_internal[1]                ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[0]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|stb_o_internal                    ; 0                 ; 6       ;
+;      - control_unit:control_module|we_o_internal                     ; 0                 ; 6       ;
+;      - control_unit:control_module|addr_o_internal[0]                ; 0                 ; 6       ;
+;      - control_unit:control_module|addr_o_internal[1]                ; 0                 ; 6       ;
+;      - control_unit:control_module|addr_o_internal[2]                ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[1]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[2]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[3]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[4]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[10]                ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[6]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|dat_o_internal[7]                 ; 0                 ; 6       ;
+;      - control_unit:control_module|cu_fsm_internal[2]                ; 0                 ; 6       ;
+;      - control_unit:control_module|next_fsm_step[2]                  ; 0                 ; 6       ;
+;      - control_unit:control_module|next_fsm_step[3]                  ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_buffer_tx[0]~1                ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_tx_ctrl_reg[5]~1              ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_tx_module:tx_module|always0~0 ; 0                 ; 6       ;
+;      - control_unit:control_module|cu_fsm_internal~2                 ; 0                 ; 6       ;
+;      - control_unit:control_module|stb_o_internal~0                  ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_status_reg~0                  ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_status_reg~1                  ; 0                 ; 6       ;
+;      - uart_interface:uart_module|baud_rate_divider_constant[1]~1    ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_read_buffer_internal~5        ; 0                 ; 6       ;
+;      - control_unit:control_module|next_fsm_step~1                   ; 0                 ; 6       ;
+;      - control_unit:control_module|next_fsm_step~3                   ; 0                 ; 6       ;
+;      - control_unit:control_module|counter_timer_internal[7]~90      ; 0                 ; 6       ;
+;      - control_unit:control_module|counter_timer_internal[7]~91      ; 0                 ; 6       ;
+;      - control_unit:control_module|next_fsm_step~7                   ; 0                 ; 6       ;
+;      - uart_interface:uart_module|uart_rx_ctrl_reg~1                 ; 0                 ; 6       ;
++----------------------------------------------------------------------+-------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                                                                                                                                ;
-+------------------------------------------------------------------------------------------------------+--------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
-; Name                                                                                                 ; Location           ; Fan-Out ; Usage                     ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+------------------------------------------------------------------------------------------------------+--------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
-; async_rst_ext                                                                                        ; PIN_B8             ; 68      ; Async. clear, Sync. clear ; no     ; --                   ; --               ; --                        ;
-; clk_i_ext                                                                                            ; PIN_P11            ; 1       ; Clock                     ; no     ; --                   ; --               ; --                        ;
-; control_unit:control_module|always0~0                                                                ; LCCOMB_X45_Y53_N22 ; 53      ; Clock                     ; yes    ; Global Clock         ; GCLK14           ; --                        ;
-; control_unit:control_module|counter_timer_internal[25]~90                                            ; LCCOMB_X46_Y50_N14 ; 30      ; Sync. clear               ; no     ; --                   ; --               ; --                        ;
-; control_unit:control_module|counter_timer_internal[25]~91                                            ; LCCOMB_X47_Y50_N30 ; 30      ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; control_unit:control_module|cu_fsm_internal[4]                                                       ; FF_X46_Y50_N27     ; 27      ; Sync. load                ; no     ; --                   ; --               ; --                        ;
-; control_unit:control_module|dat_o_internal[10]~3                                                     ; LCCOMB_X46_Y50_N2  ; 11      ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; control_unit:control_module|one_hot[0]~2                                                             ; LCCOMB_X51_Y50_N16 ; 2       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|wire_pll1_clk[2] ; PLL_1              ; 31      ; Clock                     ; yes    ; Global Clock         ; GCLK18           ; --                        ;
-; uart_interface:uart_module|baud_rate_divider_constant[6]~0                                           ; LCCOMB_X45_Y52_N6  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_buffer_tx[7]~1                                                       ; LCCOMB_X47_Y52_N4  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_rx_ctrl_reg[4]~2                                                     ; LCCOMB_X45_Y53_N14 ; 2       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always0~0                                        ; LCCOMB_X46_Y49_N30 ; 1       ; Clock                     ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always1~0                                        ; LCCOMB_X45_Y53_N6  ; 2       ; Clock                     ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always1~0                                        ; LCCOMB_X45_Y53_N6  ; 15      ; Clock                     ; yes    ; Global Clock         ; GCLK10           ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always2~0                                        ; LCCOMB_X45_Y53_N10 ; 13      ; Clock                     ; yes    ; Global Clock         ; GCLK13           ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always2~2                                        ; LCCOMB_X45_Y53_N0  ; 18      ; Sync. clear               ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[1]~10                     ; LCCOMB_X45_Y49_N2  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_tx_ctrl_reg[5]~8                                                     ; LCCOMB_X46_Y52_N10 ; 2       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|always0~0                                        ; LCCOMB_X45_Y50_N28 ; 2       ; Clock                     ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|always0~0                                        ; LCCOMB_X45_Y50_N28 ; 31      ; Clock                     ; yes    ; Global Clock         ; GCLK12           ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|always1~0                                        ; LCCOMB_X45_Y50_N12 ; 6       ; Clock                     ; yes    ; Global Clock         ; GCLK11           ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|frame_sent_complete_internal~0                   ; LCCOMB_X49_Y52_N2  ; 37      ; Sync. clear               ; no     ; --                   ; --               ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal~15                               ; LCCOMB_X46_Y51_N30 ; 2       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-+------------------------------------------------------------------------------------------------------+--------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                                                                                                 ;
++------------------------------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; Name                                                                               ; Location           ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------------------------------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; clk_i_ext                                                                          ; PIN_P11            ; 112     ; Clock        ; yes    ; Global Clock         ; GCLK19           ; --                        ;
+; control_unit:control_module|counter_timer_internal[7]~90                           ; LCCOMB_X40_Y37_N30 ; 30      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; control_unit:control_module|counter_timer_internal[7]~91                           ; LCCOMB_X39_Y38_N26 ; 30      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; control_unit:control_module|cu_fsm_internal[0]                                     ; FF_X37_Y38_N5      ; 29      ; Sync. load   ; no     ; --                   ; --               ; --                        ;
+; control_unit:control_module|cu_fsm_internal[1]                                     ; FF_X39_Y38_N15     ; 26      ; Sync. load   ; no     ; --                   ; --               ; --                        ;
+; control_unit:control_module|next_fsm_step~3                                        ; LCCOMB_X36_Y38_N28 ; 4       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; control_unit:control_module|stb_o_internal~0                                       ; LCCOMB_X39_Y38_N28 ; 13      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; rst_ext                                                                            ; PIN_C8             ; 35      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; uart_interface:uart_module|baud_rate_divider_constant[1]~1                         ; LCCOMB_X38_Y37_N18 ; 8       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; uart_interface:uart_module|uart_buffer_tx[0]~1                                     ; LCCOMB_X38_Y37_N2  ; 8       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; uart_interface:uart_module|uart_tx_ctrl_reg[5]~1                                   ; LCCOMB_X35_Y37_N20 ; 5       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; uart_interface:uart_module|uart_tx_module:tx_module|always0~0                      ; LCCOMB_X35_Y37_N30 ; 32      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; FF_X39_Y36_N31     ; 6       ; Clock        ; yes    ; Global Clock         ; GCLK11           ; --                        ;
++------------------------------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Global & Other Fast Signals                                                                                                                                                                                                                      ;
-+------------------------------------------------------------------------------------------------------+--------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; Name                                                                                                 ; Location           ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+------------------------------------------------------------------------------------------------------+--------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; control_unit:control_module|always0~0                                                                ; LCCOMB_X45_Y53_N22 ; 53      ; 0                                    ; Global Clock         ; GCLK14           ; --                        ;
-; pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|wire_pll1_clk[2] ; PLL_1              ; 31      ; 19                                   ; Global Clock         ; GCLK18           ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always1~0                                        ; LCCOMB_X45_Y53_N6  ; 15      ; 0                                    ; Global Clock         ; GCLK10           ; --                        ;
-; uart_interface:uart_module|uart_rx_module:rx_module|always2~0                                        ; LCCOMB_X45_Y53_N10 ; 13      ; 0                                    ; Global Clock         ; GCLK13           ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|always0~0                                        ; LCCOMB_X45_Y50_N28 ; 31      ; 0                                    ; Global Clock         ; GCLK12           ; --                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|always1~0                                        ; LCCOMB_X45_Y50_N12 ; 6       ; 0                                    ; Global Clock         ; GCLK11           ; --                        ;
-+------------------------------------------------------------------------------------------------------+--------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Global & Other Fast Signals                                                                                                                                                                                                ;
++------------------------------------------------------------------------------------+----------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
+; Name                                                                               ; Location       ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------------------------------------------------------------------------------------+----------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
+; clk_i_ext                                                                          ; PIN_P11        ; 112     ; 22                                   ; Global Clock         ; GCLK19           ; --                        ;
+; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; FF_X39_Y36_N31 ; 6       ; 0                                    ; Global Clock         ; GCLK11           ; --                        ;
++------------------------------------------------------------------------------------+----------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
 +-------------------------------------------------+
@@ -1144,51 +1043,51 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-------------------------+
 ; Routing Resource Type ; Usage                   ;
 +-----------------------+-------------------------+
-; Block interconnects   ; 425 / 148,641 ( < 1 % ) ;
-; C16 interconnects     ; 28 / 5,382 ( < 1 % )    ;
-; C4 interconnects      ; 449 / 106,704 ( < 1 % ) ;
-; Direct links          ; 63 / 148,641 ( < 1 % )  ;
-; Global clocks         ; 6 / 20 ( 30 % )         ;
-; Local interconnects   ; 63 / 49,760 ( < 1 % )   ;
+; Block interconnects   ; 165 / 148,641 ( < 1 % ) ;
+; C16 interconnects     ; 7 / 5,382 ( < 1 % )     ;
+; C4 interconnects      ; 43 / 106,704 ( < 1 % )  ;
+; Direct links          ; 58 / 148,641 ( < 1 % )  ;
+; Global clocks         ; 2 / 20 ( 10 % )         ;
+; Local interconnects   ; 131 / 49,760 ( < 1 % )  ;
 ; NSLEEPs               ; 0 / 500 ( 0 % )         ;
-; R24 interconnects     ; 10 / 5,406 ( < 1 % )    ;
-; R4 interconnects      ; 343 / 147,764 ( < 1 % ) ;
+; R24 interconnects     ; 4 / 5,406 ( < 1 % )     ;
+; R4 interconnects      ; 77 / 147,764 ( < 1 % )  ;
 +-----------------------+-------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 11.95) ; Number of LABs  (Total = 21) ;
+; Number of Logic Elements  (Average = 13.00) ; Number of LABs  (Total = 14) ;
 +---------------------------------------------+------------------------------+
 ; 1                                           ; 1                            ;
-; 2                                           ; 0                            ;
-; 3                                           ; 1                            ;
-; 4                                           ; 2                            ;
+; 2                                           ; 1                            ;
+; 3                                           ; 0                            ;
+; 4                                           ; 0                            ;
 ; 5                                           ; 0                            ;
-; 6                                           ; 0                            ;
-; 7                                           ; 2                            ;
-; 8                                           ; 1                            ;
+; 6                                           ; 1                            ;
+; 7                                           ; 0                            ;
+; 8                                           ; 0                            ;
 ; 9                                           ; 0                            ;
 ; 10                                          ; 0                            ;
 ; 11                                          ; 0                            ;
-; 12                                          ; 1                            ;
+; 12                                          ; 0                            ;
 ; 13                                          ; 0                            ;
 ; 14                                          ; 1                            ;
 ; 15                                          ; 1                            ;
-; 16                                          ; 11                           ;
+; 16                                          ; 9                            ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.67) ; Number of LABs  (Total = 21) ;
+; LAB-wide Signals  (Average = 2.21) ; Number of LABs  (Total = 14) ;
 +------------------------------------+------------------------------+
-; 1 Clock                            ; 15                           ;
-; 1 Clock enable                     ; 5                            ;
-; 1 Sync. clear                      ; 11                           ;
-; 1 Sync. load                       ; 1                            ;
+; 1 Clock                            ; 11                           ;
+; 1 Clock enable                     ; 9                            ;
+; 1 Sync. clear                      ; 6                            ;
+; 1 Sync. load                       ; 2                            ;
 ; 2 Clocks                           ; 3                            ;
 +------------------------------------+------------------------------+
 
@@ -1196,18 +1095,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 19.05) ; Number of LABs  (Total = 21) ;
+; Number of Signals Sourced  (Average = 21.43) ; Number of LABs  (Total = 14) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 1                            ;
-; 2                                            ; 0                            ;
-; 3                                            ; 0                            ;
-; 4                                            ; 1                            ;
+; 1                                            ; 0                            ;
+; 2                                            ; 1                            ;
+; 3                                            ; 1                            ;
+; 4                                            ; 0                            ;
 ; 5                                            ; 0                            ;
-; 6                                            ; 2                            ;
-; 7                                            ; 1                            ;
+; 6                                            ; 0                            ;
+; 7                                            ; 0                            ;
 ; 8                                            ; 0                            ;
-; 9                                            ; 2                            ;
+; 9                                            ; 1                            ;
 ; 10                                           ; 0                            ;
 ; 11                                           ; 0                            ;
 ; 12                                           ; 0                            ;
@@ -1217,78 +1116,80 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 16                                           ; 0                            ;
 ; 17                                           ; 0                            ;
 ; 18                                           ; 0                            ;
-; 19                                           ; 1                            ;
-; 20                                           ; 1                            ;
-; 21                                           ; 3                            ;
-; 22                                           ; 0                            ;
-; 23                                           ; 2                            ;
+; 19                                           ; 0                            ;
+; 20                                           ; 2                            ;
+; 21                                           ; 1                            ;
+; 22                                           ; 1                            ;
+; 23                                           ; 1                            ;
 ; 24                                           ; 0                            ;
 ; 25                                           ; 0                            ;
-; 26                                           ; 1                            ;
+; 26                                           ; 0                            ;
 ; 27                                           ; 1                            ;
-; 28                                           ; 0                            ;
+; 28                                           ; 1                            ;
 ; 29                                           ; 0                            ;
 ; 30                                           ; 1                            ;
 ; 31                                           ; 1                            ;
-; 32                                           ; 3                            ;
+; 32                                           ; 2                            ;
 +----------------------------------------------+------------------------------+
 
 
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 5.57) ; Number of LABs  (Total = 21) ;
+; Number of Signals Sourced Out  (Average = 5.00) ; Number of LABs  (Total = 14) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 2                            ;
 ; 1                                               ; 3                            ;
-; 2                                               ; 2                            ;
-; 3                                               ; 1                            ;
+; 2                                               ; 1                            ;
+; 3                                               ; 0                            ;
 ; 4                                               ; 2                            ;
 ; 5                                               ; 0                            ;
-; 6                                               ; 5                            ;
+; 6                                               ; 2                            ;
 ; 7                                               ; 1                            ;
-; 8                                               ; 1                            ;
+; 8                                               ; 0                            ;
 ; 9                                               ; 1                            ;
-; 10                                              ; 1                            ;
+; 10                                              ; 0                            ;
 ; 11                                              ; 0                            ;
 ; 12                                              ; 0                            ;
-; 13                                              ; 0                            ;
+; 13                                              ; 1                            ;
 ; 14                                              ; 0                            ;
-; 15                                              ; 1                            ;
-; 16                                              ; 0                            ;
-; 17                                              ; 0                            ;
-; 18                                              ; 0                            ;
-; 19                                              ; 0                            ;
-; 20                                              ; 1                            ;
+; 15                                              ; 0                            ;
+; 16                                              ; 1                            ;
 +-------------------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 10.10) ; Number of LABs  (Total = 21) ;
+; Number of Distinct Inputs  (Average = 10.29) ; Number of LABs  (Total = 14) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 0                            ;
 ; 2                                            ; 0                            ;
 ; 3                                            ; 1                            ;
-; 4                                            ; 0                            ;
+; 4                                            ; 2                            ;
 ; 5                                            ; 1                            ;
-; 6                                            ; 1                            ;
-; 7                                            ; 3                            ;
-; 8                                            ; 2                            ;
-; 9                                            ; 1                            ;
+; 6                                            ; 0                            ;
+; 7                                            ; 2                            ;
+; 8                                            ; 1                            ;
+; 9                                            ; 0                            ;
 ; 10                                           ; 2                            ;
-; 11                                           ; 1                            ;
-; 12                                           ; 1                            ;
-; 13                                           ; 3                            ;
+; 11                                           ; 0                            ;
+; 12                                           ; 0                            ;
+; 13                                           ; 0                            ;
 ; 14                                           ; 1                            ;
-; 15                                           ; 0                            ;
-; 16                                           ; 0                            ;
-; 17                                           ; 1                            ;
+; 15                                           ; 2                            ;
+; 16                                           ; 1                            ;
+; 17                                           ; 0                            ;
 ; 18                                           ; 0                            ;
-; 19                                           ; 1                            ;
-; 20                                           ; 1                            ;
+; 19                                           ; 0                            ;
+; 20                                           ; 0                            ;
+; 21                                           ; 0                            ;
+; 22                                           ; 0                            ;
+; 23                                           ; 0                            ;
+; 24                                           ; 0                            ;
+; 25                                           ; 0                            ;
+; 26                                           ; 1                            ;
 +----------------------------------------------+------------------------------+
 
 
@@ -1353,7 +1254,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Total Unchecked    ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0         ; 0         ; 0            ; 0            ;
 ; Total Inapplicable ; 15           ; 1            ; 1            ; 15           ; 15           ; 0         ; 1            ; 15           ; 15           ; 15           ; 15           ; 15           ; 15           ; 4            ; 15           ; 15           ; 15           ; 11           ; 4            ; 15           ; 11           ; 15           ; 15           ; 4            ; 15           ; 0         ; 0         ; 0         ; 15           ; 15           ;
 ; Total Fail         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0         ; 0         ; 0            ; 0            ;
-; measure_signal_i   ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
+; measure_signal_i   ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
+; uart_rx_ext        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 ; uart_tx_ext        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 ; led_port[0]        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 ; led_port[1]        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
@@ -1365,9 +1267,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; led_port[7]        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 ; led_port[8]        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 ; led_port[9]        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
-; async_rst_ext      ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 ; clk_i_ext          ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
-; uart_rx_ext        ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
+; rst_ext            ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Pass      ; Inapplicable ; Inapplicable ;
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+-----------+-----------+--------------+--------------+
 
 
@@ -1408,133 +1309,44 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------+--------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Summary                                                                                                                                 ;
-+-------------------------------------------------------------------------------+---------------------------------------------------------------------------+-------------------+
-; Source Clock(s)                                                               ; Destination Clock(s)                                                      ; Delay Added in ns ;
-+-------------------------------------------------------------------------------+---------------------------------------------------------------------------+-------------------+
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext     ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext ; 122.2             ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                   ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext ; 96.5              ;
-; I/O                                                                           ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext ; 64.2              ;
-; I/O                                                                           ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]               ; 30.0              ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                   ; async_rst_ext                                                             ; 27.2              ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext,I/O ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext ; 26.9              ;
-; I/O                                                                           ; async_rst_ext                                                             ; 24.1              ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext,I/O ; async_rst_ext                                                             ; 21.2              ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],async_rst_ext     ; async_rst_ext                                                             ; 15.9              ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2],I/O               ; async_rst_ext                                                             ; 13.1              ;
-+-------------------------------------------------------------------------------+---------------------------------------------------------------------------+-------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Summary                                                                                                                                                         ;
++----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
+; Source Clock(s)                                                                              ; Destination Clock(s)                                                               ; Delay Added in ns ;
++----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
+; clk_i_ext                                                                                    ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 9.8               ;
+; clk_i_ext                                                                                    ; clk_i_ext                                                                          ; 4.8               ;
+; clk_i_ext,uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 2.0               ;
++----------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                                                                                                                ;
-+-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
-; Source Register                                                                     ; Destination Register                                                               ; Delay Added in ns ;
-+-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
-; async_rst_ext                                                                       ; control_unit:control_module|stb_o_internal                                         ; 5.901             ;
-; uart_interface:uart_module|baud_rate_divider_constant[2]                            ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.960             ;
-; uart_interface:uart_module|baud_rate_divider_constant[7]                            ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.953             ;
-; uart_interface:uart_module|baud_rate_divider_constant[1]                            ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.952             ;
-; uart_interface:uart_module|baud_rate_divider_constant[0]                            ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.946             ;
-; uart_interface:uart_module|uart_rx_ctrl_reg[4]                                      ; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[3]             ; 2.907             ;
-; uart_interface:uart_module|uart_rx_ctrl_reg[6]                                      ; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[3]             ; 2.882             ;
-; uart_interface:uart_module|uart_frame_sent_clear_reg                                ; uart_interface:uart_module|uart_tx_module:tx_module|frame_sent_complete_internal   ; 2.806             ;
-; uart_interface:uart_module|uart_rx_ctrl_reg[3]                                      ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[15] ; 2.758             ;
-; uart_interface:uart_module|baud_rate_divider_constant[4]                            ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.702             ;
-; uart_interface:uart_module|baud_rate_divider_constant[6]                            ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.701             ;
-; uart_interface:uart_module|uart_tx_ctrl_reg[3]                                      ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[0]  ; 2.657             ;
-; uart_interface:uart_module|baud_rate_divider_constant[10]                           ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 2.600             ;
-; control_unit:control_module|cu_fsm_internal[1]                                      ; control_unit:control_module|counter_timer_internal[31]                             ; 2.555             ;
-; control_unit:control_module|cu_fsm_internal[4]                                      ; control_unit:control_module|counter_timer_internal[31]                             ; 2.555             ;
-; control_unit:control_module|cu_fsm_internal[0]                                      ; control_unit:control_module|counter_timer_internal[31]                             ; 2.555             ;
-; control_unit:control_module|cu_fsm_internal[3]                                      ; control_unit:control_module|counter_timer_internal[31]                             ; 2.555             ;
-; control_unit:control_module|cu_fsm_internal[2]                                      ; control_unit:control_module|counter_timer_internal[31]                             ; 2.555             ;
-; control_unit:control_module|counter_timer_internal[31]                              ; control_unit:control_module|counter_timer_internal[31]                             ; 2.430             ;
-; uart_interface:uart_module|uart_tx_ctrl_reg[6]                                      ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; 2.415             ;
-; uart_interface:uart_module|uart_tx_ctrl_reg[7]                                      ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.383             ;
-; uart_interface:uart_module|uart_tx_ctrl_reg[4]                                      ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; 2.285             ;
-; uart_interface:uart_module|uart_buffer_tx[3]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.242             ;
-; uart_interface:uart_module|uart_buffer_tx[1]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.242             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]              ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.242             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[2]              ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.242             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[0]              ; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[3]             ; 2.211             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[1]              ; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[3]             ; 2.211             ;
-; uart_interface:uart_module|uart_buffer_tx[2]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.161             ;
-; uart_interface:uart_module|uart_buffer_tx[4]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.086             ;
-; uart_interface:uart_module|uart_buffer_tx[0]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.086             ;
-; uart_interface:uart_module|uart_buffer_tx[6]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 2.086             ;
-; uart_rx_ext                                                                         ; uart_interface:uart_module|uart_rx_module:rx_module|parity_error_flag_internal     ; 1.991             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[2]              ; uart_interface:uart_module|uart_rx_module:rx_module|parity_error_flag_internal     ; 1.991             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|rx_fsm_internal[3]              ; uart_interface:uart_module|uart_rx_module:rx_module|parity_error_flag_internal     ; 1.991             ;
-; uart_interface:uart_module|uart_read_buffer_internal[5]                             ; control_unit:control_module|cu_fsm_internal[1]                                     ; 1.901             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[1]       ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[2]      ; 1.729             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[2]       ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[3]      ; 1.729             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[5]       ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[6]      ; 1.613             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[4]       ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[5]      ; 1.512             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[3]       ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[4]      ; 1.501             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[0]       ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[1]      ; 1.501             ;
-; uart_interface:uart_module|uart_buffer_tx[7]                                        ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 1.418             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|frame_start_detect              ; uart_interface:uart_module|uart_rx_module:rx_module|data_received_internal[6]      ; 1.352             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|frame_sent_complete_internal    ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[2]             ; 1.246             ;
-; control_unit:control_module|one_hot[2]                                              ; control_unit:control_module|dat_o_internal[2]                                      ; 1.186             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[0]              ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 1.159             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[3]              ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 1.159             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[15]  ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[15] ; 1.147             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal           ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 1.121             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 1.119             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[6]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.063             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[5]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.062             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[11]  ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.056             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[13]  ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.054             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[3]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.054             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[8]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.043             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[4]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.042             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[12]  ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.041             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[10]  ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.041             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[2]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.041             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[9]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.035             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14]  ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.034             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[7]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.034             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[1]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.033             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[0]   ; uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[14] ; 1.025             ;
-; control_unit:control_module|counter_timer_internal[23]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.022             ;
-; control_unit:control_module|counter_timer_internal[6]                               ; control_unit:control_module|counter_timer_internal[30]                             ; 1.021             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[29]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.021             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[5]   ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.021             ;
-; control_unit:control_module|counter_timer_internal[12]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.020             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[22]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.020             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[6]   ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.019             ;
-; control_unit:control_module|counter_timer_internal[20]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.014             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[21]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.014             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[19]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.014             ;
-; control_unit:control_module|counter_timer_internal[30]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.013             ;
-; control_unit:control_module|counter_timer_internal[28]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.013             ;
-; control_unit:control_module|counter_timer_internal[16]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.013             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[27]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.013             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[15]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.013             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[13]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.013             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[3]   ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.013             ;
-; control_unit:control_module|counter_timer_internal[22]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.012             ;
-; control_unit:control_module|counter_timer_internal[14]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.012             ;
-; control_unit:control_module|counter_timer_internal[7]                               ; control_unit:control_module|counter_timer_internal[30]                             ; 1.012             ;
-; control_unit:control_module|counter_timer_internal[4]                               ; control_unit:control_module|counter_timer_internal[30]                             ; 1.012             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[11]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.012             ;
-; uart_interface:uart_module|uart_rx_module:rx_module|frame_receive_complete_internal ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; control_unit:control_module|addr_o_internal[2]                                      ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; uart_interface:uart_module|uart_status_reg[7]                                       ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; control_unit:control_module|addr_o_internal[0]                                      ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; control_unit:control_module|addr_o_internal[1]                                      ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; control_unit:control_module|we_o_internal                                           ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; control_unit:control_module|stb_o_internal                                          ; uart_interface:uart_module|uart_buffer_rx[5]                                       ; 1.011             ;
-; control_unit:control_module|counter_timer_internal[13]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.001             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[28]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.001             ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[18]  ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[30] ; 1.001             ;
-; control_unit:control_module|counter_timer_internal[29]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.000             ;
-; control_unit:control_module|counter_timer_internal[21]                              ; control_unit:control_module|counter_timer_internal[30]                             ; 1.000             ;
-+-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
-Note: This table only shows the top 100 path(s) that have the largest delay added for hold.
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                                                                                                                               ;
++------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
+; Source Register                                                                    ; Destination Register                                                               ; Delay Added in ns ;
++------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
+; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 4.801             ;
+; uart_interface:uart_module|uart_tx_ctrl_reg[4]                                     ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[0]             ; 1.033             ;
+; uart_interface:uart_module|uart_tx_ctrl_reg[7]                                     ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[3]             ; 0.982             ;
+; uart_interface:uart_module|uart_tx_ctrl_reg[6]                                     ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; 0.662             ;
+; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[3]             ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; 0.662             ;
+; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[2]             ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; 0.662             ;
+; uart_interface:uart_module|uart_buffer_tx[7]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.562             ;
+; uart_interface:uart_module|uart_buffer_tx[1]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.444             ;
+; uart_interface:uart_module|uart_buffer_tx[0]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.437             ;
+; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[0]             ; 0.394             ;
+; uart_interface:uart_module|uart_buffer_tx[3]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.361             ;
+; uart_interface:uart_module|uart_buffer_tx[2]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.361             ;
+; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[0]             ; uart_interface:uart_module|uart_tx_module:tx_module|tx_fsm_internal[1]             ; 0.331             ;
+; uart_interface:uart_module|uart_buffer_tx[5]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.279             ;
+; uart_interface:uart_module|uart_buffer_tx[6]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.140             ;
+; uart_interface:uart_module|uart_buffer_tx[4]                                       ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.126             ;
+; uart_interface:uart_module|uart_tx_ctrl_reg[5]                                     ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.126             ;
+; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; uart_interface:uart_module|uart_tx_module:tx_module|tx_data_line_internal          ; 0.125             ;
++------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------------------+
+Note: This table only shows the top 18 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -1545,9 +1357,6 @@ Info (20030): Parallel compilation is enabled and will use 12 of the 12 processo
 Info (119006): Selected device 10M50DAF484C7G for design "frequency_counter_assembly"
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
-Warning (15564): Compensate clock of PLL "pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|pll1" has been set to clock2 File: /home/raditya/Documents/Tugas Akhir/Verilog/db/pll_module_altpll.v Line: 51
-Info (15535): Implemented PLL "pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|pll1" as MAX 10 PLL type File: /home/raditya/Documents/Tugas Akhir/Verilog/db/pll_module_altpll.v Line: 51
-    Info (15099): Implementing clock multiplication of 1, clock division of 50, and phase shift of 0 degrees (0 ps) for pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|wire_pll1_clk[2] port File: /home/raditya/Documents/Tugas Akhir/Verilog/db/pll_module_altpll.v Line: 51
 Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
 Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
 Info (176444): Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
@@ -1580,37 +1389,16 @@ Info (12825): DCLK dual-purpose pin not reserved
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Critical Warning (169085): No exact pin location assignment(s) for 1 pins of 15 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'frequency_counter_assembly.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
-Info (332144): No user constrained generated clocks found in the design
 Info (332144): No user constrained base clocks found in the design
-Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
-    Info (332098): Cell: control_module|always0~0  from: datac  to: combout
-    Info (332098): Cell: control_module|always0~0  from: datad  to: combout
-    Info (332098): Cell: uart_module|rx_module|always0~0  from: dataa  to: combout
-    Info (332098): Cell: uart_module|rx_module|always1~0  from: datab  to: combout
-    Info (332098): Cell: uart_module|rx_module|always1~0  from: datac  to: combout
-    Info (332098): Cell: uart_module|rx_module|always2~0  from: datac  to: combout
-    Info (332098): Cell: uart_module|tx_module|always0~0  from: datac  to: combout
-    Info (332098): Cell: uart_module|tx_module|always0~0  from: datad  to: combout
-    Info (332098): Cell: uart_module|tx_module|always1~0  from: dataa  to: combout
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info (332130): Timing requirements not specified -- quality metrics such as performance may be sacrificed to reduce compilation time.
-Info (176353): Automatically promoted node pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|wire_pll1_clk[2] (placed in counter C0 of PLL_1) File: /home/raditya/Documents/Tugas Akhir/Verilog/db/pll_module_altpll.v Line: 93
-    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G18
-Info (176353): Automatically promoted node control_unit:control_module|always0~0 
-    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
-Info (176353): Automatically promoted node uart_interface:uart_module|uart_tx_module:tx_module|always0~0 
+Info (176353): Automatically promoted node clk_i_ext~input (placed in PIN P11 (CLK7p, DIFFIO_TX_RX_B20p, DIFFOUT_B20p, High_Speed)) File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 23
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G19
+Info (176353): Automatically promoted node uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]  File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 236
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
     Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] File: /home/raditya/Documents/Tugas Akhir/Verilog/uart_interface.v Line: 411
-Info (176353): Automatically promoted node uart_interface:uart_module|uart_rx_module:rx_module|always1~0 
-    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
-    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node uart_interface:uart_module|uart_rx_module:rx_module|baud_rate_counter_internal[15] File: /home/raditya/Documents/Tugas Akhir/Verilog/uart_interface.v Line: 277
-Info (176353): Automatically promoted node uart_interface:uart_module|uart_rx_module:rx_module|always2~0 
-    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
-Info (176353): Automatically promoted node uart_interface:uart_module|uart_tx_module:tx_module|always1~0 
-    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+        Info (176357): Destination node uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]~94 File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 236
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
@@ -1622,43 +1410,45 @@ Info (176215): I/O bank details before I/O pin placement
         Info (176213): I/O bank number 1A does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  16 pins available
         Info (176213): I/O bank number 1B does not use VREF pins and has undetermined VCCIO pins. 4 total pin(s) used --  20 pins available
         Info (176213): I/O bank number 2 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  36 pins available
-        Info (176213): I/O bank number 3 does not use VREF pins and has 2.5V VCCIO pins. 3 total pin(s) used --  45 pins available
+        Info (176213): I/O bank number 3 does not use VREF pins and has 2.5V VCCIO pins. 4 total pin(s) used --  44 pins available
         Info (176213): I/O bank number 4 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  48 pins available
         Info (176213): I/O bank number 5 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  40 pins available
         Info (176213): I/O bank number 6 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  60 pins available
-        Info (176213): I/O bank number 7 does not use VREF pins and has 2.5V VCCIO pins. 11 total pin(s) used --  41 pins available
+        Info (176213): I/O bank number 7 does not use VREF pins and has 2.5V VCCIO pins. 10 total pin(s) used --  42 pins available
         Info (176213): I/O bank number 8 does not use VREF pins and has undetermined VCCIO pins. 4 total pin(s) used --  32 pins available
-Warning (15062): PLL "pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated|pll1" in Source Synchronous mode with compensated output clock set to clk[2] is not fully compensated because it does not feed an I/O input register File: /home/raditya/Documents/Tugas Akhir/Verilog/db/pll_module_altpll.v Line: 51
+Warning (15705): Ignored locations or region assignments to the following nodes
+    Warning (15706): Node "async_rst_ext" is assigned to location or region, but does not exist in design
 Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:02
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:03
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 7% of the available device resources in the region that extends from location X45_Y44 to location X55_Y54
+    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X33_Y33 to location X44_Y43
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.39 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.38 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
-Info (144001): Generated suppressed messages file /home/raditya/Documents/Tugas Akhir/Verilog/output_files/frequency_counter_assembly.fit.smsg
-Info: Quartus Prime Fitter was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 1895 megabytes
-    Info: Processing ended: Tue Apr 29 16:41:44 2025
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:16
+Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
+Info (144001): Generated suppressed messages file /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/output_files/frequency_counter_assembly.fit.smsg
+Info: Quartus Prime Fitter was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 1888 megabytes
+    Info: Processing ended: Thu May  8 23:53:57 2025
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:24
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in /home/raditya/Documents/Tugas Akhir/Verilog/output_files/frequency_counter_assembly.fit.smsg.
+The suppressed messages can be found in /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/output_files/frequency_counter_assembly.fit.smsg.
 
 

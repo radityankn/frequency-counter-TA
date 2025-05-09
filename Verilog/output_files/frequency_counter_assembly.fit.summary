@@ -1,18 +1,18 @@
-Fitter Status : Successful - Tue Apr 29 16:41:44 2025
+Fitter Status : Successful - Thu May  8 23:53:57 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : frequency_counter_assembly
 Top-level Entity Name : top_level
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 251 / 49,760 ( < 1 % )
-    Total combinational functions : 239 / 49,760 ( < 1 % )
-    Dedicated logic registers : 149 / 49,760 ( < 1 % )
-Total registers : 149
+Total logic elements : 182 / 49,760 ( < 1 % )
+    Total combinational functions : 181 / 49,760 ( < 1 % )
+    Dedicated logic registers : 118 / 49,760 ( < 1 % )
+Total registers : 118
 Total pins : 15 / 360 ( 4 % )
 Total virtual pins : 0
 Total memory bits : 0 / 1,677,312 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
-Total PLLs : 1 / 4 ( 25 % )
+Total PLLs : 0 / 4 ( 0 % )
 UFM blocks : 0 / 1 ( 0 % )
 ADC blocks : 0 / 2 ( 0 % )
