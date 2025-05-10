@@ -1,7 +1,7 @@
 [IBIS Ver]   4.2
 [File Name]  frequency_counter_assembly.ibs
 [File Rev]   3.0
-[Date]       May 08, 2025
+[Date]       May 10, 2025
 [Source]     Altera Corporation
 [Notes]      - The models are designated as "Final" and have been correlated against physical device operation.
              - This IBIS model is checked using IBISCHK v5.0.4
@@ -29,8 +29,8 @@
 [Package]
 | RLC values are for 484 FBGA package
 | variable  typ        min        max
-R_pkg       530m       176m       739m  
-L_pkg       4.55nH     1.81nH     7.54nH  
+R_pkg       572m       176m       739m  
+L_pkg       5.58nH     1.81nH     7.54nH  
 C_pkg       1.01pF     0.60pF     1.40pF  
 |     
 [Pin] signal_name                              model_name                               R_pin    L_pin     C_pin
@@ -53,9 +53,9 @@ B11   led_port[9]                              25_cio_r50                       
 B13   GND                                      GND                                                         
 B18   GND                                      GND                                                         
 B6    GND                                      GND                                                         
+B8    rst_ext                                  25_cin_p                                 653.9m   5.581nH   1.235pF
 B9    GND                                      GND                                                         
 C13   led_port[5]                              25_cio_r50                               376.7m   3.306nH   0.800pF
-C8    rst_ext                                  25_cin_p                                 530.0m   4.550nH   1.118pF
 D11   GND                                      GND                                                         
 D13   led_port[4]                              25_cio_r50                               314.2m   2.794nH   0.627pF
 D14   led_port[7]                              25_cio_r50                               281.2m   2.837nH   0.717pF

@@ -3,75 +3,75 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk_i_ext'
-Slack : -2.681
-TNS   : -199.926
+Slack : -4.084
+TNS   : -512.705
 
-Type  : Slow 1200mV 85C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -1.964
-TNS   : -9.468
+Type  : Slow 1200mV 85C Model Setup 'rst_ext'
+Slack : -2.328
+TNS   : -10.857
 
 Type  : Slow 1200mV 85C Model Hold 'clk_i_ext'
-Slack : 0.322
+Slack : 0.297
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : 0.340
+Type  : Slow 1200mV 85C Model Hold 'rst_ext'
+Slack : 0.347
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i_ext'
 Slack : -3.000
-TNS   : -160.136
+TNS   : -223.271
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -1.403
-TNS   : -8.418
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'rst_ext'
+Slack : -3.000
+TNS   : -11.418
 
 Type  : Slow 1200mV 0C Model Setup 'clk_i_ext'
-Slack : -2.313
-TNS   : -172.598
+Slack : -3.701
+TNS   : -465.226
 
-Type  : Slow 1200mV 0C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -1.710
-TNS   : -8.166
+Type  : Slow 1200mV 0C Model Setup 'rst_ext'
+Slack : -2.063
+TNS   : -9.463
 
 Type  : Slow 1200mV 0C Model Hold 'clk_i_ext'
-Slack : 0.289
+Slack : 0.286
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : 0.305
+Type  : Slow 1200mV 0C Model Hold 'rst_ext'
+Slack : 0.311
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_i_ext'
 Slack : -3.000
-TNS   : -160.136
+TNS   : -223.271
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -1.403
-TNS   : -8.418
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'rst_ext'
+Slack : -3.000
+TNS   : -11.418
 
 Type  : Fast 1200mV 0C Model Setup 'clk_i_ext'
-Slack : -0.467
-TNS   : -23.222
+Slack : -1.294
+TNS   : -150.594
 
-Type  : Fast 1200mV 0C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -0.195
-TNS   : -0.638
+Type  : Fast 1200mV 0C Model Setup 'rst_ext'
+Slack : -0.412
+TNS   : -1.462
 
 Type  : Fast 1200mV 0C Model Hold 'clk_i_ext'
-Slack : 0.140
+Slack : 0.109
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Hold 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : 0.147
+Type  : Fast 1200mV 0C Model Hold 'rst_ext'
+Slack : 0.152
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i_ext'
 Slack : -3.000
-TNS   : -119.098
+TNS   : -165.320
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -1.000
-TNS   : -6.000
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'rst_ext'
+Slack : -3.000
+TNS   : -9.234
 
 ------------------------------------------------------------

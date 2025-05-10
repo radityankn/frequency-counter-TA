@@ -118,21 +118,19 @@ module top_level(input rst_ext,
     .reference_clk_1(ref_clk_coarse),                  //coarse reference clock
     .reference_clk_2(ref_clk_fine)                   //fine reference clock, must be slightly different than the coarse reference clock
     );
-	
-	/*
+
 	pll_module	pll_module_inst (
 	.areset (~async_rst_internal),
 	.inclk0 (clk_i_ext),
 	.c0 (ref_clk_coarse),
 	.c1 (ref_clk_fine),
-	.c2 (clk_i),
+	.c2 (clk_i_dummy),
 	.locked ( locked_sig )
 	);
-	*/
 	
 	assign clk_i = clk_i_ext;
-	assign dat_o = (uart_dat_o | counter_dat_o);
-	assign err_o = (uart_err_o | counter_err_o);
-	assign rty_o = (uart_rty_o | counter_rty_o);
+	assign dat_o = (uart_dat_o | counter_dat_o | 32'd0);
+	assign err_o = (uart_err_o | counter_err_o | 32'd0);
+	assign rty_o = (uart_rty_o | counter_rty_o | 32'd0);
 
 endmodule

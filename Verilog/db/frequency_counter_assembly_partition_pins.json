@@ -12,15 +12,31 @@
 					"strict" : false
 				},
 				{
-					"name" : "led_port[6]",
+					"name" : "led_port[1]",
 					"strict" : false
 				},
 				{
-					"name" : "clk_i_ext",
+					"name" : "led_port[3]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[5]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[7]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[9]",
 					"strict" : false
 				},
 				{
 					"name" : "rst_ext",
+					"strict" : false
+				},
+				{
+					"name" : "clk_i_ext",
 					"strict" : false
 				}
 			]

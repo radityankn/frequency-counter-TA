@@ -112,15 +112,28 @@ module uart_interface(
             end else if (addr_i == 32'h5) begin 
                 uart_status_reg <= dat_i[7:0];
                 bus_acknowledge <= 1;
-                uart_status_indicator <= 8'b10000101;
             end else if (addr_i == 32'h6) begin 
                 uart_buffer_rx <= dat_i[7:0];
                 bus_acknowledge <= 1;
-                uart_status_indicator <= 8'b10000110;
             end else if (addr_i == 32'h7) begin 
-                uart_buffer_tx <= dat_i[7:0];
-                bus_acknowledge <= 1;
-                uart_status_indicator <= 8'b10000111;
+                case (sel_i) 
+                    4'b0001 : begin 
+                        uart_buffer_tx <= dat_i[7:0];
+                        bus_acknowledge <= 1;
+                    end
+                    4'b0010 : begin 
+                        uart_buffer_tx <= dat_i[15:8];
+                        bus_acknowledge <= 1;
+                    end
+                    4'b0100 : begin 
+                        uart_buffer_tx <= dat_i[23:16];
+                        bus_acknowledge <= 1;
+                    end
+                    4'b1000 : begin 
+                        uart_buffer_tx <= dat_i[31:24];
+                        bus_acknowledge <= 1;
+                    end
+                endcase
             end else begin
                 bus_acknowledge <= 0;
                 //uart_status_indicator <= 8'b11111111;
@@ -238,7 +251,7 @@ module uart_tx_module(output tx_data_line,
         else baud_rate_counter_internal = baud_rate_counter_internal + baud_rate_divider_constant;
     end
 	
-	always @(posedge (baud_rate_counter_internal[31])) begin 
+	always @(posedge (baud_rate_counter_internal[31] | rst_i | ~ext_rst_i)) begin 
         if (tx_ctrl_reg[7] == 1) begin
             if (tx_ctrl_reg[4] == 1) begin
                 case (tx_fsm_internal)

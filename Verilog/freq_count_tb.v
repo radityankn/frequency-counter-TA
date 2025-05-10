@@ -27,10 +27,10 @@ module freq_count_tb;
 	// Inputs
 	reg rst_i;
 	reg clk_i;
-	reg [7:0] addr_i;
-	reg [7:0] dat_i;
+	reg [31:0] addr_i;
+	reg [31:0] dat_i;
 	reg we_i;
-	reg [7:0] sel_i;
+	reg [3:0] sel_i;
 	reg cyc_i;
 	reg stb_i;
 	reg lock_i;
@@ -40,7 +40,7 @@ module freq_count_tb;
 	reg reference_clk_2;
 
 	// Outputs
-	wire [7:0] dat_o;
+	wire [31:0] dat_o;
 	wire err_o;
 	wire rty_o;
 	wire ack_o;
@@ -69,7 +69,7 @@ module freq_count_tb;
 	);
 		
 	initial begin
-		$dumpfile("result.vcd");
+		$dumpfile("result_counter.vcd");
 		$dumpvars(0, freq_count_tb);
 		
 		// Initialize Inputs
@@ -86,24 +86,48 @@ module freq_count_tb;
 		signal_input = 0;
 		reference_clk_1 = 0;
 		reference_clk_2 = 0;
-		#10 rst_i = 0;
+		#100 rst_i = 0;
 		#85 we_i = 1;
 		stb_i = 1;
-		addr_i = 8'b00000001;
-		dat_i = 8'b10000000;
+		addr_i = 32'h8;
+		dat_i = 8'b00000001;
 		#10 we_i = 0;
 		stb_i = 0;
-		addr_i = 8'b00000000;
+		addr_i = 8'b0000000;
 		dat_i = 8'b00000000;
-		#150 we_i = 1;
+		#10 we_i = 1;
 		stb_i = 1;
-		addr_i = 8'b00000001;
+		addr_i = 32'h8;
 		dat_i = 8'b10000000;
 		#10 we_i = 0;
 		stb_i = 0;
-		addr_i = 8'b00000000;
+		addr_i = 32'd0;
 		dat_i = 8'b00000000;
-		#1000 $finish;
+		#800 we_i = 0;
+		stb_i = 1;
+		addr_i = 32'd9;
+		dat_i = 32'd0;
+		#10 we_i = 1;
+		stb_i = 1;
+		addr_i = 32'h8;
+		dat_i = 8'b00000001;
+		#10 we_i = 0;
+		stb_i = 0;
+		addr_i = 8'b0000000;
+		dat_i = 8'b00000000;
+		#10 we_i = 1;
+		stb_i = 1;
+		addr_i = 32'h8;
+		dat_i = 8'b10000000;
+		#10 we_i = 0;
+		stb_i = 0;
+		addr_i = 32'd0;
+		dat_i = 8'b00000000;
+		#850 we_i = 0;
+		stb_i = 1;
+		addr_i = 32'd9;
+		dat_i = 32'd0;
+		#30 $finish;
 		// Wait 100 ns for global reset to finish
 	end
 	always #5 clk_i = !clk_i;

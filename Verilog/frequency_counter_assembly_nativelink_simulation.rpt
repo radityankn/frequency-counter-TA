@@ -17,13 +17,13 @@ Sim dir               :  simulation/questa
 
 Info: Starting NativeLink simulation with Questa Intel FPGA software
 Sourced NativeLink script /home/raditya/intelFPGA_lite/24.1std/quartus/common/tcl/internal/nativelink/modelsim.tcl
-Warning: File frequency_counter_assembly_run_msim_gate_verilog.do already exists - backing up current file as frequency_counter_assembly_run_msim_gate_verilog.do.bak1
+Warning: File frequency_counter_assembly_run_msim_gate_verilog.do already exists - backing up current file as frequency_counter_assembly_run_msim_gate_verilog.do.bak11
 Probing transcript
 Questa Intel FPGA Info: # 
 Questa Intel FPGA Info: # ** License Issue: License server does not support this feature (intelqsimstarter)
 Questa Intel FPGA Info: # ** License Issue: Invalid host. (/home/raditya/.altera.quartus/quartus2_lic.dat)
 Questa Intel FPGA Error: # ** Error: Failure to checkout 'intelqsimstarter' license feature.
-Warning: Ignoring following message with error code CHILDSTATUS 303213 4 while running Questa Intel FPGA Simulation software
+Warning: Ignoring following message with error code CHILDSTATUS 253966 4 while running Questa Intel FPGA Simulation software
 Unable to checkout a viewer license necessary for use of the Questa Intel Starter FPGA Edition graphical user interface.  Vsim is closing.
     while executing
 "close $pipe_id"

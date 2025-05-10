@@ -1,4 +1,4 @@
-`timescale 10ns / 1ns
+`timescale 1us / 100ns
 
 ////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -27,6 +27,9 @@ module freq_count_tb;
 	// Inputs
 	reg clk_i_ext;
     reg async_rst_i;
+	reg ref_clk_coarse;
+	reg ref_clk_fine;
+	reg measure_signal;
 
 	// Outputs
     wire uart_rx;
@@ -39,20 +42,29 @@ module freq_count_tb;
         .rst_ext(async_rst_i),
         .uart_rx_ext(uart_rx),
         .uart_tx_ext(uart_tx),
+		.measure_signal_i(measure_signal),
+		.ref_clk_coarse(ref_clk_coarse),
+		.ref_clk_fine(ref_clk_fine),
         .led_port(led_output)
 	);
 		
 	initial begin
-		$dumpfile("result_cu.vcd");
+		$dumpfile("result_toplevel.vcd");
 		$dumpvars(0, freq_count_tb);
 		// Initialize Inputs
 		// Wait 10 ns for global reset to finish
 		async_rst_i = 0;
         clk_i_ext = 0;
+		ref_clk_coarse = 0;
+		ref_clk_fine = 0;
+		measure_signal = 0;
         #25 async_rst_i = 1;
         //#10 async_rst_i = 1;
-        #2000000 $finish;
+		#4000000 $finish;
 	end
 	always #5 clk_i_ext = !clk_i_ext;
+	always #2 ref_clk_coarse = !ref_clk_coarse;
+	always #1 ref_clk_fine = !ref_clk_fine;
+	always #25 measure_signal = !measure_signal;
 endmodule
 
