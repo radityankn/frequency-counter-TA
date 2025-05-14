@@ -22,13 +22,17 @@
 module top_level(input rst_ext,
             	input clk_i_ext,
 				input measure_signal_i,
+				output measure_signal_debug,
             	input uart_rx_ext,
             	output uart_tx_ext,
-            	output [9:0] led_port
+            	output [9:0] led_port,
+				output [5:0] status_led,
+				output [3:0] counter_status_led,
+				output [1:0] counter_flags_led,
+				output blinker
 );
 
    // WB interconnect definition
-	wire async_rst_internal;
 	wire rst_i;
 	wire clk_i;
 	wire tagn_i;
@@ -62,7 +66,9 @@ module top_level(input rst_ext,
 		.ack_i(ack_o), 
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
-    	.out_led(led_port)
+    	.out_led(led_port),
+		.status_led(status_led),
+		.blinker(blinker)
     );
 	
 	wire [31:0] uart_dat_o;
@@ -97,8 +103,10 @@ module top_level(input rst_ext,
 	wire counter_err_o;
 	wire ref_clk_coarse;
 	wire ref_clk_fine;
+	wire measure_signal_internal;
 
 	frequency_counter counter_module(
+	 .ext_rst_i(rst_ext),
     .rst_i(rst_i),
     .clk_i(clk_i),
     .addr_i(addr_i),
@@ -116,21 +124,25 @@ module top_level(input rst_ext,
     .tagn_o(tagn_o),
     .signal_input(measure_signal_i),                     //target signal input port
     .reference_clk_1(ref_clk_coarse),                  //coarse reference clock
-    .reference_clk_2(ref_clk_fine)                   //fine reference clock, must be slightly different than the coarse reference clock
-    );
+    .reference_clk_2(ref_clk_fine),                   //fine reference clock, must be slightly different than the coarse reference clock
+    .counter_fsm_status(counter_status_led),
+	 .counter_flags(counter_flags_led),
+	 .counter_control_reg_out(led_port_dummy)
+	);
 
 	pll_module	pll_module_inst (
-	.areset (~async_rst_internal),
+	.areset (~rst_ext),
 	.inclk0 (clk_i_ext),
 	.c0 (ref_clk_coarse),
 	.c1 (ref_clk_fine),
-	.c2 (clk_i_dummy),
+	.c2 (measure_signal_internal),
 	.locked ( locked_sig )
 	);
 	
+	assign measure_signal_debug = measure_signal_internal;
 	assign clk_i = clk_i_ext;
-	assign dat_o = (uart_dat_o | counter_dat_o | 32'd0);
-	assign err_o = (uart_err_o | counter_err_o | 32'd0);
-	assign rty_o = (uart_rty_o | counter_rty_o | 32'd0);
+	assign dat_o = (uart_dat_o | counter_dat_o | 1'd0);
+	assign err_o = (uart_err_o | counter_err_o | 1'd0);
+	assign rty_o = (uart_rty_o | counter_rty_o | 1'd0);
 
 endmodule

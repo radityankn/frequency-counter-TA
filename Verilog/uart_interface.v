@@ -175,10 +175,10 @@ module uart_interface(
  
         if (uart_rx_ctrl_reg[3] == 1) begin
             uart_rx_ctrl_reg[3] <= 0;
-            uart_status_indicator <= 8'b01010101;
+            //uart_status_indicator <= 8'b01010101;
         end else if (uart_tx_ctrl_reg[3] == 1) begin
             uart_tx_ctrl_reg[3] <= 0;
-            uart_status_indicator <= 8'b01010101;
+            //uart_status_indicator <= 8'b01010101;
         end else if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
             uart_buffer_rx <= uart_rx_data_out[7:0];
             uart_rx_ctrl_reg[7] <= 0;
@@ -251,7 +251,7 @@ module uart_tx_module(output tx_data_line,
         else baud_rate_counter_internal = baud_rate_counter_internal + baud_rate_divider_constant;
     end
 	
-	always @(posedge (baud_rate_counter_internal[31] | rst_i | ~ext_rst_i)) begin 
+	always @(posedge baud_rate_counter_internal[31]) begin 
         if (tx_ctrl_reg[7] == 1) begin
             if (tx_ctrl_reg[4] == 1) begin
                 case (tx_fsm_internal)

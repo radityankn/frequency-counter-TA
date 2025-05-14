@@ -35,6 +35,9 @@ module freq_count_tb;
     wire uart_rx;
     wire uart_tx;
     wire [9:0] led_output;
+	wire [3:0] counter_led_status_out;
+	wire [1:0] counter_flags_led_out;
+	wire [5:0] status_led_out;
 
 	// Instantiate the Unit Under Test (UUT)
     top_level uut (
@@ -45,7 +48,10 @@ module freq_count_tb;
 		.measure_signal_i(measure_signal),
 		.ref_clk_coarse(ref_clk_coarse),
 		.ref_clk_fine(ref_clk_fine),
-        .led_port(led_output)
+        .led_port(led_output),
+		.status_led(status_led_out),
+		.counter_status_led(counter_led_status_out),
+		.counter_flags_led(counter_flags_led_out)
 	);
 		
 	initial begin

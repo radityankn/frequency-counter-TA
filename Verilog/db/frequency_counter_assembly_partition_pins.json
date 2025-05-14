@@ -16,7 +16,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "led_port[2]",
+					"strict" : false
+				},
+				{
 					"name" : "led_port[3]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[4]",
 					"strict" : false
 				},
 				{
@@ -24,11 +32,71 @@
 					"strict" : false
 				},
 				{
+					"name" : "led_port[6]",
+					"strict" : false
+				},
+				{
 					"name" : "led_port[7]",
 					"strict" : false
 				},
 				{
+					"name" : "led_port[8]",
+					"strict" : false
+				},
+				{
 					"name" : "led_port[9]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[3]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[4]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[5]",
+					"strict" : false
+				},
+				{
+					"name" : "counter_status_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "counter_status_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "counter_status_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "counter_status_led[3]",
+					"strict" : false
+				},
+				{
+					"name" : "counter_flags_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "counter_flags_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "blinker",
 					"strict" : false
 				},
 				{
@@ -37,6 +105,10 @@
 				},
 				{
 					"name" : "clk_i_ext",
+					"strict" : false
+				},
+				{
+					"name" : "measure_signal_i",
 					"strict" : false
 				}
 			]

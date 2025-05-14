@@ -22,11 +22,14 @@
 module top_level(input rst_ext,
             	input clk_i_ext,
 				input measure_signal_i,
-                input ref_clk_coarse,
-                input ref_clk_fine,
             	input uart_rx_ext,
+				input ref_clk_coarse,
+				input ref_clk_fine,
             	output uart_tx_ext,
-            	output [9:0] led_port
+            	output [9:0] led_port,
+				output [5:0] status_led,
+				output [3:0] counter_status_led,
+				output [1:0] counter_flags_led
 );
 
    // WB interconnect definition
@@ -64,7 +67,8 @@ module top_level(input rst_ext,
 		.ack_i(ack_o), 
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
-    	.out_led(led_port)
+    	.out_led(led_port),
+		.status_led(status_led)
     );
 	
 	wire [31:0] uart_dat_o;
@@ -116,8 +120,10 @@ module top_level(input rst_ext,
     .tagn_o(tagn_o),
     .signal_input(measure_signal_i),                     //target signal input port
     .reference_clk_1(ref_clk_coarse),                  //coarse reference clock
-    .reference_clk_2(ref_clk_fine)                   //fine reference clock, must be slightly different than the coarse reference clock
-    );
+    .reference_clk_2(ref_clk_fine),                   //fine reference clock, must be slightly different than the coarse reference clock
+    .counter_fsm_status(counter_status_led),
+	.counter_flags(counter_flags_led)
+	);
 	
 	assign clk_i = clk_i_ext;
 	assign dat_o = (uart_dat_o | counter_dat_o | 32'd0);
