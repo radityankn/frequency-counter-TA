@@ -19,11 +19,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module ALU(
+    input ext_rst_i,
     input rst_i,
     input clk_i,
-    input [7:0] addr_i,
-    input [7:0] dat_i,
-    output [7:0] dat_o,
+    input [31:0] addr_i,
+    input [31:0] dat_i,
+    output [31:0] dat_o,
     input we_i,
     input [7:0] sel_i,
     inout cyc_i,

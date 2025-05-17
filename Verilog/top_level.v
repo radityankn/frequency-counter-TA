@@ -106,7 +106,7 @@ module top_level(input rst_ext,
 	wire measure_signal_internal;
 
 	frequency_counter counter_module(
-	 .ext_rst_i(rst_ext),
+	.ext_rst_i(rst_ext),
     .rst_i(rst_i),
     .clk_i(clk_i),
     .addr_i(addr_i),
@@ -129,6 +129,8 @@ module top_level(input rst_ext,
 	 .counter_flags(counter_flags_led),
 	 .counter_control_reg_out(led_port_dummy)
 	);
+
+	alu_module 
 
 	pll_module	pll_module_inst (
 	.areset (~rst_ext),
