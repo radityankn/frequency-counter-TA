@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Wed May 14 07:02:59 2025
+Analysis & Synthesis Status : Successful - Mon May 19 22:06:42 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : frequency_counter_assembly
 Top-level Entity Name : top_level
 Family : MAX 10
-Total logic elements : 581
-    Total combinational functions : 507
-    Dedicated logic registers : 421
-Total registers : 421
-Total pins : 29
+Total logic elements : 596
+    Total combinational functions : 530
+    Dedicated logic registers : 407
+Total registers : 407
+Total pins : 25
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

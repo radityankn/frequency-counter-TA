@@ -27,7 +27,6 @@ module top_level(input rst_ext,
             	output uart_tx_ext,
             	output [9:0] led_port,
 				output [5:0] status_led,
-				output [3:0] counter_status_led,
 				output [1:0] counter_flags_led,
 				output blinker
 );
@@ -101,8 +100,11 @@ module top_level(input rst_ext,
 	wire counter_ack_o;
 	wire counter_rty_o;
 	wire counter_err_o;
-	wire ref_clk_coarse;
-	wire ref_clk_fine;
+	wire ref_measurement_clk_1;
+	wire ref_measurement_clk_2;
+	wire ref_measurement_clk_3;
+	wire ref_measurement_clk_4;
+	wire ref_measurement_clk_5;
 	wire measure_signal_internal;
 
 	frequency_counter counter_module(
@@ -123,28 +125,31 @@ module top_level(input rst_ext,
     .tagn_i(tagn_i),
     .tagn_o(tagn_o),
     .signal_input(measure_signal_i),                     //target signal input port
-    .reference_clk_1(ref_clk_coarse),                  //coarse reference clock
-    .reference_clk_2(ref_clk_fine),                   //fine reference clock, must be slightly different than the coarse reference clock
-    .counter_fsm_status(counter_status_led),
-	 .counter_flags(counter_flags_led),
-	 .counter_control_reg_out(led_port_dummy)
+    .reference_clk_1(ref_measurement_clk_1),                  //coarse reference clock
+    .reference_clk_2(ref_measurement_clk_2),                   //fine reference clock, must be slightly different than the coarse reference clock
+	.reference_clk_3(ref_measurement_clk_3), 
+	.reference_clk_4(ref_measurement_clk_4), 
+	.reference_clk_5(ref_measurement_clk_5), 
+	.counter_flags(counter_flags_led),
 	);
 
-	alu_module 
-
 	pll_module	pll_module_inst (
-	.areset (~rst_ext),
+	//.areset (~rst_ext),
 	.inclk0 (clk_i_ext),
-	.c0 (ref_clk_coarse),
-	.c1 (ref_clk_fine),
-	.c2 (measure_signal_internal),
+	.c0 (ref_measurement_clk_1),
+	.c1 (ref_measurement_clk_2),
+	.c2 (ref_measurement_clk_3),
+	.c3 (ref_measurement_clk_4),
+	.c4 (ref_measurement_clk_5),
 	.locked ( locked_sig )
 	);
 	
-	assign measure_signal_debug = measure_signal_internal;
+	assign measure_signal_debug = ref_measurement_clk_1;
 	assign clk_i = clk_i_ext;
 	assign dat_o = (uart_dat_o | counter_dat_o | 1'd0);
 	assign err_o = (uart_err_o | counter_err_o | 1'd0);
 	assign rty_o = (uart_rty_o | counter_rty_o | 1'd0);
 
 endmodule
+
+

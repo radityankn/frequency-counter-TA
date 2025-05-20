@@ -2,184 +2,220 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'measure_signal_i'
+Slack : -3.197
+TNS   : -22.991
+
 Type  : Slow 1200mV 85C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -2.885
-TNS   : -12.926
-
-Type  : Slow 1200mV 85C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -2.337
-TNS   : -117.930
-
-Type  : Slow 1200mV 85C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : -1.898
-TNS   : -111.867
+Slack : -2.748
+TNS   : -12.590
 
 Type  : Slow 1200mV 85C Model Setup 'clk_i_ext'
-Slack : -1.679
-TNS   : -14.480
+Slack : -1.858
+TNS   : -24.990
 
-Type  : Slow 1200mV 85C Model Setup 'measure_signal_i'
-Slack : -1.205
-TNS   : -6.668
+Type  : Slow 1200mV 85C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -0.850
+TNS   : -50.925
 
-Type  : Slow 1200mV 85C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.326
+Type  : Slow 1200mV 85C Model Setup 'frequency_counter:counter_module|measurement_is_done'
+Slack : 0.803
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'frequency_counter:counter_module|measurement_begin'
+Slack : 0.858
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'frequency_counter:counter_module|measurement_begin'
+Slack : -0.469
+TNS   : -2.017
+
+Type  : Slow 1200mV 85C Model Hold 'frequency_counter:counter_module|measurement_is_done'
+Slack : -0.454
+TNS   : -1.757
+
+Type  : Slow 1200mV 85C Model Hold 'measure_signal_i'
+Slack : 0.337
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk_i_ext'
-Slack : 0.340
+Slack : 0.347
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : 0.340
+Slack : 0.348
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'measure_signal_i'
-Slack : 0.378
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.728
+Type  : Slow 1200mV 85C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.490
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'measure_signal_i'
 Slack : -3.000
-TNS   : -11.418
+TNS   : -19.836
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
 Slack : -1.403
 TNS   : -8.418
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i_ext'
-Slack : 9.687
-TNS   : 0.000
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'frequency_counter:counter_module|measurement_begin'
+Slack : -1.403
+TNS   : -7.015
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 24.764
-TNS   : 0.000
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'frequency_counter:counter_module|measurement_is_done'
+Slack : -1.403
+TNS   : -7.015
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 49.764
+Slack : 1.802
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -2.584
-TNS   : -11.438
-
-Type  : Slow 1200mV 0C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -2.107
-TNS   : -106.651
-
-Type  : Slow 1200mV 0C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : -1.707
-TNS   : -101.056
-
-Type  : Slow 1200mV 0C Model Setup 'clk_i_ext'
-Slack : -1.516
-TNS   : -13.201
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i_ext'
+Slack : 9.688
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'measure_signal_i'
-Slack : -1.047
-TNS   : -5.691
+Slack : -2.860
+TNS   : -19.786
 
-Type  : Slow 1200mV 0C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.249
+Type  : Slow 1200mV 0C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
+Slack : -2.435
+TNS   : -11.131
+
+Type  : Slow 1200mV 0C Model Setup 'clk_i_ext'
+Slack : -1.566
+TNS   : -20.391
+
+Type  : Slow 1200mV 0C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -0.612
+TNS   : -36.108
+
+Type  : Slow 1200mV 0C Model Setup 'frequency_counter:counter_module|measurement_is_done'
+Slack : 0.704
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'clk_i_ext'
-Slack : 0.305
+Type  : Slow 1200mV 0C Model Setup 'frequency_counter:counter_module|measurement_begin'
+Slack : 0.774
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'frequency_counter:counter_module|measurement_begin'
+Slack : -0.407
+TNS   : -1.715
+
+Type  : Slow 1200mV 0C Model Hold 'frequency_counter:counter_module|measurement_is_done'
+Slack : -0.386
+TNS   : -1.455
+
+Type  : Slow 1200mV 0C Model Hold 'measure_signal_i'
+Slack : 0.168
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : 0.305
+Slack : 0.311
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'measure_signal_i'
-Slack : 0.325
+Type  : Slow 1200mV 0C Model Hold 'clk_i_ext'
+Slack : 0.312
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.628
+Type  : Slow 1200mV 0C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.333
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'measure_signal_i'
 Slack : -3.000
-TNS   : -11.418
+TNS   : -19.836
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
 Slack : -1.403
 TNS   : -8.418
 
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'frequency_counter:counter_module|measurement_begin'
+Slack : -1.403
+TNS   : -7.015
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'frequency_counter:counter_module|measurement_is_done'
+Slack : -1.403
+TNS   : -7.015
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 1.746
+TNS   : 0.000
+
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_i_ext'
 Slack : 9.710
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 24.698
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 49.701
-TNS   : 0.000
+Type  : Fast 1200mV 0C Model Setup 'measure_signal_i'
+Slack : -0.739
+TNS   : -7.537
 
 Type  : Fast 1200mV 0C Model Setup 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : -0.673
-TNS   : -2.226
+Slack : -0.594
+TNS   : -2.151
 
 Type  : Fast 1200mV 0C Model Setup 'clk_i_ext'
-Slack : -0.488
-TNS   : -0.488
+Slack : -0.567
+TNS   : -4.743
 
 Type  : Fast 1200mV 0C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.178
-TNS   : -4.800
+Slack : -0.062
+TNS   : -2.570
 
-Type  : Fast 1200mV 0C Model Setup 'measure_signal_i'
-Slack : -0.050
-TNS   : -0.224
-
-Type  : Fast 1200mV 0C Model Setup 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.003
+Type  : Fast 1200mV 0C Model Setup 'frequency_counter:counter_module|measurement_is_done'
+Slack : 0.821
 TNS   : 0.000
 
+Type  : Fast 1200mV 0C Model Setup 'frequency_counter:counter_module|measurement_begin'
+Slack : 0.856
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'frequency_counter:counter_module|measurement_begin'
+Slack : -0.217
+TNS   : -0.928
+
+Type  : Fast 1200mV 0C Model Hold 'frequency_counter:counter_module|measurement_is_done'
+Slack : -0.210
+TNS   : -0.843
+
 Type  : Fast 1200mV 0C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.135
+Slack : -0.001
+TNS   : -0.016
+
+Type  : Fast 1200mV 0C Model Hold 'clk_i_ext'
+Slack : 0.152
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
-Slack : 0.147
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'clk_i_ext'
-Slack : 0.148
+Slack : 0.152
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'measure_signal_i'
-Slack : 0.166
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.311
+Slack : 0.180
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'measure_signal_i'
 Slack : -3.000
-TNS   : -11.762
+TNS   : -20.668
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]'
 Slack : -1.000
 TNS   : -6.000
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i_ext'
-Slack : 9.461
-TNS   : 0.000
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'frequency_counter:counter_module|measurement_begin'
+Slack : -1.000
+TNS   : -5.000
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 24.799
-TNS   : 0.000
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'frequency_counter:counter_module|measurement_is_done'
+Slack : -1.000
+TNS   : -5.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pll_module_inst|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 49.798
+Slack : 1.848
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i_ext'
+Slack : 9.463
 TNS   : 0.000
 
 ------------------------------------------------------------

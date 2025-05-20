@@ -31,28 +31,28 @@ module frequency_counter(
     input lock_i,
     input tagn_i,
     input signal_input,                     //target signal input port
-    input reference_clk_1,                  //coarse reference clock
-    input reference_clk_2,                  //fine reference clock, must be slightly different than the coarse reference clock
+    input reference_clk_1,                  //reference clock, 100MHz
+    input reference_clk_2,                  //refence clock, 100MHz, subsequent clock are shifted 72 degrees to each other in a succession order
+    input reference_clk_3,                  
+    input reference_clk_4,
+    input reference_clk_5,
     output [31:0] dat_o,
     output err_o,
     output rty_o,
     output ack_o,
     output tagn_o,
-    output [3:0] counter_fsm_status,
-    output [1:0] counter_flags,
-	 output [7:0] counter_control_reg_out
+    output [1:0] counter_flags
     );
 	
-	reg [31:0] coarse_count_internal;       //front-end coarse counter register, where counting happens and data stored before being pushed to the bus-facing register
-    reg [31:0] fine_count_internal;         //front-end fine counter register, where counting happens and data stored before being pushed to the bus-facing register
-    reg [31:0] coarse_count_reg;            //bus-facing coarse counter data register, accessible through the wishbone bus
-    reg [31:0] fine_count_reg;              //bus-facing fine counter data register, accessible through the wishbone bus
+	reg [31:0] measurement_count_internal;       //front-end measurement counter register, where counting happens and data stored before being pushed to the bus-facing register
+    reg [31:0] measurement_count_reg;            //bus-facing coarse counter data register, accessible through the wishbone bus
+    reg [31:0] phase_count_reg;              //bus-facing fine counter data register, accessible through the wishbone bus
     reg [7:0] counter_control_reg;                  //counter control register, used to start the measurement and indicate whether a measurement has been finished or not
-    reg [3:0] measurement_state_machine;          //state machine to indicate whether input signal rising edge is present or not
+    reg [9:0] measurement_state_machine;          //state machine to indicate whether input signal rising edge is present or not
     reg measurement_begin;             //state of the measurement state machine from the last clock cycle
     reg measurement_is_done;                //register of whether a measurement has been done or not, useful when waiting for rising edge
     reg [31:0] counter_read_buffer;
-	 reg bus_acknowledge;
+	reg bus_acknowledge;
 
     wire reference_clk_1_internal;          //coarse clock, as intended from a vernier reciprocal counter
     wire reference_clk_2_internal;          //fine clock, as intended from a vernier reciprocal counter
@@ -74,13 +74,13 @@ module frequency_counter(
         end
         else measurement_begin <= 0;
 		  
-        if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) measurement_state_machine <= 4'd0;
+        if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) measurement_state_machine <= 10'd0;
         else if (measurement_begin == 1 && measurement_is_done == 0) begin 
-            if (measurement_state_machine == 4'd9) begin
+            if (measurement_state_machine == 10'd9) begin
                 measurement_is_done <= 1;
-                measurement_state_machine <= 4'd0;
+                measurement_state_machine <= 10'd0;
             end
-            else measurement_state_machine <= measurement_state_machine + 1'b1;
+            else measurement_state_machine <= measurement_state_machine + 1'd1;
         end
         else measurement_state_machine <= measurement_state_machine;
     end
@@ -89,24 +89,32 @@ module frequency_counter(
     //where we are going to get our initial result before being pushed to the data register
     //there are 2 register, for coarse and fine counter respectively
 
-    always @(posedge reference_clk_1_internal) begin
-        if (rst_i == 1 || counter_reset_internal == 1) coarse_count_internal <= 32'd0;
-        else if (measurement_begin == 1 && measurement_is_done == 0) coarse_count_internal <= coarse_count_internal + 1'b1;
+    always @(posedge reference_clk_1) begin
+        if (rst_i == 1 || counter_reset_internal == 1) measurement_count_internal <= 32'd0;
+        else if (measurement_begin == 1 && measurement_is_done == 0) measurement_count_internal <= measurement_count_internal + 1'b1;
 		  else if (measurement_is_done == 1) begin
-				coarse_count_reg <= coarse_count_internal;
-				coarse_count_internal <= 32'd0;
+				measurement_count_reg <= measurement_count_internal;
+				measurement_count_internal <= 32'd0;
 		  end
-        else coarse_count_internal <= coarse_count_internal;
+        else measurement_count_internal <= measurement_count_internal;
     end
+	
+    //Interpolation register for the beginning of measurement, at rising edge of measurement_begin
+	always @(posedge measurement_begin) begin
+        phase_count_reg[9] <= reference_clk_1; 
+        phase_count_reg[8] <= reference_clk_2;
+        phase_count_reg[7] <= reference_clk_3;
+        phase_count_reg[6] <= reference_clk_4;
+        phase_count_reg[5] <= reference_clk_5;
+	end
 
-    always @(posedge reference_clk_2_internal) begin
-        if (rst_i == 1 || counter_reset_internal == 1) fine_count_internal <= 32'd0;
-        else if (measurement_begin == 1 && measurement_is_done == 0) fine_count_internal <= fine_count_internal + 1'b1;
-        else if (measurement_is_done == 1) begin
-				fine_count_reg <= fine_count_internal;
-				fine_count_internal <= 32'd0;
-		  end
-		  else fine_count_internal <= fine_count_internal;
+    //interplation for end of measurement, at rising edge of measurement_is_done
+    always @(posedge measurement_is_done) begin
+        phase_count_reg[4] <= reference_clk_1; 
+        phase_count_reg[3] <= reference_clk_2;
+        phase_count_reg[2] <= reference_clk_3;
+        phase_count_reg[1] <= reference_clk_4;
+        phase_count_reg[0] <= reference_clk_5;
     end
 
     //this is the bus-facing interface, responsible for storing data and synchronizing with main control unit
@@ -124,21 +132,25 @@ module frequency_counter(
         end
         if (we_i == 1 && stb_i == 1) begin 
             if (addr_i == 32'h8) begin
-				counter_control_reg <= dat_i[7:0];       //update control register according to the data supplied from dat_i     
+                //update control register according to the data supplied from dat_i
+				counter_control_reg <= dat_i[7:0];           
 				bus_acknowledge <= 1;
             end else begin            
                 bus_acknowledge <= 0;
             end
         end else if (we_i == 0 && stb_i == 1) begin 
+            //counter control register (0x08)
             if (addr_i == 32'h8) begin
                 counter_read_buffer[7:0] <= counter_control_reg;
                 counter_read_buffer[31:8] <= 24'd0;
                 bus_acknowledge <= 1;
+            //counter counter result register (0x09)
             end else if (addr_i == 32'h9) begin
-                counter_read_buffer <= coarse_count_reg;
+                counter_read_buffer <= measurement_count_reg;
                 bus_acknowledge <= 1;
+            //counter phase begin - end register (0x0a)
             end else if (addr_i == 32'ha) begin
-                counter_read_buffer <= fine_count_reg;
+                counter_read_buffer <= phase_count_reg;
                 bus_acknowledge <= 1;
             end else begin 
                 counter_read_buffer <= 32'd0;
@@ -152,14 +164,10 @@ module frequency_counter(
         end else if (counter_control_reg[0] == 1) counter_control_reg <= 8'd0;
     end
 
-    assign reference_clk_1_internal = reference_clk_1;
-    assign reference_clk_2_internal = reference_clk_2;
     assign dat_o = counter_read_buffer;
     assign counter_reset_internal = counter_control_reg[0]; 
-    assign counter_fsm_status = measurement_state_machine;
     assign counter_flags[1] = measurement_begin;
     assign counter_flags[0] = measurement_is_done;
-	assign counter_control_reg_out = counter_control_reg;
 	assign ack_o = bus_acknowledge;
 endmodule  
 

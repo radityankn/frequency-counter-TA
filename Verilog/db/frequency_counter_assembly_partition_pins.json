@@ -72,22 +72,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "counter_status_led[0]",
-					"strict" : false
-				},
-				{
-					"name" : "counter_status_led[1]",
-					"strict" : false
-				},
-				{
-					"name" : "counter_status_led[2]",
-					"strict" : false
-				},
-				{
-					"name" : "counter_status_led[3]",
-					"strict" : false
-				},
-				{
 					"name" : "counter_flags_led[0]",
 					"strict" : false
 				},
@@ -100,11 +84,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "rst_ext",
+					"name" : "clk_i_ext",
 					"strict" : false
 				},
 				{
-					"name" : "clk_i_ext",
+					"name" : "rst_ext",
 					"strict" : false
 				},
 				{

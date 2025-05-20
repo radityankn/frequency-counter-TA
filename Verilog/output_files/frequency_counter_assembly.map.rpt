@@ -1,5 +1,5 @@
 Analysis & Synthesis report for frequency_counter_assembly
-Wed May 14 07:02:59 2025
+Mon May 19 22:06:42 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -53,16 +53,16 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed May 14 07:02:59 2025           ;
+; Analysis & Synthesis Status        ; Successful - Mon May 19 22:06:42 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; frequency_counter_assembly                      ;
 ; Top-level Entity Name              ; top_level                                       ;
 ; Family                             ; MAX 10                                          ;
-; Total logic elements               ; 581                                             ;
-;     Total combinational functions  ; 507                                             ;
-;     Dedicated logic registers      ; 421                                             ;
-; Total registers                    ; 421                                             ;
-; Total pins                         ; 29                                              ;
+; Total logic elements               ; 596                                             ;
+;     Total combinational functions  ; 530                                             ;
+;     Dedicated logic registers      ; 407                                             ;
+; Total registers                    ; 407                                             ;
+; Total pins                         ; 25                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -175,7 +175,7 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
 ;     Processors 3-12        ;   0.0%      ;
 +----------------------------+-------------+
 
@@ -204,23 +204,23 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-----------------+
 ; Resource                                    ; Usage           ;
 +---------------------------------------------+-----------------+
-; Estimated Total logic elements              ; 581             ;
+; Estimated Total logic elements              ; 596             ;
 ;                                             ;                 ;
-; Total combinational functions               ; 507             ;
+; Total combinational functions               ; 530             ;
 ; Logic element usage by number of LUT inputs ;                 ;
-;     -- 4 input functions                    ; 255             ;
-;     -- 3 input functions                    ; 81              ;
-;     -- <=2 input functions                  ; 171             ;
+;     -- 4 input functions                    ; 247             ;
+;     -- 3 input functions                    ; 111             ;
+;     -- <=2 input functions                  ; 172             ;
 ;                                             ;                 ;
 ; Logic elements by mode                      ;                 ;
-;     -- normal mode                          ; 376             ;
-;     -- arithmetic mode                      ; 131             ;
+;     -- normal mode                          ; 421             ;
+;     -- arithmetic mode                      ; 109             ;
 ;                                             ;                 ;
-; Total registers                             ; 421             ;
-;     -- Dedicated logic registers            ; 421             ;
+; Total registers                             ; 407             ;
+;     -- Dedicated logic registers            ; 407             ;
 ;     -- I/O registers                        ; 0               ;
 ;                                             ;                 ;
-; I/O pins                                    ; 29              ;
+; I/O pins                                    ; 25              ;
 ;                                             ;                 ;
 ; Embedded Multiplier 9-bit elements          ; 0               ;
 ;                                             ;                 ;
@@ -228,9 +228,9 @@ on the Quartus Prime software download page.
 ;     -- PLLs                                 ; 1               ;
 ;                                             ;                 ;
 ; Maximum fan-out node                        ; clk_i_ext~input ;
-; Maximum fan-out                             ; 282             ;
-; Total fan-out                               ; 3045            ;
-; Average fan-out                             ; 3.09            ;
+; Maximum fan-out                             ; 316             ;
+; Total fan-out                               ; 3078            ;
+; Average fan-out                             ; 3.12            ;
 +---------------------------------------------+-----------------+
 
 
@@ -239,13 +239,13 @@ on the Quartus Prime software download page.
 +---------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------+-------------------+--------------+
 ; Compilation Hierarchy Node                  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                            ; Entity Name       ; Library Name ;
 +---------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------+-------------------+--------------+
-; |top_level                                  ; 507 (7)             ; 421 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 29   ; 0            ; 0          ; |top_level                                                                                     ; top_level         ; work         ;
-;    |control_unit:control_module|            ; 161 (161)           ; 128 (128)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|control_unit:control_module                                                         ; control_unit      ; work         ;
-;    |frequency_counter:counter_module|       ; 139 (139)           ; 174 (174)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|frequency_counter:counter_module                                                    ; frequency_counter ; work         ;
+; |top_level                                  ; 530 (1)             ; 407 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 25   ; 0            ; 0          ; |top_level                                                                                     ; top_level         ; work         ;
+;    |control_unit:control_module|            ; 214 (214)           ; 162 (162)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|control_unit:control_module                                                         ; control_unit      ; work         ;
+;    |frequency_counter:counter_module|       ; 116 (116)           ; 126 (126)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|frequency_counter:counter_module                                                    ; frequency_counter ; work         ;
 ;    |pll_module:pll_module_inst|             ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|pll_module:pll_module_inst                                                          ; pll_module        ; work         ;
 ;       |altpll:altpll_component|             ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|pll_module:pll_module_inst|altpll:altpll_component                                  ; altpll            ; work         ;
 ;          |pll_module_altpll:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated ; pll_module_altpll ; work         ;
-;    |uart_interface:uart_module|             ; 200 (137)           ; 119 (81)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|uart_interface:uart_module                                                          ; uart_interface    ; work         ;
+;    |uart_interface:uart_module|             ; 199 (136)           ; 119 (81)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|uart_interface:uart_module                                                          ; uart_interface    ; work         ;
 ;       |uart_tx_module:tx_module|            ; 63 (61)             ; 38 (38)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|uart_interface:uart_module|uart_tx_module:tx_module                                 ; uart_tx_module    ; work         ;
 ;          |parity_detector:parity_module|    ; 2 (2)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|uart_interface:uart_module|uart_tx_module:tx_module|parity_detector:parity_module   ; parity_detector   ; work         ;
 +---------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------+-------------------+--------------+
@@ -267,25 +267,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Register name                                            ; Reason for Removal                                          ;
 +----------------------------------------------------------+-------------------------------------------------------------+
 ; control_unit:control_module|addr_o_internal[4..9,11..31] ; Merged with control_unit:control_module|addr_o_internal[10] ;
-; control_unit:control_module|next_fsm_step[2]             ; Merged with control_unit:control_module|next_fsm_step[1]    ;
 ; control_unit:control_module|addr_o_internal[10]          ; Stuck at GND due to stuck port data_in                      ;
 ; control_unit:control_module|next_fsm_step[4]             ; Stuck at GND due to stuck port data_in                      ;
 ; uart_interface:uart_module|uart_buffer_tx[8]             ; Stuck at GND due to stuck port data_in                      ;
-; control_unit:control_module|cu_fsm_internal[4]           ; Stuck at GND due to stuck port data_in                      ;
-; Total Number of Removed Registers = 32                   ;                                                             ;
+; Total Number of Removed Registers = 30                   ;                                                             ;
 +----------------------------------------------------------+-------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                  ;
-+-------------------------------------------------+---------------------------+------------------------------------------------+
-; Register name                                   ; Reason for Removal        ; Registers Removed due to This Register         ;
-+-------------------------------------------------+---------------------------+------------------------------------------------+
-; control_unit:control_module|addr_o_internal[10] ; Stuck at GND              ; uart_interface:uart_module|uart_buffer_tx[8]   ;
-;                                                 ; due to stuck port data_in ;                                                ;
-; control_unit:control_module|next_fsm_step[4]    ; Stuck at GND              ; control_unit:control_module|cu_fsm_internal[4] ;
-;                                                 ; due to stuck port data_in ;                                                ;
-+-------------------------------------------------+---------------------------+------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                ;
++-------------------------------------------------+---------------------------+----------------------------------------------+
+; Register name                                   ; Reason for Removal        ; Registers Removed due to This Register       ;
++-------------------------------------------------+---------------------------+----------------------------------------------+
+; control_unit:control_module|addr_o_internal[10] ; Stuck at GND              ; uart_interface:uart_module|uart_buffer_tx[8] ;
+;                                                 ; due to stuck port data_in ;                                              ;
++-------------------------------------------------+---------------------------+----------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -293,42 +289,45 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 421   ;
-; Number of registers using Synchronous Clear  ; 164   ;
-; Number of registers using Synchronous Load   ; 8     ;
+; Total registers                              ; 407   ;
+; Number of registers using Synchronous Clear  ; 154   ;
+; Number of registers using Synchronous Load   ; 31    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 368   ;
+; Number of registers using Clock Enable       ; 343   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|control_unit:control_module|sampled_data[0]                   ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_tx_ctrl_reg[4]                ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_status_reg[0]                 ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_rx_ctrl_reg[0]                ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|uart_interface:uart_module|baud_rate_divider_constant[24]     ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_level|frequency_counter:counter_module|measurement_state_machine[3] ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |top_level|frequency_counter:counter_module|counter_control_reg[4]       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|control_unit:control_module|counter_timer_internal[20]        ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|fine_count_internal[8]       ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |top_level|frequency_counter:counter_module|counter_control_reg[7]       ;
-; 17:1               ; 6 bits    ; 66 LEs        ; 48 LEs               ; 18 LEs                 ; Yes        ; |top_level|control_unit:control_module|we_o_internal                     ;
-; 17:1               ; 4 bits    ; 44 LEs        ; 24 LEs               ; 20 LEs                 ; Yes        ; |top_level|control_unit:control_module|sel_o_internal[1]                 ;
-; 17:1               ; 6 bits    ; 66 LEs        ; 24 LEs               ; 42 LEs                 ; Yes        ; |top_level|control_unit:control_module|one_hot[0]                        ;
-; 17:1               ; 32 bits   ; 352 LEs       ; 192 LEs              ; 160 LEs                ; Yes        ; |top_level|control_unit:control_module|dat_o_internal[10]                ;
-; 6:1                ; 24 bits   ; 96 LEs        ; 48 LEs               ; 48 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|counter_read_buffer[15]      ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|counter_read_buffer[6]       ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |top_level|control_unit:control_module|next_fsm_step[3]                  ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_buffer_tx[1]                  ;
-; 19:1               ; 8 bits    ; 96 LEs        ; 8 LEs                ; 88 LEs                 ; Yes        ; |top_level|control_unit:control_module|repetition[4]                     ;
-; 9:1                ; 8 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; Yes        ; |top_level|uart_interface:uart_module|uart_read_buffer_internal[6]       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|control_unit:control_module|general_purpose_reg_2[1]           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|control_unit:control_module|general_purpose_reg_1[23]          ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_tx_ctrl_reg[0]                 ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_status_reg[7]                  ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_rx_ctrl_reg[6]                 ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|uart_interface:uart_module|baud_rate_divider_constant[7]       ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |top_level|frequency_counter:counter_module|counter_control_reg[1]        ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|measurement_state_machine[0]  ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|control_unit:control_module|counter_timer_internal[2]          ;
+; 5:1                ; 22 bits   ; 66 LEs        ; 22 LEs               ; 44 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|counter_read_buffer[21]       ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |top_level|frequency_counter:counter_module|counter_control_reg[6]        ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|measurement_count_internal[3] ;
+; 17:1               ; 17 bits   ; 187 LEs       ; 68 LEs               ; 119 LEs                ; Yes        ; |top_level|control_unit:control_module|dat_o_internal[21]                 ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_level|frequency_counter:counter_module|counter_read_buffer[8]        ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_level|frequency_counter:counter_module|counter_read_buffer[4]        ;
+; 33:1               ; 6 bits    ; 132 LEs       ; 60 LEs               ; 72 LEs                 ; Yes        ; |top_level|control_unit:control_module|addr_o_internal[0]                 ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 32 LEs               ; 56 LEs                 ; Yes        ; |top_level|control_unit:control_module|sel_o_internal[3]                  ;
+; 33:1               ; 6 bits    ; 132 LEs       ; 24 LEs               ; 108 LEs                ; Yes        ; |top_level|control_unit:control_module|one_hot[1]                         ;
+; 33:1               ; 15 bits   ; 330 LEs       ; 75 LEs               ; 255 LEs                ; Yes        ; |top_level|control_unit:control_module|dat_o_internal[17]                 ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 24 LEs               ; 64 LEs                 ; Yes        ; |top_level|control_unit:control_module|next_fsm_step[0]                   ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |top_level|uart_interface:uart_module|uart_buffer_tx[0]                   ;
+; 34:1               ; 8 bits    ; 176 LEs       ; 8 LEs                ; 168 LEs                ; Yes        ; |top_level|control_unit:control_module|repetition[4]                      ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; Yes        ; |top_level|uart_interface:uart_module|uart_read_buffer_internal[1]        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------+
@@ -369,30 +368,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CLK7_MULTIPLY_BY              ; 0                            ; Untyped                          ;
 ; CLK6_MULTIPLY_BY              ; 0                            ; Untyped                          ;
 ; CLK5_MULTIPLY_BY              ; 1                            ; Untyped                          ;
-; CLK4_MULTIPLY_BY              ; 1                            ; Untyped                          ;
-; CLK3_MULTIPLY_BY              ; 1                            ; Untyped                          ;
-; CLK2_MULTIPLY_BY              ; 1                            ; Signed Integer                   ;
+; CLK4_MULTIPLY_BY              ; 2                            ; Signed Integer                   ;
+; CLK3_MULTIPLY_BY              ; 2                            ; Signed Integer                   ;
+; CLK2_MULTIPLY_BY              ; 2                            ; Signed Integer                   ;
 ; CLK1_MULTIPLY_BY              ; 2                            ; Signed Integer                   ;
-; CLK0_MULTIPLY_BY              ; 1                            ; Signed Integer                   ;
+; CLK0_MULTIPLY_BY              ; 2                            ; Signed Integer                   ;
 ; CLK9_DIVIDE_BY                ; 0                            ; Untyped                          ;
 ; CLK8_DIVIDE_BY                ; 0                            ; Untyped                          ;
 ; CLK7_DIVIDE_BY                ; 0                            ; Untyped                          ;
 ; CLK6_DIVIDE_BY                ; 0                            ; Untyped                          ;
 ; CLK5_DIVIDE_BY                ; 1                            ; Untyped                          ;
-; CLK4_DIVIDE_BY                ; 1                            ; Untyped                          ;
-; CLK3_DIVIDE_BY                ; 1                            ; Untyped                          ;
-; CLK2_DIVIDE_BY                ; 50                           ; Signed Integer                   ;
-; CLK1_DIVIDE_BY                ; 5                            ; Signed Integer                   ;
-; CLK0_DIVIDE_BY                ; 5                            ; Signed Integer                   ;
+; CLK4_DIVIDE_BY                ; 1                            ; Signed Integer                   ;
+; CLK3_DIVIDE_BY                ; 1                            ; Signed Integer                   ;
+; CLK2_DIVIDE_BY                ; 1                            ; Signed Integer                   ;
+; CLK1_DIVIDE_BY                ; 1                            ; Signed Integer                   ;
+; CLK0_DIVIDE_BY                ; 1                            ; Signed Integer                   ;
 ; CLK9_PHASE_SHIFT              ; 0                            ; Untyped                          ;
 ; CLK8_PHASE_SHIFT              ; 0                            ; Untyped                          ;
 ; CLK7_PHASE_SHIFT              ; 0                            ; Untyped                          ;
 ; CLK6_PHASE_SHIFT              ; 0                            ; Untyped                          ;
 ; CLK5_PHASE_SHIFT              ; 0                            ; Untyped                          ;
-; CLK4_PHASE_SHIFT              ; 0                            ; Untyped                          ;
-; CLK3_PHASE_SHIFT              ; 0                            ; Untyped                          ;
-; CLK2_PHASE_SHIFT              ; 0                            ; Untyped                          ;
-; CLK1_PHASE_SHIFT              ; 0                            ; Untyped                          ;
+; CLK4_PHASE_SHIFT              ; 8000                         ; Untyped                          ;
+; CLK3_PHASE_SHIFT              ; 6000                         ; Untyped                          ;
+; CLK2_PHASE_SHIFT              ; 4000                         ; Untyped                          ;
+; CLK1_PHASE_SHIFT              ; 2000                         ; Untyped                          ;
 ; CLK0_PHASE_SHIFT              ; 0                            ; Untyped                          ;
 ; CLK5_TIME_DELAY               ; 0                            ; Untyped                          ;
 ; CLK4_TIME_DELAY               ; 0                            ; Untyped                          ;
@@ -405,11 +404,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CLK7_DUTY_CYCLE               ; 50                           ; Untyped                          ;
 ; CLK6_DUTY_CYCLE               ; 50                           ; Untyped                          ;
 ; CLK5_DUTY_CYCLE               ; 50                           ; Untyped                          ;
-; CLK4_DUTY_CYCLE               ; 50                           ; Untyped                          ;
-; CLK3_DUTY_CYCLE               ; 50                           ; Untyped                          ;
-; CLK2_DUTY_CYCLE               ; 50                           ; Signed Integer                   ;
-; CLK1_DUTY_CYCLE               ; 50                           ; Signed Integer                   ;
-; CLK0_DUTY_CYCLE               ; 50                           ; Signed Integer                   ;
+; CLK4_DUTY_CYCLE               ; 20                           ; Signed Integer                   ;
+; CLK3_DUTY_CYCLE               ; 20                           ; Signed Integer                   ;
+; CLK2_DUTY_CYCLE               ; 20                           ; Signed Integer                   ;
+; CLK1_DUTY_CYCLE               ; 20                           ; Signed Integer                   ;
+; CLK0_DUTY_CYCLE               ; 20                           ; Signed Integer                   ;
 ; CLK9_USE_EVEN_COUNTER_MODE    ; OFF                          ; Untyped                          ;
 ; CLK8_USE_EVEN_COUNTER_MODE    ; OFF                          ; Untyped                          ;
 ; CLK7_USE_EVEN_COUNTER_MODE    ; OFF                          ; Untyped                          ;
@@ -640,8 +639,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; PORT_CLK0                     ; PORT_USED                    ; Untyped                          ;
 ; PORT_CLK1                     ; PORT_USED                    ; Untyped                          ;
 ; PORT_CLK2                     ; PORT_USED                    ; Untyped                          ;
-; PORT_CLK3                     ; PORT_UNUSED                  ; Untyped                          ;
-; PORT_CLK4                     ; PORT_UNUSED                  ; Untyped                          ;
+; PORT_CLK3                     ; PORT_USED                    ; Untyped                          ;
+; PORT_CLK4                     ; PORT_USED                    ; Untyped                          ;
 ; PORT_CLK5                     ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_CLK6                     ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_CLK7                     ; PORT_UNUSED                  ; Untyped                          ;
@@ -659,7 +658,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; PORT_FBIN                     ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_PLLENA                   ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_CLKSWITCH                ; PORT_UNUSED                  ; Untyped                          ;
-; PORT_ARESET                   ; PORT_USED                    ; Untyped                          ;
+; PORT_ARESET                   ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_PFDENA                   ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_SCANCLK                  ; PORT_UNUSED                  ; Untyped                          ;
 ; PORT_SCANACLR                 ; PORT_UNUSED                  ; Untyped                          ;
@@ -731,15 +730,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "frequency_counter:counter_module"                                                                                                                             ;
-+-------------------------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Port                    ; Type   ; Severity ; Details                                                                                                                                    ;
-+-------------------------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------+
-; ack_o                   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                        ;
-; counter_control_reg_out ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (1 bits) it drives; bit(s) "counter_control_reg_out[7..1]" have no fanouts ;
-; counter_control_reg_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                        ;
-+-------------------------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "frequency_counter:counter_module"                                                    ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; ack_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------+
@@ -767,26 +764,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 29                          ;
-; cycloneiii_ff         ; 421                         ;
-;     ENA               ; 242                         ;
-;     ENA SCLR          ; 118                         ;
-;     ENA SCLR SLD      ; 8                           ;
+; boundary_port         ; 25                          ;
+; cycloneiii_ff         ; 407                         ;
+;     ENA               ; 227                         ;
+;     ENA SCLR          ; 85                          ;
+;     ENA SCLR SLD      ; 31                          ;
 ;     SCLR              ; 38                          ;
-;     plain             ; 15                          ;
-; cycloneiii_lcell_comb ; 507                         ;
-;     arith             ; 131                         ;
-;         2 data inputs ; 100                         ;
+;     plain             ; 26                          ;
+; cycloneiii_lcell_comb ; 530                         ;
+;     arith             ; 109                         ;
+;         2 data inputs ; 78                          ;
 ;         3 data inputs ; 31                          ;
-;     normal            ; 376                         ;
+;     normal            ; 421                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 5                           ;
-;         2 data inputs ; 65                          ;
-;         3 data inputs ; 50                          ;
-;         4 data inputs ; 255                         ;
+;         2 data inputs ; 88                          ;
+;         3 data inputs ; 80                          ;
+;         4 data inputs ; 247                         ;
 ; cycloneiii_pll        ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.00                        ;
+; Max LUT depth         ; 6.00                        ;
 ; Average LUT depth     ; 2.60                        ;
 +-----------------------+-----------------------------+
 
@@ -806,7 +803,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Wed May 14 07:02:52 2025
+    Info: Processing started: Mon May 19 22:06:35 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off frequency_counter_assembly -c frequency_counter_assembly
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -814,6 +811,7 @@ Info (12021): Found 3 design units, including 3 entities, in source file uart_in
     Info (12023): Found entity 1: uart_interface File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 21
     Info (12023): Found entity 2: uart_tx_module File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 217
     Info (12023): Found entity 3: parity_detector File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 395
+Warning (10275): Verilog HDL Module Instantiation warning at top_level.v(134): ignored dangling comma in List of Port Connections File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 134
 Info (12021): Found 1 design units, including 1 entities, in source file top_level.v
     Info (12023): Found entity 1: top_level File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file frequency_counter.v
@@ -824,15 +822,18 @@ Info (12021): Found 1 design units, including 1 entities, in source file ALU.v
     Info (12023): Found entity 1: ALU File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/ALU.v Line: 21
 Info (12021): Found 1 design units, including 1 entities, in source file pll_module.v
     Info (12023): Found entity 1: pll_module File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 40
-Warning (10236): Verilog HDL Implicit Net warning at top_level.v(130): created implicit net for "led_port_dummy" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 130
-Warning (10236): Verilog HDL Implicit Net warning at top_level.v(139): created implicit net for "locked_sig" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 139
+Info (12021): Found 1 design units, including 1 entities, in source file divider_module.v
+    Info (12023): Found entity 1: divider_module File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/divider_module.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file multiplier_module.v
+    Info (12023): Found entity 1: multiplier_module File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/multiplier_module.v Line: 40
+Warning (10236): Verilog HDL Implicit Net warning at top_level.v(144): created implicit net for "locked_sig" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 144
 Info (12127): Elaborating entity "top_level" for the top level hierarchy
-Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:control_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 72
-Warning (10230): Verilog HDL assignment warning at control_unit.v(236): truncated value with size 10 to match size of target (6) File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/control_unit.v Line: 236
+Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:control_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 71
+Warning (10036): Verilog HDL or VHDL warning at control_unit.v(60): object "bcd_data" assigned a value but never read File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/control_unit.v Line: 60
 Warning (10034): Output port "cyc_o" at control_unit.v(30) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/control_unit.v Line: 30
 Warning (10034): Output port "lock_o" at control_unit.v(32) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/control_unit.v Line: 32
 Warning (10034): Output port "tagn_o" at control_unit.v(37) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/control_unit.v Line: 37
-Info (12128): Elaborating entity "uart_interface" for hierarchy "uart_interface:uart_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 98
+Info (12128): Elaborating entity "uart_interface" for hierarchy "uart_interface:uart_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 97
 Warning (10036): Verilog HDL or VHDL warning at uart_interface.v(54): object "uart_status_indicator" assigned a value but never read File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 54
 Warning (10858): Verilog HDL warning at uart_interface.v(56): object uart_frame_receive_complete used but never assigned File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 56
 Warning (10858): Verilog HDL warning at uart_interface.v(58): object uart_parity_error_flag used but never assigned File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 58
@@ -850,27 +851,36 @@ Warning (10034): Output port "rty_o" at uart_interface.v(38) has no driver File:
 Warning (10034): Output port "tagn_o" at uart_interface.v(42) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 42
 Info (12128): Elaborating entity "uart_tx_module" for hierarchy "uart_interface:uart_module|uart_tx_module:tx_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 72
 Info (12128): Elaborating entity "parity_detector" for hierarchy "uart_interface:uart_module|uart_tx_module:tx_module|parity_detector:parity_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 247
-Info (12128): Elaborating entity "frequency_counter" for hierarchy "frequency_counter:counter_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 131
-Warning (10034): Output port "err_o" at frequency_counter.v(37) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 37
-Warning (10034): Output port "rty_o" at frequency_counter.v(38) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 38
-Warning (10034): Output port "tagn_o" at frequency_counter.v(40) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 40
-Info (12128): Elaborating entity "pll_module" for hierarchy "pll_module:pll_module_inst" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 140
-Info (12128): Elaborating entity "altpll" for hierarchy "pll_module:pll_module_inst|altpll:altpll_component" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 112
-Info (12130): Elaborated megafunction instantiation "pll_module:pll_module_inst|altpll:altpll_component" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 112
-Info (12133): Instantiated megafunction "pll_module:pll_module_inst|altpll:altpll_component" with the following parameter: File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 112
+Info (12128): Elaborating entity "frequency_counter" for hierarchy "frequency_counter:counter_module" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 134
+Warning (10030): Net "phase_count_reg[31..10]" at frequency_counter.v(49) has no driver or initial value, using a default initial value '0' File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 49
+Warning (10034): Output port "err_o" at frequency_counter.v(40) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 40
+Warning (10034): Output port "rty_o" at frequency_counter.v(41) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 41
+Warning (10034): Output port "tagn_o" at frequency_counter.v(43) has no driver File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 43
+Info (12128): Elaborating entity "pll_module" for hierarchy "pll_module:pll_module_inst" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 145
+Info (12128): Elaborating entity "altpll" for hierarchy "pll_module:pll_module_inst|altpll:altpll_component" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 111
+Info (12130): Elaborated megafunction instantiation "pll_module:pll_module_inst|altpll:altpll_component" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 111
+Info (12133): Instantiated megafunction "pll_module:pll_module_inst|altpll:altpll_component" with the following parameter: File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/pll_module.v Line: 111
     Info (12134): Parameter "bandwidth_type" = "AUTO"
-    Info (12134): Parameter "clk0_divide_by" = "5"
-    Info (12134): Parameter "clk0_duty_cycle" = "50"
-    Info (12134): Parameter "clk0_multiply_by" = "1"
+    Info (12134): Parameter "clk0_divide_by" = "1"
+    Info (12134): Parameter "clk0_duty_cycle" = "20"
+    Info (12134): Parameter "clk0_multiply_by" = "2"
     Info (12134): Parameter "clk0_phase_shift" = "0"
-    Info (12134): Parameter "clk1_divide_by" = "5"
-    Info (12134): Parameter "clk1_duty_cycle" = "50"
+    Info (12134): Parameter "clk1_divide_by" = "1"
+    Info (12134): Parameter "clk1_duty_cycle" = "20"
     Info (12134): Parameter "clk1_multiply_by" = "2"
-    Info (12134): Parameter "clk1_phase_shift" = "0"
-    Info (12134): Parameter "clk2_divide_by" = "50"
-    Info (12134): Parameter "clk2_duty_cycle" = "50"
-    Info (12134): Parameter "clk2_multiply_by" = "1"
-    Info (12134): Parameter "clk2_phase_shift" = "0"
+    Info (12134): Parameter "clk1_phase_shift" = "2000"
+    Info (12134): Parameter "clk2_divide_by" = "1"
+    Info (12134): Parameter "clk2_duty_cycle" = "20"
+    Info (12134): Parameter "clk2_multiply_by" = "2"
+    Info (12134): Parameter "clk2_phase_shift" = "4000"
+    Info (12134): Parameter "clk3_divide_by" = "1"
+    Info (12134): Parameter "clk3_duty_cycle" = "20"
+    Info (12134): Parameter "clk3_multiply_by" = "2"
+    Info (12134): Parameter "clk3_phase_shift" = "6000"
+    Info (12134): Parameter "clk4_divide_by" = "1"
+    Info (12134): Parameter "clk4_duty_cycle" = "20"
+    Info (12134): Parameter "clk4_multiply_by" = "2"
+    Info (12134): Parameter "clk4_phase_shift" = "8000"
     Info (12134): Parameter "compensate_clock" = "CLK0"
     Info (12134): Parameter "inclk0_input_frequency" = "20000"
     Info (12134): Parameter "intended_device_family" = "MAX 10"
@@ -879,7 +889,7 @@ Info (12133): Instantiated megafunction "pll_module:pll_module_inst|altpll:altpl
     Info (12134): Parameter "operation_mode" = "SOURCE_SYNCHRONOUS"
     Info (12134): Parameter "pll_type" = "AUTO"
     Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
-    Info (12134): Parameter "port_areset" = "PORT_USED"
+    Info (12134): Parameter "port_areset" = "PORT_UNUSED"
     Info (12134): Parameter "port_clkbad0" = "PORT_UNUSED"
     Info (12134): Parameter "port_clkbad1" = "PORT_UNUSED"
     Info (12134): Parameter "port_clkloss" = "PORT_UNUSED"
@@ -906,8 +916,8 @@ Info (12133): Instantiated megafunction "pll_module:pll_module_inst|altpll:altpl
     Info (12134): Parameter "port_clk0" = "PORT_USED"
     Info (12134): Parameter "port_clk1" = "PORT_USED"
     Info (12134): Parameter "port_clk2" = "PORT_USED"
-    Info (12134): Parameter "port_clk3" = "PORT_UNUSED"
-    Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk3" = "PORT_USED"
+    Info (12134): Parameter "port_clk4" = "PORT_USED"
     Info (12134): Parameter "port_clk5" = "PORT_UNUSED"
     Info (12134): Parameter "port_clkena0" = "PORT_UNUSED"
     Info (12134): Parameter "port_clkena1" = "PORT_UNUSED"
@@ -922,26 +932,26 @@ Info (12133): Instantiated megafunction "pll_module:pll_module_inst|altpll:altpl
     Info (12134): Parameter "self_reset_on_loss_lock" = "OFF"
     Info (12134): Parameter "width_clock" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_module_altpll.v
-    Info (12023): Found entity 1: pll_module_altpll File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/db/pll_module_altpll.v Line: 31
+    Info (12023): Found entity 1: pll_module_altpll File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/db/pll_module_altpll.v Line: 30
 Info (12128): Elaborating entity "pll_module_altpll" for hierarchy "pll_module:pll_module_inst|altpll:altpll_component|pll_module_altpll:auto_generated" File: /home/raditya/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/altpll.tdf Line: 898
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "rst_i" is missing source, defaulting to GND File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 36
-    Warning (12110): Net "tagn_i" is missing source, defaulting to GND File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 38
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+    Warning (12110): Net "rst_i" is missing source, defaulting to GND File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 35
+    Warning (12110): Net "tagn_i" is missing source, defaulting to GND File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 37
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "uart_rx_ext" File: /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/top_level.v Line: 26
-Info (21057): Implemented 614 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 639 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 25 output pins
-    Info (21061): Implemented 584 logic cells
+    Info (21059): Implemented 21 output pins
+    Info (21061): Implemented 613 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 30 warnings
-    Info: Peak virtual memory: 727 megabytes
-    Info: Processing ended: Wed May 14 07:02:59 2025
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
+    Info: Peak virtual memory: 723 megabytes
+    Info: Processing ended: Mon May 19 22:06:42 2025
     Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:14
+    Info: Total CPU time (on all processors): 00:00:15
 
 
