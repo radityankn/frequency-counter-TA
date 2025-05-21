@@ -1,5 +1,5 @@
 Timing Analyzer report for frequency_counter_assembly
-Mon May 19 22:06:57 2025
+Wed May 21 07:02:11 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -9,44 +9,45 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   1. Legal Notice
   2. Timing Analyzer Summary
   3. Parallel Compilation
-  4. Clocks
-  5. Slow 1200mV 85C Model Fmax Summary
-  6. Slow 1200mV 85C Model Setup Summary
-  7. Slow 1200mV 85C Model Hold Summary
-  8. Slow 1200mV 85C Model Recovery Summary
-  9. Slow 1200mV 85C Model Removal Summary
- 10. Slow 1200mV 85C Model Minimum Pulse Width Summary
- 11. Slow 1200mV 85C Model Metastability Summary
- 12. Slow 1200mV 0C Model Fmax Summary
- 13. Slow 1200mV 0C Model Setup Summary
- 14. Slow 1200mV 0C Model Hold Summary
- 15. Slow 1200mV 0C Model Recovery Summary
- 16. Slow 1200mV 0C Model Removal Summary
- 17. Slow 1200mV 0C Model Minimum Pulse Width Summary
- 18. Slow 1200mV 0C Model Metastability Summary
- 19. Fast 1200mV 0C Model Setup Summary
- 20. Fast 1200mV 0C Model Hold Summary
- 21. Fast 1200mV 0C Model Recovery Summary
- 22. Fast 1200mV 0C Model Removal Summary
- 23. Fast 1200mV 0C Model Minimum Pulse Width Summary
- 24. Fast 1200mV 0C Model Metastability Summary
- 25. Multicorner Timing Analysis Summary
- 26. Board Trace Model Assignments
- 27. Input Transition Times
- 28. Signal Integrity Metrics (Slow 1200mv 0c Model)
- 29. Signal Integrity Metrics (Slow 1200mv 85c Model)
- 30. Signal Integrity Metrics (Fast 1200mv 0c Model)
- 31. Setup Transfers
- 32. Hold Transfers
- 33. Report TCCS
- 34. Report RSKM
- 35. Unconstrained Paths Summary
- 36. Clock Status Summary
- 37. Unconstrained Input Ports
- 38. Unconstrained Output Ports
- 39. Unconstrained Input Ports
- 40. Unconstrained Output Ports
- 41. Timing Analyzer Messages
+  4. SDC File List
+  5. Clocks
+  6. Slow 1200mV 85C Model Fmax Summary
+  7. Slow 1200mV 85C Model Setup Summary
+  8. Slow 1200mV 85C Model Hold Summary
+  9. Slow 1200mV 85C Model Recovery Summary
+ 10. Slow 1200mV 85C Model Removal Summary
+ 11. Slow 1200mV 85C Model Minimum Pulse Width Summary
+ 12. Slow 1200mV 85C Model Metastability Summary
+ 13. Slow 1200mV 0C Model Fmax Summary
+ 14. Slow 1200mV 0C Model Setup Summary
+ 15. Slow 1200mV 0C Model Hold Summary
+ 16. Slow 1200mV 0C Model Recovery Summary
+ 17. Slow 1200mV 0C Model Removal Summary
+ 18. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 19. Slow 1200mV 0C Model Metastability Summary
+ 20. Fast 1200mV 0C Model Setup Summary
+ 21. Fast 1200mV 0C Model Hold Summary
+ 22. Fast 1200mV 0C Model Recovery Summary
+ 23. Fast 1200mV 0C Model Removal Summary
+ 24. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 25. Fast 1200mV 0C Model Metastability Summary
+ 26. Multicorner Timing Analysis Summary
+ 27. Board Trace Model Assignments
+ 28. Input Transition Times
+ 29. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 30. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 31. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 32. Setup Transfers
+ 33. Hold Transfers
+ 34. Report TCCS
+ 35. Report RSKM
+ 36. Unconstrained Paths Summary
+ 37. Clock Status Summary
+ 38. Unconstrained Input Ports
+ 39. Unconstrained Output Ports
+ 40. Unconstrained Input Ports
+ 41. Unconstrained Output Ports
+ 42. Timing Analyzer Messages
 
 
 
@@ -92,75 +93,63 @@ on the Quartus Prime software download page.
 ; Number detected on machine ; 12          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
-; Average used               ; 1.74        ;
+; Average used               ; 1.40        ;
 ; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   6.9%      ;
-;     Processor 3            ;   6.8%      ;
-;     Processor 4            ;   6.8%      ;
-;     Processors 5-12        ;   6.7%      ;
+;     Processor 2            ;   4.2%      ;
+;     Processor 3            ;   3.6%      ;
+;     Processor 4            ;   3.6%      ;
+;     Processors 5-12        ;   3.6%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                                                                                                                                                                                                                                                 ;
-+------------------------------------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+-----------+---------------------------------------------------------------+----------------------------------------------------------------------------------------+
-; Clock Name                                                                         ; Type      ; Period ; Frequency  ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master    ; Source                                                        ; Targets                                                                                ;
-+------------------------------------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+-----------+---------------------------------------------------------------+----------------------------------------------------------------------------------------+
-; clk_i_ext                                                                          ; Base      ; 20.000 ; 50.0 MHz   ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                               ; { clk_i_ext }                                                                          ;
-; frequency_counter:counter_module|measurement_begin                                 ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                               ; { frequency_counter:counter_module|measurement_begin }                                 ;
-; frequency_counter:counter_module|measurement_is_done                               ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                               ; { frequency_counter:counter_module|measurement_is_done }                               ;
-; measure_signal_i                                                                   ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                               ; { measure_signal_i }                                                                   ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; Generated ; 10.000 ; 100.0 MHz  ; 0.000 ; 2.000  ; 20.00      ; 1         ; 2           ;       ;        ;           ;            ; false    ; clk_i_ext ; pll_module_inst|altpll_component|auto_generated|pll1|inclk[0] ; { pll_module_inst|altpll_component|auto_generated|pll1|clk[0] }                        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; Generated ; 10.000 ; 100.0 MHz  ; 2.000 ; 4.000  ; 20.00      ; 1         ; 2           ; 72.0  ;        ;           ;            ; false    ; clk_i_ext ; pll_module_inst|altpll_component|auto_generated|pll1|inclk[0] ; { pll_module_inst|altpll_component|auto_generated|pll1|clk[1] }                        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; Generated ; 10.000 ; 100.0 MHz  ; 4.000 ; 6.000  ; 20.00      ; 1         ; 2           ; 144.0 ;        ;           ;            ; false    ; clk_i_ext ; pll_module_inst|altpll_component|auto_generated|pll1|inclk[0] ; { pll_module_inst|altpll_component|auto_generated|pll1|clk[2] }                        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; Generated ; 10.000 ; 100.0 MHz  ; 6.000 ; 8.000  ; 20.00      ; 1         ; 2           ; 216.0 ;        ;           ;            ; false    ; clk_i_ext ; pll_module_inst|altpll_component|auto_generated|pll1|inclk[0] ; { pll_module_inst|altpll_component|auto_generated|pll1|clk[3] }                        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; Generated ; 10.000 ; 100.0 MHz  ; 8.000 ; 10.000 ; 20.00      ; 1         ; 2           ; 288.0 ;        ;           ;            ; false    ; clk_i_ext ; pll_module_inst|altpll_component|auto_generated|pll1|inclk[0] ; { pll_module_inst|altpll_component|auto_generated|pll1|clk[4] }                        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;           ;                                                               ; { uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] } ;
-+------------------------------------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+-----------+---------------------------------------------------------------+----------------------------------------------------------------------------------------+
++---------------------------------------------------+
+; SDC File List                                     ;
++---------------+--------+--------------------------+
+; SDC File Path ; Status ; Read at                  ;
++---------------+--------+--------------------------+
+; timing.sdc    ; OK     ; Wed May 21 07:02:10 2025 ;
++---------------+--------+--------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Fmax Summary                                                                                       ;
-+------------+-----------------+------------------------------------------------------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                                                                         ; Note ;
-+------------+-----------------+------------------------------------------------------------------------------------+------+
-; 131.22 MHz ; 131.22 MHz      ; clk_i_ext                                                                          ;      ;
-; 238.27 MHz ; 238.27 MHz      ; measure_signal_i                                                                   ;      ;
-; 290.78 MHz ; 290.78 MHz      ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ;      ;
-; 297.53 MHz ; 297.53 MHz      ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ;      ;
-+------------+-----------------+------------------------------------------------------------------------------------+------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                             ;
++------------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------------+
+; Clock Name       ; Type ; Period ; Frequency ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets              ;
++------------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------------+
+; clk_i            ; Base ; 20.000 ; 50.0 MHz  ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk_i_ext }        ;
+; measure_signal_i ; Base ; 20.000 ; 50.0 MHz  ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { measure_signal_i } ;
++------------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------------+
+
+
++--------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary               ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 190.77 MHz ; 190.77 MHz      ; clk_i      ;      ;
++------------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Setup Summary                                                                         ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; measure_signal_i                                                                   ; -3.197 ; -22.991       ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -2.748 ; -12.590       ;
-; clk_i_ext                                                                          ; -1.858 ; -24.990       ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; -0.850 ; -50.925       ;
-; frequency_counter:counter_module|measurement_is_done                               ; 0.803  ; 0.000         ;
-; frequency_counter:counter_module|measurement_begin                                 ; 0.858  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++-------+--------+--------------------+
+; Clock ; Slack  ; End Point TNS      ;
++-------+--------+--------------------+
+; clk_i ; 14.758 ; 0.000              ;
++-------+--------+--------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Hold Summary                                                                          ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; frequency_counter:counter_module|measurement_begin                                 ; -0.469 ; -2.017        ;
-; frequency_counter:counter_module|measurement_is_done                               ; -0.454 ; -1.757        ;
-; measure_signal_i                                                                   ; 0.337  ; 0.000         ;
-; clk_i_ext                                                                          ; 0.347  ; 0.000         ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 0.348  ; 0.000         ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 0.490  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++-------+-------+--------------------+
+; Clock ; Slack ; End Point TNS      ;
++-------+-------+--------------------+
+; clk_i ; 0.347 ; 0.000              ;
++-------+-------+--------------------+
 
 
 ------------------------------------------
@@ -175,18 +164,14 @@ No paths to report.
 No paths to report.
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Minimum Pulse Width Summary                                                           ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; measure_signal_i                                                                   ; -3.000 ; -19.836       ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -1.403 ; -8.418        ;
-; frequency_counter:counter_module|measurement_begin                                 ; -1.403 ; -7.015        ;
-; frequency_counter:counter_module|measurement_is_done                               ; -1.403 ; -7.015        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 1.802  ; 0.000         ;
-; clk_i_ext                                                                          ; 9.688  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++------------------+--------+-----------------------+
+; Clock            ; Slack  ; End Point TNS         ;
++------------------+--------+-----------------------+
+; clk_i            ; 9.688  ; 0.000                 ;
+; measure_signal_i ; 16.000 ; 0.000                 ;
++------------------+--------+-----------------------+
 
 
 -----------------------------------------------
@@ -195,45 +180,32 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Fmax Summary                                                                                                                                                 ;
-+------------+-----------------+------------------------------------------------------------------------------------+---------------------------------------------------------------+
-; Fmax       ; Restricted Fmax ; Clock Name                                                                         ; Note                                                          ;
-+------------+-----------------+------------------------------------------------------------------------------------+---------------------------------------------------------------+
-; 141.2 MHz  ; 141.2 MHz       ; clk_i_ext                                                                          ;                                                               ;
-; 259.07 MHz ; 250.0 MHz       ; measure_signal_i                                                                   ; limit due to minimum period restriction (max I/O toggle rate) ;
-; 320.31 MHz ; 320.31 MHz      ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ;                                                               ;
-; 327.98 MHz ; 327.98 MHz      ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ;                                                               ;
-+------------+-----------------+------------------------------------------------------------------------------------+---------------------------------------------------------------+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 206.74 MHz ; 206.74 MHz      ; clk_i      ;      ;
++------------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Setup Summary                                                                          ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; measure_signal_i                                                                   ; -2.860 ; -19.786       ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -2.435 ; -11.131       ;
-; clk_i_ext                                                                          ; -1.566 ; -20.391       ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; -0.612 ; -36.108       ;
-; frequency_counter:counter_module|measurement_is_done                               ; 0.704  ; 0.000         ;
-; frequency_counter:counter_module|measurement_begin                                 ; 0.774  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clk_i ; 15.163 ; 0.000             ;
++-------+--------+-------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Hold Summary                                                                           ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; frequency_counter:counter_module|measurement_begin                                 ; -0.407 ; -1.715        ;
-; frequency_counter:counter_module|measurement_is_done                               ; -0.386 ; -1.455        ;
-; measure_signal_i                                                                   ; 0.168  ; 0.000         ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 0.311  ; 0.000         ;
-; clk_i_ext                                                                          ; 0.312  ; 0.000         ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 0.333  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clk_i ; 0.311 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -248,18 +220,14 @@ No paths to report.
 No paths to report.
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Minimum Pulse Width Summary                                                            ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; measure_signal_i                                                                   ; -3.000 ; -19.836       ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -1.403 ; -8.418        ;
-; frequency_counter:counter_module|measurement_begin                                 ; -1.403 ; -7.015        ;
-; frequency_counter:counter_module|measurement_is_done                               ; -1.403 ; -7.015        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 1.746  ; 0.000         ;
-; clk_i_ext                                                                          ; 9.710  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++------------------+--------+----------------------+
+; Clock            ; Slack  ; End Point TNS        ;
++------------------+--------+----------------------+
+; clk_i            ; 9.694  ; 0.000                ;
+; measure_signal_i ; 16.000 ; 0.000                ;
++------------------+--------+----------------------+
 
 
 ----------------------------------------------
@@ -268,32 +236,22 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Fast 1200mV 0C Model Setup Summary                                                                          ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; measure_signal_i                                                                   ; -0.739 ; -7.537        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -0.594 ; -2.151        ;
-; clk_i_ext                                                                          ; -0.567 ; -4.743        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; -0.062 ; -2.570        ;
-; frequency_counter:counter_module|measurement_is_done                               ; 0.821  ; 0.000         ;
-; frequency_counter:counter_module|measurement_begin                                 ; 0.856  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clk_i ; 17.784 ; 0.000             ;
++-------+--------+-------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Fast 1200mV 0C Model Hold Summary                                                                           ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; frequency_counter:counter_module|measurement_begin                                 ; -0.217 ; -0.928        ;
-; frequency_counter:counter_module|measurement_is_done                               ; -0.210 ; -0.843        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; -0.001 ; -0.016        ;
-; clk_i_ext                                                                          ; 0.152  ; 0.000         ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 0.152  ; 0.000         ;
-; measure_signal_i                                                                   ; 0.180  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clk_i ; 0.152 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -308,18 +266,14 @@ No paths to report.
 No paths to report.
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Fast 1200mV 0C Model Minimum Pulse Width Summary                                                            ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                              ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------------------+--------+---------------+
-; measure_signal_i                                                                   ; -3.000 ; -20.668       ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -1.000 ; -6.000        ;
-; frequency_counter:counter_module|measurement_begin                                 ; -1.000 ; -5.000        ;
-; frequency_counter:counter_module|measurement_is_done                               ; -1.000 ; -5.000        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 1.848  ; 0.000         ;
-; clk_i_ext                                                                          ; 9.463  ; 0.000         ;
-+------------------------------------------------------------------------------------+--------+---------------+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++------------------+--------+----------------------+
+; Clock            ; Slack  ; End Point TNS        ;
++------------------+--------+----------------------+
+; clk_i            ; 9.465  ; 0.000                ;
+; measure_signal_i ; 16.000 ; 0.000                ;
++------------------+--------+----------------------+
 
 
 ----------------------------------------------
@@ -328,26 +282,18 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                                                                ;
-+-------------------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
-; Clock                                                                               ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
-+-------------------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack                                                                    ; -3.197   ; -0.469 ; N/A      ; N/A     ; -3.000              ;
-;  clk_i_ext                                                                          ; -1.858   ; 0.152  ; N/A      ; N/A     ; 9.463               ;
-;  frequency_counter:counter_module|measurement_begin                                 ; 0.774    ; -0.469 ; N/A      ; N/A     ; -1.403              ;
-;  frequency_counter:counter_module|measurement_is_done                               ; 0.704    ; -0.454 ; N/A      ; N/A     ; -1.403              ;
-;  measure_signal_i                                                                   ; -3.197   ; 0.168  ; N/A      ; N/A     ; -3.000              ;
-;  pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; -0.850   ; -0.001 ; N/A      ; N/A     ; 1.746               ;
-;  uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -2.748   ; 0.152  ; N/A      ; N/A     ; -1.403              ;
-; Design-wide TNS                                                                     ; -111.496 ; -3.774 ; 0.0      ; 0.0     ; -42.284             ;
-;  clk_i_ext                                                                          ; -24.990  ; 0.000  ; N/A      ; N/A     ; 0.000               ;
-;  frequency_counter:counter_module|measurement_begin                                 ; 0.000    ; -2.017 ; N/A      ; N/A     ; -7.015              ;
-;  frequency_counter:counter_module|measurement_is_done                               ; 0.000    ; -1.757 ; N/A      ; N/A     ; -7.015              ;
-;  measure_signal_i                                                                   ; -22.991  ; 0.000  ; N/A      ; N/A     ; -20.668             ;
-;  pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; -50.925  ; -0.016 ; N/A      ; N/A     ; 0.000               ;
-;  uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; -12.590  ; 0.000  ; N/A      ; N/A     ; -8.418              ;
-+-------------------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++-------------------+--------+-------+----------+---------+---------------------+
+; Clock             ; Setup  ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++-------------------+--------+-------+----------+---------+---------------------+
+; Worst-case Slack  ; 14.758 ; 0.152 ; N/A      ; N/A     ; 9.465               ;
+;  clk_i            ; 14.758 ; 0.152 ; N/A      ; N/A     ; 9.465               ;
+;  measure_signal_i ; N/A    ; N/A   ; N/A      ; N/A     ; 16.000              ;
+; Design-wide TNS   ; 0.0    ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  clk_i            ; 0.000  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
+;  measure_signal_i ; N/A    ; N/A   ; N/A      ; N/A     ; 0.000               ;
++-------------------+--------+-------+----------+---------+---------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -375,7 +321,23 @@ No synchronizer chains to report.
 ; status_led[5]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; counter_flags_led[0] ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; counter_flags_led[1] ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; counter_flags_led[2] ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; tx_fsm_led[0]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; tx_fsm_led[1]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; tx_fsm_led[2]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; tx_fsm_led[3]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; blinker              ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; blinker_2            ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_begin_led[0]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_begin_led[1]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_begin_led[2]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_begin_led[3]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_begin_led[4]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_end_led[0]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_end_led[1]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_end_led[2]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_end_led[3]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; phase_end_led[4]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ~ALTERA_TDO~         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 +----------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
 
@@ -385,10 +347,11 @@ No synchronizer chains to report.
 +---------------------+-----------------------+-----------------+-----------------+
 ; Pin                 ; I/O Standard          ; 10-90 Rise Time ; 90-10 Fall Time ;
 +---------------------+-----------------------+-----------------+-----------------+
-; uart_rx_ext         ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
-; clk_i_ext           ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
-; rst_ext             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; measure_signal_i    ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; uart_rx_ext         ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; switch_1            ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; rst_ext             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; clk_i_ext           ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TDI~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -422,9 +385,25 @@ No synchronizer chains to report.
 ; status_led[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
 ; status_led[4]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
 ; status_led[5]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
-; counter_flags_led[0] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
-; counter_flags_led[1] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; counter_flags_led[0] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; counter_flags_led[1] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; counter_flags_led[2] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[0]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[1]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[2]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
 ; blinker              ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; blinker_2            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[0]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[1]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[2]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[3]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[4]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0871 V           ; 0.291 V                              ; 0.138 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0871 V          ; 0.291 V                             ; 0.138 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.25e-09 V                   ; 2.41 V              ; -0.0859 V           ; 0.289 V                              ; 0.136 V                              ; 3.15e-10 s                  ; 4.16e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.25e-09 V                  ; 2.41 V             ; -0.0859 V          ; 0.289 V                             ; 0.136 V                             ; 3.15e-10 s                 ; 4.16e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.26e-09 V                   ; 2.4 V               ; -0.0773 V           ; 0.156 V                              ; 0.166 V                              ; 4.55e-10 s                  ; 4.33e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 8.26e-09 V                  ; 2.4 V              ; -0.0773 V          ; 0.156 V                             ; 0.166 V                             ; 4.55e-10 s                 ; 4.33e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.39e-08 V                   ; 2.39 V              ; -0.0407 V           ; 0.211 V                              ; 0.121 V                              ; 4.7e-10 s                   ; 5.93e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.39e-08 V                  ; 2.39 V             ; -0.0407 V          ; 0.211 V                             ; 0.121 V                             ; 4.7e-10 s                  ; 5.93e-10 s                 ; No                        ; Yes                       ;
 +----------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
@@ -452,9 +431,25 @@ No synchronizer chains to report.
 ; status_led[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
 ; status_led[4]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
 ; status_led[5]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
-; counter_flags_led[0] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
-; counter_flags_led[1] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; counter_flags_led[0] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; counter_flags_led[1] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; counter_flags_led[2] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; tx_fsm_led[0]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; tx_fsm_led[1]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; tx_fsm_led[2]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; tx_fsm_led[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
 ; blinker              ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; blinker_2            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; phase_begin_led[0]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; phase_begin_led[1]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; phase_begin_led[2]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; phase_begin_led[3]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; phase_begin_led[4]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; phase_end_led[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; phase_end_led[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; phase_end_led[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0508 V           ; 0.153 V                              ; 0.187 V                              ; 4.63e-10 s                  ; 4.49e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0508 V          ; 0.153 V                             ; 0.187 V                             ; 4.63e-10 s                 ; 4.49e-10 s                 ; Yes                       ; Yes                       ;
+; phase_end_led[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.049 V            ; 0.154 V                              ; 0.186 V                              ; 4.63e-10 s                  ; 4.5e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.049 V           ; 0.154 V                             ; 0.186 V                             ; 4.63e-10 s                 ; 4.5e-10 s                  ; Yes                       ; Yes                       ;
+; phase_end_led[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.16e-06 V                   ; 2.37 V              ; -0.0449 V           ; 0.201 V                              ; 0.093 V                              ; 4.89e-10 s                  ; 5.81e-10 s                  ; Yes                        ; No                         ; 2.32 V                      ; 1.16e-06 V                  ; 2.37 V             ; -0.0449 V          ; 0.201 V                             ; 0.093 V                             ; 4.89e-10 s                 ; 5.81e-10 s                 ; Yes                       ; No                        ;
 ; ~ALTERA_TDO~         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.97e-06 V                   ; 2.36 V              ; -0.0174 V           ; 0.144 V                              ; 0.094 V                              ; 6.45e-10 s                  ; 7.22e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.97e-06 V                  ; 2.36 V             ; -0.0174 V          ; 0.144 V                             ; 0.094 V                             ; 6.45e-10 s                 ; 7.22e-10 s                 ; No                        ; Yes                       ;
 +----------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
@@ -482,78 +477,46 @@ No synchronizer chains to report.
 ; status_led[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; status_led[4]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; status_led[5]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
-; counter_flags_led[0] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
-; counter_flags_led[1] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; counter_flags_led[0] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; counter_flags_led[1] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; counter_flags_led[2] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[0]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[1]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[2]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; tx_fsm_led[3]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; blinker              ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; blinker_2            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[0]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[1]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[2]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[3]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_begin_led[4]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; phase_end_led[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.77 V              ; -0.0486 V           ; 0.285 V                              ; 0.06 V                               ; 2.8e-10 s                   ; 3.04e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.77 V             ; -0.0486 V          ; 0.285 V                             ; 0.06 V                              ; 2.8e-10 s                  ; 3.04e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 1.68e-07 V                   ; 2.73 V              ; -0.0396 V           ; 0.362 V                              ; 0.108 V                              ; 3.11e-10 s                  ; 4.42e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 1.68e-07 V                  ; 2.73 V             ; -0.0396 V          ; 0.362 V                             ; 0.108 V                             ; 3.11e-10 s                 ; 4.42e-10 s                 ; No                        ; Yes                       ;
 +----------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Setup Transfers                                                                                                                                                                                                     ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+----------+----------+----------+
-; From Clock                                                                         ; To Clock                                                                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+----------+----------+----------+
-; clk_i_ext                                                                          ; clk_i_ext                                                                          ; 4980     ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_begin                                 ; clk_i_ext                                                                          ; 5        ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_is_done                               ; clk_i_ext                                                                          ; 15       ; 10       ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; clk_i_ext                                                                          ; 32       ; 0        ; 0        ; 0        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; clk_i_ext                                                                          ; 4        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; clk_i_ext                                                                          ; measure_signal_i                                                                   ; 24       ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_begin                                 ; measure_signal_i                                                                   ; 11       ; 11       ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_is_done                               ; measure_signal_i                                                                   ; 12       ; 12       ; 0        ; 0        ;
-; measure_signal_i                                                                   ; measure_signal_i                                                                   ; 165      ; 0        ; 0        ; 0        ;
-; clk_i_ext                                                                          ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 96       ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_begin                                 ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 64       ; 64       ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_is_done                               ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 96       ; 96       ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 560      ; 0        ; 0        ; 0        ;
-; clk_i_ext                                                                          ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 36       ; 0        ; 0        ; 0        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 50       ; 0        ; 0        ; 0        ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk_i      ; clk_i    ; 3845     ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Hold Transfers                                                                                                                                                                                                      ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+----------+----------+----------+
-; From Clock                                                                         ; To Clock                                                                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+----------+----------+----------+
-; clk_i_ext                                                                          ; clk_i_ext                                                                          ; 4980     ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_begin                                 ; clk_i_ext                                                                          ; 5        ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_is_done                               ; clk_i_ext                                                                          ; 15       ; 10       ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; clk_i_ext                                                                          ; 32       ; 0        ; 0        ; 0        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; clk_i_ext                                                                          ; 4        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; frequency_counter:counter_module|measurement_begin                                 ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; frequency_counter:counter_module|measurement_is_done                               ; 1        ; 1        ; 0        ; 0        ;
-; clk_i_ext                                                                          ; measure_signal_i                                                                   ; 24       ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_begin                                 ; measure_signal_i                                                                   ; 11       ; 11       ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_is_done                               ; measure_signal_i                                                                   ; 12       ; 12       ; 0        ; 0        ;
-; measure_signal_i                                                                   ; measure_signal_i                                                                   ; 165      ; 0        ; 0        ; 0        ;
-; clk_i_ext                                                                          ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 96       ; 0        ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_begin                                 ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 64       ; 64       ; 0        ; 0        ;
-; frequency_counter:counter_module|measurement_is_done                               ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 96       ; 96       ; 0        ; 0        ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; 560      ; 0        ; 0        ; 0        ;
-; clk_i_ext                                                                          ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 36       ; 0        ; 0        ; 0        ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; 50       ; 0        ; 0        ; 0        ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk_i      ; clk_i    ; 3845     ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -575,30 +538,25 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Property                        ; Setup ; Hold ;
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
-; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Clocks            ; 3     ; 3    ;
 ; Unconstrained Input Ports       ; 1     ; 1    ;
-; Unconstrained Input Port Paths  ; 316   ; 316  ;
-; Unconstrained Output Ports      ; 21    ; 21   ;
-; Unconstrained Output Port Paths ; 21    ; 21   ;
+; Unconstrained Input Port Paths  ; 200   ; 200  ;
+; Unconstrained Output Ports      ; 26    ; 26   ;
+; Unconstrained Output Port Paths ; 26    ; 26   ;
 +---------------------------------+-------+------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clock Status Summary                                                                                                                                                                              ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+-------------+
-; Target                                                                             ; Clock                                                                              ; Type      ; Status      ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+-------------+
-; clk_i_ext                                                                          ; clk_i_ext                                                                          ; Base      ; Constrained ;
-; frequency_counter:counter_module|measurement_begin                                 ; frequency_counter:counter_module|measurement_begin                                 ; Base      ; Constrained ;
-; frequency_counter:counter_module|measurement_is_done                               ; frequency_counter:counter_module|measurement_is_done                               ; Base      ; Constrained ;
-; measure_signal_i                                                                   ; measure_signal_i                                                                   ; Base      ; Constrained ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[0]                        ; Generated ; Constrained ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[1]                        ; Generated ; Constrained ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[2]                        ; Generated ; Constrained ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[3]                        ; Generated ; Constrained ;
-; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; pll_module_inst|altpll_component|auto_generated|pll1|clk[4]                        ; Generated ; Constrained ;
-; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ; Base      ; Constrained ;
-+------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+-------------+
++------------------------------------------------------------------------------------------------------------------------------+
+; Clock Status Summary                                                                                                         ;
++------------------------------------------------------------------------------------+------------------+------+---------------+
+; Target                                                                             ; Clock            ; Type ; Status        ;
++------------------------------------------------------------------------------------+------------------+------+---------------+
+; clk_i_ext                                                                          ; clk_i            ; Base ; Constrained   ;
+; frequency_counter:counter_module|measurement_begin                                 ;                  ; Base ; Unconstrained ;
+; frequency_counter:counter_module|measurement_is_done                               ;                  ; Base ; Unconstrained ;
+; measure_signal_i                                                                   ; measure_signal_i ; Base ; Constrained   ;
+; uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] ;                  ; Base ; Unconstrained ;
++------------------------------------------------------------------------------------+------------------+------+---------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -616,25 +574,30 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Output Port          ; Comment                                                                               ;
 +----------------------+---------------------------------------------------------------------------------------+
 ; blinker              ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; blinker_2            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; counter_flags_led[0] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; counter_flags_led[1] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; counter_flags_led[2] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[0]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[1]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[2]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; led_port[3]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; led_port[4]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; led_port[5]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[6]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[7]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[8]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[9]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; measure_signal_debug ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_begin_led[1]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_end_led[0]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_end_led[2]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_end_led[3]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; status_led[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; uart_tx_ext          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +----------------------+---------------------------------------------------------------------------------------+
 
@@ -654,25 +617,30 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Output Port          ; Comment                                                                               ;
 +----------------------+---------------------------------------------------------------------------------------+
 ; blinker              ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; blinker_2            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; counter_flags_led[0] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; counter_flags_led[1] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; counter_flags_led[2] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[0]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[1]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[2]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; led_port[3]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; led_port[4]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; led_port[5]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[6]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[7]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[8]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; led_port[9]          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; measure_signal_debug ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_begin_led[1]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_end_led[0]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_end_led[2]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; phase_end_led[3]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; status_led[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; status_led[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tx_fsm_led[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; uart_tx_ext          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +----------------------+---------------------------------------------------------------------------------------+
 
@@ -683,135 +651,131 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Mon May 19 22:06:55 2025
+    Info: Processing started: Wed May 21 07:02:10 2025
 Info: Command: quartus_sta frequency_counter_assembly -c frequency_counter_assembly
 Info: qsta_default_script.tcl version: #1
+Warning (20013): Ignored 7 assignments for entity "control_unit.v" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "Precision Synthesis" -entity control_unit.v was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_INPUT_GND_NAME GND -entity control_unit.v -section_id eda_design_synthesis was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_INPUT_VCC_NAME VCC -entity control_unit.v -section_id eda_design_synthesis was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_INPUT_DATA_FORMAT VQM -entity control_unit.v -section_id eda_design_synthesis was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_LMF_FILE mentor.lmf -entity control_unit.v -section_id eda_design_synthesis was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_SHOW_LMF_MAPPING_MESSAGES OFF -entity control_unit.v -section_id eda_design_synthesis was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY OFF -entity control_unit.v -section_id eda_design_synthesis was ignored
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
-Critical Warning (332012): Synopsys Design Constraints File file not found: 'frequency_counter_assembly.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
-Info (332142): No user constrained generated clocks found in the design. Calling "derive_pll_clocks -create_base_clocks"
-Info (332110): Deriving PLL clocks
-    Info (332110): create_clock -period 20.000 -waveform {0.000 10.000} -name clk_i_ext clk_i_ext
-    Info (332110): create_generated_clock -source {pll_module_inst|altpll_component|auto_generated|pll1|inclk[0]} -multiply_by 2 -duty_cycle 20.00 -name {pll_module_inst|altpll_component|auto_generated|pll1|clk[0]} {pll_module_inst|altpll_component|auto_generated|pll1|clk[0]}
-    Info (332110): create_generated_clock -source {pll_module_inst|altpll_component|auto_generated|pll1|inclk[0]} -multiply_by 2 -phase 72.00 -duty_cycle 20.00 -name {pll_module_inst|altpll_component|auto_generated|pll1|clk[1]} {pll_module_inst|altpll_component|auto_generated|pll1|clk[1]}
-    Info (332110): create_generated_clock -source {pll_module_inst|altpll_component|auto_generated|pll1|inclk[0]} -multiply_by 2 -phase 144.00 -duty_cycle 20.00 -name {pll_module_inst|altpll_component|auto_generated|pll1|clk[2]} {pll_module_inst|altpll_component|auto_generated|pll1|clk[2]}
-    Info (332110): create_generated_clock -source {pll_module_inst|altpll_component|auto_generated|pll1|inclk[0]} -multiply_by 2 -phase 216.00 -duty_cycle 20.00 -name {pll_module_inst|altpll_component|auto_generated|pll1|clk[3]} {pll_module_inst|altpll_component|auto_generated|pll1|clk[3]}
-    Info (332110): create_generated_clock -source {pll_module_inst|altpll_component|auto_generated|pll1|inclk[0]} -multiply_by 2 -phase 288.00 -duty_cycle 20.00 -name {pll_module_inst|altpll_component|auto_generated|pll1|clk[4]} {pll_module_inst|altpll_component|auto_generated|pll1|clk[4]}
-Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
-Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name frequency_counter:counter_module|measurement_begin frequency_counter:counter_module|measurement_begin
-    Info (332105): create_clock -period 1.000 -name measure_signal_i measure_signal_i
-    Info (332105): create_clock -period 1.000 -name frequency_counter:counter_module|measurement_is_done frequency_counter:counter_module|measurement_is_done
-    Info (332105): create_clock -period 1.000 -name uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]
-Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
-Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332104): Reading SDC File: 'timing.sdc'
+Warning (332174): Ignored filter at timing.sdc(2): ref_measurement_clk_1 could not be matched with a port File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 2
+Warning (332049): Ignored create_clock at timing.sdc(2): Argument <targets> is an empty collection File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 2
+    Info (332050): create_clock -add -name measure_clk_ref_1 -period 10ns [get_ports ref_measurement_clk_1] File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 2
+Warning (332174): Ignored filter at timing.sdc(3): ref_measurement_clk_2 could not be matched with a port File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 3
+Warning (332049): Ignored create_clock at timing.sdc(3): Argument <targets> is an empty collection File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 3
+    Info (332050): create_clock -add -name measure_clk_ref_2 -period 10ns [get_ports ref_measurement_clk_2] File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 3
+Warning (332174): Ignored filter at timing.sdc(4): ref_measurement_clk_3 could not be matched with a port File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 4
+Warning (332049): Ignored create_clock at timing.sdc(4): Argument <targets> is an empty collection File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 4
+    Info (332050): create_clock -add -name measure_clk_ref_3 -period 10ns [get_ports ref_measurement_clk_3] File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 4
+Warning (332174): Ignored filter at timing.sdc(5): ref_measurement_clk_4 could not be matched with a port File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 5
+Warning (332049): Ignored create_clock at timing.sdc(5): Argument <targets> is an empty collection File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 5
+    Info (332050): create_clock -add -name measure_clk_ref_4 -period 10ns [get_ports ref_measurement_clk_4] File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 5
+Warning (332174): Ignored filter at timing.sdc(6): ref_measurement_clk_5 could not be matched with a port File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 6
+Warning (332049): Ignored create_clock at timing.sdc(6): Argument <targets> is an empty collection File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 6
+    Info (332050): create_clock -add -name measure_clk_ref_5 -period 10ns [get_ports ref_measurement_clk_5] File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/timing.sdc Line: 6
+Warning (332060): Node: frequency_counter:counter_module|measurement_begin was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register frequency_counter:counter_module|phase_count_reg[6] is being clocked by frequency_counter:counter_module|measurement_begin
+Warning (332060): Node: uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register uart_interface:uart_module|uart_tx_module:tx_module|tx_module_ready_internal is being clocked by uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]
+Warning (332060): Node: frequency_counter:counter_module|measurement_is_done was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register frequency_counter:counter_module|phase_count_reg[4] is being clocked by frequency_counter:counter_module|measurement_is_done
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: pll_sample_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: pll_module_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: pll_module_inst|altpll_component|auto_generated|pll1|clk[3] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
+    Critical Warning (332169): From clk_i (Rise) to clk_i (Rise) (setup and hold)
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
-Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -3.197
+Info (332146): Worst-case setup slack is 14.758
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.197             -22.991 measure_signal_i 
-    Info (332119):    -2.748             -12.590 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):    -1.858             -24.990 clk_i_ext 
-    Info (332119):    -0.850             -50.925 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.803               0.000 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     0.858               0.000 frequency_counter:counter_module|measurement_begin 
-Info (332146): Worst-case hold slack is -0.469
+    Info (332119):    14.758               0.000 clk_i 
+Info (332146): Worst-case hold slack is 0.347
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.469              -2.017 frequency_counter:counter_module|measurement_begin 
-    Info (332119):    -0.454              -1.757 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     0.337               0.000 measure_signal_i 
-    Info (332119):     0.347               0.000 clk_i_ext 
-    Info (332119):     0.348               0.000 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):     0.490               0.000 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.347               0.000 clk_i 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -3.000
+Info (332146): Worst-case minimum pulse width slack is 9.688
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000             -19.836 measure_signal_i 
-    Info (332119):    -1.403              -8.418 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):    -1.403              -7.015 frequency_counter:counter_module|measurement_begin 
-    Info (332119):    -1.403              -7.015 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     1.802               0.000 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     9.688               0.000 clk_i_ext 
+    Info (332119):     9.688               0.000 clk_i 
+    Info (332119):    16.000               0.000 measure_signal_i 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -2.860
+Warning (332060): Node: frequency_counter:counter_module|measurement_begin was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register frequency_counter:counter_module|phase_count_reg[6] is being clocked by frequency_counter:counter_module|measurement_begin
+Warning (332060): Node: uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register uart_interface:uart_module|uart_tx_module:tx_module|tx_module_ready_internal is being clocked by uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]
+Warning (332060): Node: frequency_counter:counter_module|measurement_is_done was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register frequency_counter:counter_module|phase_count_reg[4] is being clocked by frequency_counter:counter_module|measurement_is_done
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: pll_sample_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: pll_module_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: pll_module_inst|altpll_component|auto_generated|pll1|clk[3] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
+    Critical Warning (332169): From clk_i (Rise) to clk_i (Rise) (setup and hold)
+Info (332146): Worst-case setup slack is 15.163
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.860             -19.786 measure_signal_i 
-    Info (332119):    -2.435             -11.131 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):    -1.566             -20.391 clk_i_ext 
-    Info (332119):    -0.612             -36.108 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.704               0.000 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     0.774               0.000 frequency_counter:counter_module|measurement_begin 
-Info (332146): Worst-case hold slack is -0.407
+    Info (332119):    15.163               0.000 clk_i 
+Info (332146): Worst-case hold slack is 0.311
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.407              -1.715 frequency_counter:counter_module|measurement_begin 
-    Info (332119):    -0.386              -1.455 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     0.168               0.000 measure_signal_i 
-    Info (332119):     0.311               0.000 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):     0.312               0.000 clk_i_ext 
-    Info (332119):     0.333               0.000 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.311               0.000 clk_i 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -3.000
+Info (332146): Worst-case minimum pulse width slack is 9.694
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000             -19.836 measure_signal_i 
-    Info (332119):    -1.403              -8.418 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):    -1.403              -7.015 frequency_counter:counter_module|measurement_begin 
-    Info (332119):    -1.403              -7.015 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     1.746               0.000 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     9.710               0.000 clk_i_ext 
+    Info (332119):     9.694               0.000 clk_i 
+    Info (332119):    16.000               0.000 measure_signal_i 
 Info: Analyzing Fast 1200mV 0C Model
-Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -0.739
+Warning (332060): Node: frequency_counter:counter_module|measurement_begin was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register frequency_counter:counter_module|phase_count_reg[6] is being clocked by frequency_counter:counter_module|measurement_begin
+Warning (332060): Node: uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register uart_interface:uart_module|uart_tx_module:tx_module|tx_module_ready_internal is being clocked by uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31]
+Warning (332060): Node: frequency_counter:counter_module|measurement_is_done was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register frequency_counter:counter_module|phase_count_reg[4] is being clocked by frequency_counter:counter_module|measurement_is_done
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: pll_sample_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: pll_module_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+    Warning (332056): Node: pll_module_inst|altpll_component|auto_generated|pll1|clk[3] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
+Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
+    Critical Warning (332169): From clk_i (Rise) to clk_i (Rise) (setup and hold)
+Info (332146): Worst-case setup slack is 17.784
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.739              -7.537 measure_signal_i 
-    Info (332119):    -0.594              -2.151 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):    -0.567              -4.743 clk_i_ext 
-    Info (332119):    -0.062              -2.570 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.821               0.000 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     0.856               0.000 frequency_counter:counter_module|measurement_begin 
-Info (332146): Worst-case hold slack is -0.217
+    Info (332119):    17.784               0.000 clk_i 
+Info (332146): Worst-case hold slack is 0.152
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.217              -0.928 frequency_counter:counter_module|measurement_begin 
-    Info (332119):    -0.210              -0.843 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):    -0.001              -0.016 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.152               0.000 clk_i_ext 
-    Info (332119):     0.152               0.000 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):     0.180               0.000 measure_signal_i 
+    Info (332119):     0.152               0.000 clk_i 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -3.000
+Info (332146): Worst-case minimum pulse width slack is 9.465
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000             -20.668 measure_signal_i 
-    Info (332119):    -1.000              -6.000 uart_interface:uart_module|uart_tx_module:tx_module|baud_rate_counter_internal[31] 
-    Info (332119):    -1.000              -5.000 frequency_counter:counter_module|measurement_begin 
-    Info (332119):    -1.000              -5.000 frequency_counter:counter_module|measurement_is_done 
-    Info (332119):     1.848               0.000 pll_module_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     9.463               0.000 clk_i_ext 
+    Info (332119):     9.465               0.000 clk_i 
+    Info (332119):    16.000               0.000 measure_signal_i 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 817 megabytes
-    Info: Processing ended: Mon May 19 22:06:57 2025
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:03
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 48 warnings
+    Info: Peak virtual memory: 828 megabytes
+    Info: Processing ended: Wed May 21 07:02:11 2025
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:02
 
 

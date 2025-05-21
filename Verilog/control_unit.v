@@ -37,7 +37,10 @@ module control_unit(
     output tagn_o,
     output [9:0] out_led,
     output [5:0] status_led,
-    output blinker
+    output blinker,
+    output blinker_2,
+	 output [4:0] phase_begin,
+	 output [4:0] phase_end
     );
 
     reg [4:0] cu_fsm_internal;
@@ -46,6 +49,7 @@ module control_unit(
     reg [31:0] dat_o_internal;
     reg [3:0] sel_o_internal;
     reg [31:0] counter_timer_internal;
+	 reg [31:0] counter_timer_internal_2;
     reg stb_o_internal;
     reg we_o_internal;
     reg [31:0] general_purpose_reg_1;
@@ -56,6 +60,7 @@ module control_unit(
     reg [5:0] one_hot;
 	reg [7:0] repetition;
     reg blinker_reg;
+	reg blinker_reg_2;
 
     reg [31:0] bcd_data;
 
@@ -68,12 +73,14 @@ module control_unit(
             addr_o_internal <= 32'd0;
             dat_o_internal <= 32'd0;
             counter_timer_internal <= 32'd0;
+            counter_timer_internal_2 <= 32'd0;
             stb_o_internal <= 0;
             we_o_internal <= 0;
             one_hot <= 6'd0;
 			repetition <= 0;
             sel_o_internal <= 4'b0000;
             bcd_data <= 32'd0;
+            blinker_reg_2 <= 0;
             blinker_reg <= 0;
         end else begin
             case (cu_fsm_internal)
@@ -85,7 +92,7 @@ module control_unit(
 					dat_o_internal <= 32'h96feb5;
                     sel_o_internal <= 4'b1111;
                     one_hot <= 6'b000001;
-					cu_fsm_internal <= 5'd2;//cu_fsm_internal + 1'b1;
+					cu_fsm_internal <= cu_fsm_internal + 2'd2;
 				end
                 //counter reset
                 5'd1 : begin
@@ -134,12 +141,12 @@ module control_unit(
                     sel_o_internal <= 4'b0000;
                     one_hot <= 6'b010000;
                     if (repetition == 8'b00000011) begin
-                        general_purpose_reg_1 <= dat_i;
+                        general_purpose_reg_1 <= 32'h61626364;//dat_i;
                         cu_fsm_internal <= cu_fsm_internal + 1'b1;
                         repetition <= 0;
                     end
                     else begin
-                        general_purpose_reg_1 <= dat_i;
+                        general_purpose_reg_1 <= 32'h61626364;//dat_i;
                         cu_fsm_internal <= cu_fsm_internal;
                         repetition <= repetition + 1'b1;
                     end
@@ -153,18 +160,19 @@ module control_unit(
                     sel_o_internal <= 4'b0000;
                     one_hot <= 6'b010000;
                     if (repetition == 8'b00000011) begin
-                        general_purpose_reg_2 <= dat_i;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                        general_purpose_reg_2 <= 32'h65666768;//dat_i;
+                        cu_fsm_internal <= cu_fsm_internal + 5'd1;
                         repetition <= 0;
                     end
                     else begin
-                        general_purpose_reg_2 <= dat_i;
+                        general_purpose_reg_2 <= 32'h65666768;//dat_i;
                         cu_fsm_internal <= cu_fsm_internal;
                         repetition <= repetition + 1'b1;
                     end
                 end
                 //fill the TX buffer : part 1
                 5'd6 : begin
+                    one_hot <= 6'b011000;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
@@ -175,13 +183,14 @@ module control_unit(
                 end
                 //fill the TX buffer : part 2
                 5'd7 : begin
+                    one_hot <= 6'b001100;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
                     dat_o_internal <= general_purpose_reg_1;
                     sel_o_internal <= 4'b0010;
                     cu_fsm_internal <= 5'd14;
-                    next_fsm_step <= 5'd8;
+                    next_fsm_step <= 5'd18;
                 end
                 //fill TX buffer : part 3
                 5'd8 : begin
@@ -241,38 +250,52 @@ module control_unit(
                     dat_o_internal <= general_purpose_reg_2;
                     sel_o_internal <= 4'b1000;
                     cu_fsm_internal <= 5'd14;
-                    next_fsm_step <= 5'd2;
+                    next_fsm_step <= 5'd18;
                 end
                 //start UART TX sending
                 5'd14 : begin
+                    one_hot <= 6'b111000;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h3;
                     dat_o_internal <= 32'h80;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
-                //poll TX frame send complete
+                //poll TX ready
                 5'd15 : begin
+                    one_hot <= 6'b011100;
 					we_o_internal <= 0;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h5;
                     dat_o_internal <= 32'd0;
-                    if (dat_i[5] == 1) cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    if (dat_i[4] == 0) cu_fsm_internal <= cu_fsm_internal + 5'd1;
+                    else cu_fsm_internal <= cu_fsm_internal;
+                end
+                //poll TX ready
+                5'd16 : begin
+					we_o_internal <= 0;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h5;
+                    dat_o_internal <= 32'd0;
+                    if (dat_i[4] == 1) cu_fsm_internal <= next_fsm_step;//cu_fsm_internal <= cu_fsm_internal + 1'b1;
                     else cu_fsm_internal <= cu_fsm_internal;
                 end
                 //clear UART flag
-                5'd16 : begin
+                5'd17 : begin
+                    one_hot <= 6'b001110;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h5;
                     dat_o_internal <= 32'd0;
-                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    cu_fsm_internal <= next_fsm_step;
+                    //cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
                 //delay for 1 second
-                5'd17 : begin
+                5'd18 : begin
 					one_hot <= 6'b100000;
                     if (counter_timer_internal[31] == 1'b1) begin 
-                        cu_fsm_internal <= next_fsm_step;
+                        cu_fsm_internal <= 5'd4;
+                        //cu_fsm_internal <= next_fsm_step;
                         counter_timer_internal <= 0;
 						we_o_internal <= 0;
                         sel_o_internal <= 0;
@@ -281,7 +304,7 @@ module control_unit(
 						dat_o_internal <= 32'h0;
                         blinker_reg <= ~blinker_reg;
                     end else begin 
-                        counter_timer_internal <= counter_timer_internal + 32'h14f8b;
+                        counter_timer_internal <= counter_timer_internal + 32'h56;
                         cu_fsm_internal <= cu_fsm_internal;
                         we_o_internal <= 0;
                         sel_o_internal <= 0;
@@ -291,6 +314,13 @@ module control_unit(
                     end
                 end
             endcase
+
+            if (counter_timer_internal_2[31] == 1'b1) begin 
+                counter_timer_internal_2 <= 0;
+                blinker_reg_2 <= ~blinker_reg_2;
+            end else begin 
+                counter_timer_internal_2 <= counter_timer_internal_2 + 32'h56;
+            end
         end
     end
 
@@ -299,7 +329,12 @@ module control_unit(
     assign stb_o = stb_o_internal;
     assign we_o = we_o_internal;
     assign sel_o = sel_o_internal;
-    assign out_led = general_purpose_reg_1[9:0];
-    assign status_led = one_hot;
+    assign out_led = general_purpose_reg_1[13:4];
+    //assign status_led = one_hot;                          //for peeking at highlighted status
+    assign status_led = cu_fsm_internal;                  //for peeking at fsm status
+    //assign status_led = dat_o[7:0];
     assign blinker = blinker_reg;
+    assign blinker_2 = blinker_reg_2;
+	 assign phase_begin = general_purpose_reg_2[4:0];
+	 assign phase_end = general_purpose_reg_2[9:5];
 endmodule

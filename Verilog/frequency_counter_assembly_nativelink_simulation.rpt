@@ -4,8 +4,8 @@ Info: Start Nativelink Simulation process
 
 Sim Mode              :  Gate
 Family                :  max10
-Quartus root          :  /home/raditya/intelFPGA_lite/24.1std/quartus/linux64/
-Quartus sim root      :  /home/raditya/intelFPGA_lite/24.1std/quartus/eda/sim_lib
+Quartus root          :  /mnt/Backyard/Intel_Quartus/quartus/linux64/
+Quartus sim root      :  /mnt/Backyard/Intel_Quartus/quartus/eda/sim_lib
 Simulation Tool       :  questa intel fpga
 Simulation Language   :  verilog
 Simulation Mode       :  GUI
@@ -16,49 +16,43 @@ Sim dir               :  simulation/questa
 =======================================================
 
 Info: Starting NativeLink simulation with Questa Intel FPGA software
-Sourced NativeLink script /home/raditya/intelFPGA_lite/24.1std/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Sourced NativeLink script /mnt/Backyard/Intel_Quartus/quartus/common/tcl/internal/nativelink/modelsim.tcl
 Warning: File frequency_counter_assembly_run_msim_gate_verilog.do already exists - backing up current file as frequency_counter_assembly_run_msim_gate_verilog.do.bak11
 Probing transcript
+Questa Intel FPGA Info: # //  Questa Intel Starter FPGA Edition-64
+Questa Intel FPGA Info: # //  Version 2024.3 linux_x86_64 Sep 10 2024
+Questa Intel FPGA Info: # //
+Questa Intel FPGA Info: # // Unpublished work. Copyright 2024 Siemens
+Questa Intel FPGA Info: # //
+Questa Intel FPGA Info: # // This material contains trade secrets or otherwise confidential information
+Questa Intel FPGA Info: # // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+Questa Intel FPGA Info: # // "SISW"), or its licensors. Access to and use of this information is strictly
+Questa Intel FPGA Info: # // limited as set forth in the Customer's applicable agreements with SISW.
+Questa Intel FPGA Info: # //
+Questa Intel FPGA Info: # // This material may not be copied, distributed, or otherwise disclosed outside
+Questa Intel FPGA Info: # // of the Customer's facilities without the express written permission of SISW,
+Questa Intel FPGA Info: # // and may not be used in any way not expressly authorized by SISW.
+Questa Intel FPGA Info: # //
+Questa Intel FPGA Info: # do frequency_counter_assembly_run_msim_gate_verilog.do
+Questa Intel FPGA Info: # if {[file exists gate_work]} {
+Questa Intel FPGA Info: # 	vdel -lib gate_work -all
+Questa Intel FPGA Info: # }
+Questa Intel FPGA Info: # vlib gate_work
+Questa Intel FPGA Info: # vmap work gate_work
+Questa Intel FPGA Info: # Questa Intel Starter FPGA Edition-64 vmap 2024.3 Lib Mapping Utility 2024.09 Sep 10 2024
+Questa Intel FPGA Info: # vmap work gate_work 
+Questa Intel FPGA Info: # Copying /mnt/Backyard/Intel_Quartus/questa_fse/linux_x86_64/../modelsim.ini to modelsim.ini
+Questa Intel FPGA Info: # Modifying modelsim.ini
 Questa Intel FPGA Info: # 
-Questa Intel FPGA Info: # ** License Issue: License server does not support this feature (intelqsimstarter)
-Questa Intel FPGA Info: # ** License Issue: Invalid host. (/home/raditya/.altera.quartus/quartus2_lic.dat)
-Questa Intel FPGA Error: # ** Error: Failure to checkout 'intelqsimstarter' license feature.
-Warning: Ignoring following message with error code CHILDSTATUS 196013 4 while running Questa Intel FPGA Simulation software
-Unable to checkout a viewer license necessary for use of the Questa Intel Starter FPGA Edition graphical user interface.  Vsim is closing.
-    while executing
-"close $pipe_id"
-Error: Errors encountered while running modelsim do file
-Error: NativeLink simulation flow was NOT successful
-
-
-
-================The following additional information is provided to help identify the cause of error while running nativelink scripts=================
-Nativelink TCL script failed with errorCode:  1
-Nativelink TCL script failed with errorInfo:  1
-    (procedure "launch_sim" line 1)
-    invoked from within
-"launch_sim launch_args_hash"
-    ("eval" body line 1)
-    invoked from within
-"eval launch_sim launch_args_hash"
-    invoked from within
-"if [ info exists ::errorCode ] {
-                set savedCode $::errorCode
-                set savedInfo $::errorInfo
-                error $result $..."
-    invoked from within
-"if [catch {eval launch_sim launch_args_hash} result ] {
-            set status 1
-            if [ info exists ::errorCode ] {
-                set save..."
-    (procedure "run_sim" line 74)
-    invoked from within
-"run_sim run_sim_args_hash"
-    invoked from within
-"if [ info exists ::errorCode ] {
-            set savedCode $::errorCode
-            set savedInfo $::errorInfo
-            error "$result" $savedInfo ..."
-    (procedure "run_eda_simulation_tool" line 334)
-    invoked from within
-"run_eda_simulation_tool eda_opts_hash"
+Questa Intel FPGA Info: # vlog -vlog01compat -work work +incdir+. {frequency_counter_assembly.vo}
+Questa Intel FPGA Info: # Questa Intel Starter FPGA Edition-64 vlog 2024.3 Compiler 2024.09 Sep 10 2024
+Questa Intel FPGA Info: # Start time: 07:02:15 on May 21,2025
+Questa Intel FPGA Info: # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." frequency_counter_assembly.vo 
+Questa Intel FPGA Info: # -- Compiling module top_level
+Questa Intel FPGA Info: # 
+Questa Intel FPGA Info: # Top level modules:
+Questa Intel FPGA Info: # 	top_level
+Questa Intel FPGA Info: # End time: 07:02:16 on May 21,2025, Elapsed time: 0:00:01
+Questa Intel FPGA Info: # Errors: 0, Warnings: 0
+Questa Intel FPGA Info: # 
+Info: NativeLink simulation flow was successful

@@ -36,6 +36,7 @@ module freq_count_tb;
 	reg lock_i;
 	reg tagn_i;
 	reg uart_rx;
+	reg inhibitor;
 
 	// Outputs
 	wire [31:0] dat_o;
@@ -63,14 +64,16 @@ module freq_count_tb;
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o), 
 		.uart_rx(uart_rx),
-		.uart_tx(uart_tx)
+		.uart_tx(uart_tx),
+		.tx_ready_inhibitor(inhibitor)
 	);
 		
 	initial begin
-		$dumpfile("result.vcd");
+		$dumpfile("result_uart_tx.vcd");
 		$dumpvars(0, freq_count_tb);
 		// Initialize Inputs
 		// Wait 10 ns for global reset to finish
+		inhibitor = 1;
 		rst_i = 1;
 		clk_i = 0;
 		addr_i = 0;
@@ -94,6 +97,7 @@ module freq_count_tb;
 		we_i = 1;
 		addr_i = 32'h7;
 		dat_i = 32'h9a;
+		sel_i = 4'b0001;
 		#5 stb_i = 0;
         //send reset to UART TX through control register
         #5 stb_i = 1;
@@ -129,6 +133,11 @@ module freq_count_tb;
 		we_i = 1;
 		addr_i = 32'h7;
 		dat_i = 32'h9a;
+		#5 stb_i = 0;
+		#5 stb_i = 1;
+		we_i = 1;
+		addr_i = 32'h5;
+		dat_i = 32'h0;
 		#5 stb_i = 0;
 		#5 stb_i = 1;
 		we_i = 1;

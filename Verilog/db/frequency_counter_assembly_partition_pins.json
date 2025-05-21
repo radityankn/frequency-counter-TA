@@ -20,18 +20,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "led_port[3]",
-					"strict" : false
-				},
-				{
-					"name" : "led_port[4]",
-					"strict" : false
-				},
-				{
-					"name" : "led_port[5]",
-					"strict" : false
-				},
-				{
 					"name" : "led_port[6]",
 					"strict" : false
 				},
@@ -68,10 +56,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "status_led[5]",
-					"strict" : false
-				},
-				{
 					"name" : "counter_flags_led[0]",
 					"strict" : false
 				},
@@ -80,11 +64,47 @@
 					"strict" : false
 				},
 				{
+					"name" : "counter_flags_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "tx_fsm_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "tx_fsm_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "tx_fsm_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "tx_fsm_led[3]",
+					"strict" : false
+				},
+				{
 					"name" : "blinker",
 					"strict" : false
 				},
 				{
-					"name" : "clk_i_ext",
+					"name" : "blinker_2",
+					"strict" : false
+				},
+				{
+					"name" : "phase_begin_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[3]",
 					"strict" : false
 				},
 				{
@@ -92,7 +112,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "measure_signal_i",
+					"name" : "clk_i_ext",
 					"strict" : false
 				}
 			]

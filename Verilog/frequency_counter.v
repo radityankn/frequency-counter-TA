@@ -76,7 +76,7 @@ module frequency_counter(
 		  
         if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) measurement_state_machine <= 10'd0;
         else if (measurement_begin == 1 && measurement_is_done == 0) begin 
-            if (measurement_state_machine == 10'd9) begin
+            if (measurement_state_machine == 10'd999) begin
                 measurement_is_done <= 1;
                 measurement_state_machine <= 10'd0;
             end

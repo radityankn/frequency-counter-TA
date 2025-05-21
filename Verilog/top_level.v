@@ -5,7 +5,7 @@
 // 
 // Create Date:    11:56:56 02/20/2025 
 // Design Name: 
-// Module Name:    control_unit 
+// Module Name:    top_level 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -25,10 +25,17 @@ module top_level(input rst_ext,
 				output measure_signal_debug,
             	input uart_rx_ext,
             	output uart_tx_ext,
+
+				//for debugging purposes only
+				input switch_1,
             	output [9:0] led_port,
 				output [5:0] status_led,
-				output [1:0] counter_flags_led,
-				output blinker
+				output [2:0] counter_flags_led,
+				output [3:0] tx_fsm_led,
+				output blinker,
+				output blinker_2,
+				output [4:0] phase_begin_led,
+				output [4:0] phase_end_led
 );
 
    // WB interconnect definition
@@ -67,7 +74,10 @@ module top_level(input rst_ext,
 		.tagn_o(tagn_o),
     	.out_led(led_port),
 		.status_led(status_led),
-		.blinker(blinker)
+		.blinker(blinker),
+		.blinker_2(blinker_2),
+		.phase_begin(phase_begin_led),
+		.phase_end(phase_end_led)
     );
 	
 	wire [31:0] uart_dat_o;
@@ -93,7 +103,11 @@ module top_level(input rst_ext,
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o), 
 		.uart_rx(uart_rx_ext),
-		.uart_tx(uart_tx_ext)
+		.uart_tx(uart_tx_ext),
+		.tx_ready_inhibitor(switch_1),
+		.tx_flags(counter_flags_led[1:0]),
+		.tx_start_flag(counter_flags_led[2]),
+		.tx_fsm(tx_fsm_led)
 	);
 
 	wire [31:0] counter_dat_o;
@@ -105,7 +119,7 @@ module top_level(input rst_ext,
 	wire ref_measurement_clk_3;
 	wire ref_measurement_clk_4;
 	wire ref_measurement_clk_5;
-	wire measure_signal_internal;
+	wire ref_measure_signal_internal;
 
 	frequency_counter counter_module(
 	.ext_rst_i(rst_ext),
@@ -124,13 +138,14 @@ module top_level(input rst_ext,
     .ack_o(counter_ack_o),
     .tagn_i(tagn_i),
     .tagn_o(tagn_o),
-    .signal_input(measure_signal_i),                     //target signal input port
+	 .signal_input(ref_measure_signal_internal),
+    //.signal_input(measure_signal_i),                     //target signal input port
     .reference_clk_1(ref_measurement_clk_1),                  //coarse reference clock
     .reference_clk_2(ref_measurement_clk_2),                   //fine reference clock, must be slightly different than the coarse reference clock
 	.reference_clk_3(ref_measurement_clk_3), 
 	.reference_clk_4(ref_measurement_clk_4), 
 	.reference_clk_5(ref_measurement_clk_5), 
-	.counter_flags(counter_flags_led),
+	.counter_flags(counter_flags_led_dummy)
 	);
 
 	pll_module	pll_module_inst (
@@ -141,10 +156,17 @@ module top_level(input rst_ext,
 	.c2 (ref_measurement_clk_3),
 	.c3 (ref_measurement_clk_4),
 	.c4 (ref_measurement_clk_5),
-	.locked ( locked_sig )
+	.locked (signal_lock_dummy)
 	);
 	
-	assign measure_signal_debug = ref_measurement_clk_1;
+	pll_sample_signal	pll_sample_inst (
+	.inclk0 (clk_i_ext),
+	.c0 (ref_measure_signal_internal),
+	.locked (signal_lock)
+	);
+	
+	//assign measure_signal_i = ref_measure_signal_i;
+	//assign measure_signal_debug = ref_measurement_clk_1;
 	assign clk_i = clk_i_ext;
 	assign dat_o = (uart_dat_o | counter_dat_o | 1'd0);
 	assign err_o = (uart_err_o | counter_err_o | 1'd0);

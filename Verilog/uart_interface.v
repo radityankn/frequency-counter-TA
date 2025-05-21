@@ -38,7 +38,12 @@ module uart_interface(
 	output rty_o,
     output ack_o,
     input tagn_i,
-    output tagn_o
+    output tagn_o,
+    //below is for debugging purpose only
+    input tx_ready_inhibitor,
+    output [1:0] tx_flags,
+    output tx_start_flag,
+    output [3:0] tx_fsm
     );
 
     reg [8:0] uart_buffer_tx;
@@ -47,18 +52,17 @@ module uart_interface(
     reg [7:0] uart_tx_ctrl_reg;
     reg [7:0] uart_status_reg;
     reg [31:0] baud_rate_divider_constant;
-    reg [8:0] uart_buffer_tx_internal;
-    reg [7:0] uart_read_buffer_internal;
+    reg [31:0] uart_read_buffer_internal;
     reg bus_acknowledge;
-    reg uart_frame_sent_previous_reg;
     reg [7:0] uart_status_indicator;
+    reg debouncer;
 	
     wire uart_frame_receive_complete;
-    wire uart_frame_sent_complete;
     wire uart_parity_error_flag;
     wire uart_frame_sent_clear;
     wire [8:0] uart_rx_data_out;
-    wire uart_status_frame_sent_write;
+    wire uart_status_frame_sent_complete;
+    wire uart_status_tx_ready;
 
     uart_tx_module tx_module(
         .tx_data_line(uart_tx),
@@ -68,7 +72,9 @@ module uart_interface(
         .tx_ctrl_reg(uart_tx_ctrl_reg),
         .baud_rate_divider_constant(baud_rate_divider_constant),
         .tx_data_in(uart_buffer_tx),
-        .frame_sent_complete(uart_frame_sent_complete)
+        .tx_module_ready(uart_status_tx_ready),
+        .frame_sent_complete(uart_status_frame_sent_complete),
+        .tx_fsm_status(tx_fsm)
     );
 
     //address for UART Registers : 
@@ -83,6 +89,7 @@ module uart_interface(
     //- Bit 7 : RX Frame receive complete
     //- Bit 6 : RX Parity error
     //- Bit 5 : TX Frame sent complete
+    //- Bit 4 : TX Ready (after transmitting)
 
     always @(posedge clk_i) begin
         //below is the code for writing the register
@@ -96,7 +103,7 @@ module uart_interface(
             uart_status_indicator <= 8'b00000000;
         end
         
-        if (we_i == 1 && stb_i == 1) begin 
+        else if (we_i == 1 && stb_i == 1) begin 
             if (addr_i == 32'h2) begin
                 uart_rx_ctrl_reg <= dat_i[7:0];
                 bus_acknowledge <= 1;
@@ -143,70 +150,75 @@ module uart_interface(
         //below is the code for reading the register
         else if (we_i == 0 && stb_i == 1) begin 
             if (addr_i == 32'h2) begin 
-                uart_read_buffer_internal <= uart_rx_ctrl_reg;
+                uart_read_buffer_internal[7:0] <= uart_rx_ctrl_reg;
+                uart_read_buffer_internal[31:8] <= 24'd0;
                 bus_acknowledge <= 1;
                 uart_status_indicator <= 8'b00000010;
             end else if (addr_i == 32'h3) begin 
-                uart_read_buffer_internal <= uart_tx_ctrl_reg;
+                uart_read_buffer_internal[7:0] <= uart_tx_ctrl_reg;
                 bus_acknowledge <= 1;
+                uart_read_buffer_internal[31:8] <= 24'd0;
                 uart_status_indicator <= 8'b00000011;
             end else if (addr_i == 32'h4) begin 
-                uart_read_buffer_internal <= baud_rate_divider_constant[15:0];
+                uart_read_buffer_internal[15:0] <= baud_rate_divider_constant[15:0];
+                uart_read_buffer_internal[31:16] <= 16'd0; 
                 bus_acknowledge <= 1;
                 uart_status_indicator <= 8'b00000100;
             end else if (addr_i == 32'h5) begin 
-                uart_read_buffer_internal <= uart_status_reg;
+                uart_read_buffer_internal[7:0] <= uart_status_reg;
+                uart_read_buffer_internal[31:8] <= 24'd0;
                 bus_acknowledge <= 1;
                 uart_status_indicator <= 8'b00000101;
             end else if (addr_i == 32'h6) begin 
-                uart_read_buffer_internal <= uart_buffer_rx;
+                uart_read_buffer_internal[7:0] <= uart_buffer_rx;
+                uart_read_buffer_internal[31:8] <= 24'd0;
                 bus_acknowledge <= 1;
                 uart_status_indicator <= 8'b00000110;
             end else if (addr_i == 32'h7) begin 
-                uart_read_buffer_internal <= uart_buffer_tx[7:0];
+                uart_read_buffer_internal[7:0] <= uart_buffer_tx[7:0];
+                uart_read_buffer_internal[31:8] <= 24'd0;
                 bus_acknowledge <= 1;
                 uart_status_indicator <= 8'b00000111;
             end else begin
-                uart_read_buffer_internal <= 8'b00000000;
+                uart_read_buffer_internal <= 32'd0;
                 bus_acknowledge <= 0;
                 //uart_status_indicator <= 8'b10000001;
             end
+        end else begin 
+            uart_read_buffer_internal <= 32'd0;
+            bus_acknowledge <= 0;
         end
  
         if (uart_rx_ctrl_reg[3] == 1) begin
             uart_rx_ctrl_reg[3] <= 0;
             //uart_status_indicator <= 8'b01010101;
-        end else if (uart_tx_ctrl_reg[3] == 1) begin
-            uart_tx_ctrl_reg[3] <= 0;
-            //uart_status_indicator <= 8'b01010101;
-        end else if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
+        end 
+        if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
             uart_buffer_rx <= uart_rx_data_out[7:0];
             uart_rx_ctrl_reg[7] <= 0;
             uart_status_reg[7] <= 1;
             //uart_status_indicator <= 8'b01010101;
             //bus_acknowledge <= 0;
-        end else if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
+        end 
+        if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
             uart_status_reg[6] <= 1;
             //uart_status_indicator <= 8'b01010101;
             //bus_acknowledge <= 0;
-        end else if (uart_status_frame_sent_write == 1 && uart_status_reg[5] == 0) begin
+        end 
+        if (uart_status_frame_sent_complete == 1 && uart_status_reg[5] == 0) begin
             uart_status_reg[5] <= 1'b1;
             uart_tx_ctrl_reg[7] <= 0;
             //uart_status_indicator <= 8'b01010101;
             //bus_acknowledge <= 0;
-        end else begin 
-            uart_status_indicator <= 8'b01010101;
         end
-
-        if (uart_frame_sent_complete == 1) uart_frame_sent_previous_reg <= 1;
-        else if (uart_frame_sent_complete == 0) uart_frame_sent_previous_reg <= 0;
-        else if (rst_i == 1 || ext_rst_i == 0) uart_frame_sent_previous_reg <= 0;
-        else uart_frame_sent_previous_reg <= uart_frame_sent_previous_reg;
-
+        //debouncer <= tx_ready_inhibitor;
+        uart_status_reg[4] <= uart_status_tx_ready; //& debouncer;
     end
 
-    assign uart_status_frame_sent_write = uart_frame_sent_complete & ~uart_frame_sent_previous_reg;
     assign dat_o[7:0] = uart_read_buffer_internal;
+    assign tx_flags[1] = uart_status_tx_ready;
+    assign tx_flags[0] = uart_status_frame_sent_complete;
+    assign tx_start_flag = uart_tx_ctrl_reg[7];
     assign ack_o = bus_acknowledge;
 endmodule
 
@@ -221,7 +233,9 @@ module uart_tx_module(output tx_data_line,
                         input [7:0] tx_ctrl_reg,
                         input [31:0] baud_rate_divider_constant, 
                         input [8:0] tx_data_in, 
-                        output frame_sent_complete
+                        output tx_module_ready,
+                        output frame_sent_complete,
+                        output [3:0] tx_fsm_status
                         );
 
     //tx_ctrl_reg register control operation such as send start, parity bit odd/even, data bit numbers (8 or 9)
@@ -235,6 +249,7 @@ module uart_tx_module(output tx_data_line,
     reg [3:0] tx_fsm_internal;
     reg tx_data_line_internal;
     reg frame_sent_complete_internal;
+    reg tx_module_ready_internal;
 
     wire clk_in_internal;
     wire tx_rst_i;
@@ -257,6 +272,7 @@ module uart_tx_module(output tx_data_line,
                 case (tx_fsm_internal)
                     //start bit
                     4'b0000: begin
+                        tx_module_ready_internal <= 0;
                         frame_sent_complete_internal <= 0;
                         tx_data_line_internal <= 0; 
                         tx_fsm_internal <= tx_fsm_internal + 1'b1;
@@ -322,6 +338,7 @@ module uart_tx_module(output tx_data_line,
                 case (tx_fsm_internal)
                     //start bit
                     4'b0000: begin
+                        tx_module_ready_internal <= 0;
                         frame_sent_complete_internal <= 0;
                         tx_data_line_internal <= 0; 
                         tx_fsm_internal <= tx_fsm_internal + 1'b1;
@@ -379,13 +396,21 @@ module uart_tx_module(output tx_data_line,
                     end
                 endcase
             end
-        end else begin
+        end /* else if (tx_rst_i || rst_i || ext_rst_i == 0) begin
             tx_fsm_internal <= 4'b0000;
+            tx_module_ready_internal <= 0;
+            frame_sent_complete_internal <= 0;
+            tx_data_line_internal <= 1;
+        end */ else if (tx_ctrl_reg[7] == 0) begin
+            tx_fsm_internal <= 4'b0000;
+            tx_module_ready_internal <= 1;
             frame_sent_complete_internal <= 0;
             tx_data_line_internal <= 1;
         end
 	end
 
+    assign tx_fsm_status = tx_fsm_internal;
+    assign tx_module_ready = tx_module_ready_internal;
     assign frame_sent_complete = frame_sent_complete_internal;
     assign tx_data_line = tx_data_line_internal;
     assign clk_in_internal = clk_i; //& tx_ctrl_reg[7];

@@ -90,15 +90,36 @@ set_location_assignment PIN_B20 -to status_led[2]
 set_location_assignment PIN_F21 -to status_led[3]
 set_location_assignment PIN_F18 -to status_led[4]
 set_location_assignment PIN_J20 -to status_led[5]
-set_location_assignment PIN_C16 -to counter_status_led[0]
-set_location_assignment PIN_B16 -to counter_status_led[1]
-set_location_assignment PIN_A21 -to counter_status_led[2]
-set_location_assignment PIN_C19 -to counter_status_led[3]
-set_location_assignment PIN_D15 -to counter_flags_led[1]
-set_location_assignment PIN_A16 -to counter_flags_led[0]
+set_location_assignment PIN_A16 -to counter_flags_led[1]
+set_location_assignment PIN_D15 -to counter_flags_led[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to measure_signal_i
 set_location_assignment PIN_A19 -to blinker
 set_location_assignment PIN_AB8 -to measure_signal_debug
 set_global_assignment -name QIP_FILE divider_module.qip
 set_global_assignment -name QIP_FILE multiplier_module.qip
+set_location_assignment PIN_C10 -to switch_1
+set_location_assignment PIN_D22 -to blinker_2
+set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "Precision Synthesis" -entity control_unit.v
+set_global_assignment -name EDA_INPUT_GND_NAME GND -entity control_unit.v -section_id eda_design_synthesis
+set_global_assignment -name EDA_INPUT_VCC_NAME VCC -entity control_unit.v -section_id eda_design_synthesis
+set_global_assignment -name EDA_LMF_FILE mentor.lmf -entity control_unit.v -section_id eda_design_synthesis
+set_global_assignment -name EDA_SHOW_LMF_MAPPING_MESSAGES OFF -entity control_unit.v -section_id eda_design_synthesis
+set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY OFF -entity control_unit.v -section_id eda_design_synthesis
+set_global_assignment -name EDA_INPUT_DATA_FORMAT VQM -entity control_unit.v -section_id eda_design_synthesis
+set_location_assignment PIN_F17 -to counter_flags_led[2]
+set_location_assignment PIN_C17 -to tx_fsm_led[0]
+set_location_assignment PIN_B17 -to tx_fsm_led[1]
+set_location_assignment PIN_B22 -to tx_fsm_led[2]
+set_location_assignment PIN_E17 -to tx_fsm_led[3]
+set_location_assignment PIN_J3 -to altera_reserved_lai_0_0
+set_global_assignment -name SDC_FILE timing.sdc
+set_global_assignment -name QIP_FILE pll_sample_signal.qip
+set_location_assignment PIN_H19 -to phase_end_led[0]
+set_location_assignment PIN_J18 -to phase_end_led[1]
+set_location_assignment PIN_E19 -to phase_end_led[2]
+set_location_assignment PIN_F20 -to phase_end_led[3]
+set_location_assignment PIN_M20 -to phase_begin_led[0]
+set_location_assignment PIN_N18 -to phase_begin_led[1]
+set_location_assignment PIN_L18 -to phase_begin_led[2]
+set_location_assignment PIN_N20 -to phase_begin_led[3]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
