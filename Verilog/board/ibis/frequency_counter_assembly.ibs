@@ -1,7 +1,7 @@
 [IBIS Ver]   4.2
 [File Name]  frequency_counter_assembly.ibs
 [File Rev]   3.0
-[Date]       May 21, 2025
+[Date]       May 23, 2025
 [Source]     Altera Corporation
 [Notes]      - The models are designated as "Final" and have been correlated against physical device operation.
              - This IBIS model is checked using IBISCHK v5.0.4
@@ -29,54 +29,39 @@
 [Package]
 | RLC values are for 484 FBGA package
 | variable  typ        min        max
-R_pkg       539m       176m       874m  
-L_pkg       4.74nH     1.81nH     8.09nH  
-C_pkg       1.04pF     0.55pF     1.63pF  
+R_pkg       558m       176m       874m  
+L_pkg       4.74nH     1.81nH     7.56nH  
+C_pkg       1.15pF     0.55pF     1.59pF  
 |     
 [Pin] signal_name                              model_name                               R_pin    L_pin     C_pin
 |     
 A1    GND                                      GND                                                         
-A10   led_port[2]                              25_cio_r50                               618.8m   5.890nH   1.083pF
-A11   led_port[8]                              25_cio_r50                               572.3m   5.833nH   1.012pF
 A16   counter_flags_led[1]                     25_cio_r50                               551.5m   4.756nH   1.106pF
 A19   blinker                                  25_cio_r50                               797.4m   6.594nH   1.419pF
 A22   GND                                      GND                                                         
-A8    led_port[0]                              25_cio_r50                               739.8m   7.540nH   1.314pF
-A9    led_port[1]                              25_cio_r50                               635.8m   6.193nH   1.167pF
-AA1   phase_begin_led[4]                       25_cio_r50                               831.5m   8.088nH   1.631pF
 AA18  GND                                      GND                                                         
 AA4   GND                                      GND                                                         
-AA7   phase_end_led[4]                         25_cio_r50                               617.8m   6.258nH   1.288pF
 AB1   GND                                      GND                                                         
 AB22  GND                                      GND                                                         
 AB5   uart_rx_ext                              25_cin_p                                 705.9m   6.877nH   1.304pF
 AB6   uart_tx_ext                              25_cio_r50                               667.4m   6.499nH   1.395pF
 AB7   measure_signal_i                         lvttl_cin_p                              615.8m   5.871nH   1.273pF
 AB8   measure_signal_debug                     25_cio_r50                               649.1m   6.831nH   1.219pF
-B10   led_port[3]                              25_cio_r50                               432.0m   3.866nH   0.928pF
-B11   led_port[9]                              25_cio_r50                               432.2m   4.170nH   0.927pF
 B13   GND                                      GND                                                         
 B17   tx_fsm_led[1]                            25_cio_r50                               583.7m   4.729nH   1.194pF
 B18   GND                                      GND                                                         
-B20   status_led[2]                            25_rio_r50                               784.2m   7.629nH   1.484pF
 B22   tx_fsm_led[2]                            25_rio_r50                               874.6m   7.174nH   1.590pF
 B6    GND                                      GND                                                         
 B8    rst_ext                                  25_cin_p                                 653.9m   5.581nH   1.235pF
 B9    GND                                      GND                                                         
 C10   switch_1                                 25_cin_p                                 360.7m   3.168nH   0.905pF
-C13   led_port[5]                              25_cio_r50                               376.7m   3.306nH   0.800pF
-C14   status_led[0]                            25_cio_r50                               374.1m   3.688nH   0.772pF
 C17   tx_fsm_led[0]                            25_cio_r50                               556.7m   4.473nH   0.983pF
-C18   status_led[1]                            25_cio_r50                               528.4m   4.394nH   1.094pF
 D11   GND                                      GND                                                         
-D13   led_port[4]                              25_cio_r50                               314.2m   2.794nH   0.627pF
-D14   led_port[7]                              25_cio_r50                               281.2m   2.837nH   0.717pF
 D15   counter_flags_led[0]                     25_cio_r50                               274.0m   2.723nH   0.721pF
 D16   GND                                      GND                                                         
 D20   GND                                      GND                                                         
 D22   blinker_2                                25_rio_r50                               873.7m   7.558nH   1.558pF
 D4    GND                                      GND                                                         
-E14   led_port[6]                              25_cio_r50                               236.6m   2.129nH   0.596pF
 E17   tx_fsm_led[3]                            25_rio_r50                               483.8m   4.732nH   1.030pF
 E19   phase_end_led[2]                         25_rio_r50                               565.4m   5.750nH   1.221pF
 E2    GND                                      GND                                                         
@@ -87,9 +72,7 @@ F12   VCCIO7                                   POWER
 F13   GND                                      GND                                                         
 F14   VCCIO7                                   POWER                                                       
 F17   counter_flags_led[2]                     25_rio_r50                               466.8m   4.718nH   1.000pF
-F18   status_led[4]                            25_rio_r50                               511.9m   5.442nH   1.043pF
 F20   phase_end_led[3]                         25_rio_r50                               650.1m   5.945nH   1.357pF
-F21   status_led[3]                            25_rio_r50                               680.2m   6.239nH   1.405pF
 F9    VCCIO8                                   POWER                                                       
 G10   VCCIO8                                   POWER                                                       
 G11   VCCIO8                                   POWER                                                       
@@ -113,7 +96,6 @@ J17   VCCIO6                                   POWER
 J18   phase_end_led[1]                         25_rio_r50                               189.6m   2.001nH   0.545pF
 J19   GND                                      GND                                                         
 J2    GND                                      GND                                                         
-J20   status_led[5]                            25_rio_r50                               423.1m   3.410nH   0.853pF
 J6    GND                                      GND                                                         
 J7    VCCINT                                   POWER                                                       
 K10   GND                                      GND                                                         
@@ -175,6 +157,7 @@ T14   GND                                      GND
 T15   VCCA4                                    POWER                                                       
 T16   GND                                      GND                                                         
 T17   VCCIO5                                   POWER                                                       
+T2    phase_end_led[4]                         25_rio_r50                               560.7m   4.572nH   1.186pF
 T4    GND                                      GND                                                         
 T7    VCCD_PLL1                                POWER                                                       
 T8    GND                                      GND                                                         
@@ -191,6 +174,7 @@ V19   GND                                      GND
 V2    GND                                      GND                                                         
 V6    GND                                      GND                                                         
 W21   GND                                      GND                                                         
+W3    phase_begin_led[4]                       25_cio_r50                               644.9m   5.307nH   1.303pF
 Y12   GND                                      GND                                                         
 Y15   GND                                      GND                                                         
 Y9    GND                                      GND                                                         

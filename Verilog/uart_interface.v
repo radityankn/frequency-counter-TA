@@ -46,6 +46,7 @@ module uart_interface(
     output [3:0] tx_fsm
     );
 
+    //Below is functional register. That is, the one that we are going to access using the bus
     reg [8:0] uart_buffer_tx;
     reg [7:0] uart_buffer_rx;
     reg [7:0] uart_rx_ctrl_reg;
@@ -57,6 +58,13 @@ module uart_interface(
     reg [7:0] uart_status_indicator;
     reg debouncer;
 	
+    //below is the buffer register used for interfacing between clock domains of the UART modules and top level
+    reg uart_status_frame_sent_complete_buffer_1;
+    reg uart_status_frame_sent_complete_buffer_2;
+    reg uart_status_tx_ready_buffer_1;
+    reg uart_status_tx_ready_buffer_2;
+
+    //below is the wires used for connection between modules and top level integration
     wire uart_frame_receive_complete;
     wire uart_parity_error_flag;
     wire uart_frame_sent_clear;
@@ -64,6 +72,7 @@ module uart_interface(
     wire uart_status_frame_sent_complete;
     wire uart_status_tx_ready;
 
+    //Below is the modules instantiated for UART top level 
     uart_tx_module tx_module(
         .tx_data_line(uart_tx),
         .clk_i(clk_i),
@@ -191,28 +200,29 @@ module uart_interface(
  
         if (uart_rx_ctrl_reg[3] == 1) begin
             uart_rx_ctrl_reg[3] <= 0;
-            //uart_status_indicator <= 8'b01010101;
         end 
         if (uart_frame_receive_complete == 1 && uart_status_reg[7] == 0) begin 
             uart_buffer_rx <= uart_rx_data_out[7:0];
             uart_rx_ctrl_reg[7] <= 0;
             uart_status_reg[7] <= 1;
-            //uart_status_indicator <= 8'b01010101;
-            //bus_acknowledge <= 0;
         end 
         if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
             uart_status_reg[6] <= 1;
-            //uart_status_indicator <= 8'b01010101;
-            //bus_acknowledge <= 0;
         end 
-        if (uart_status_frame_sent_complete == 1 && uart_status_reg[5] == 0) begin
+        if (uart_status_frame_sent_complete_buffer_2 == 1 && uart_status_reg[5] == 0) begin
             uart_status_reg[5] <= 1'b1;
             uart_tx_ctrl_reg[7] <= 0;
-            //uart_status_indicator <= 8'b01010101;
-            //bus_acknowledge <= 0;
         end
-        //debouncer <= tx_ready_inhibitor;
-        uart_status_reg[4] <= uart_status_tx_ready; //& debouncer;
+
+        //buffering for UART TX module
+        //buffering begins here
+        uart_status_reg[4] <= uart_status_tx_ready_buffer_2;
+        uart_status_tx_ready_buffer_2 <= uart_status_tx_ready_buffer_1;
+        uart_status_tx_ready_buffer_1 <= uart_status_tx_ready;
+
+        uart_status_frame_sent_complete_buffer_2 <= uart_status_frame_sent_complete_buffer_1;
+        uart_status_frame_sent_complete_buffer_1 <= uart_status_frame_sent_complete;
+        //buffering ends here
     end
 
     assign dat_o[7:0] = uart_read_buffer_internal;

@@ -96,7 +96,7 @@ module freq_count_tb;
         #5 stb_i = 1;
 		we_i = 1;
 		addr_i = 32'h7;
-		dat_i = 32'h9a;
+		dat_i = 32'h61626364;
 		sel_i = 4'b0001;
 		#5 stb_i = 0;
         //send reset to UART TX through control register
@@ -115,10 +115,11 @@ module freq_count_tb;
 		addr_i = 32'h0;
 		dat_i = 32'h0;
 		//Send second character
-		#250 stb_i = 1;
+		#500 stb_i = 1;
 		we_i = 1;
 		addr_i = 32'h7;
-		dat_i = 32'h9a;
+		dat_i = 32'h61626364;
+		sel_i = 4'b0010;
 		#5 stb_i = 0;
 		#5 stb_i = 1;
 		we_i = 1;
@@ -129,10 +130,11 @@ module freq_count_tb;
 		addr_i = 32'h0;
 		dat_i = 32'h0;
 		//send third character
-		#250 stb_i = 1;
+		#500 stb_i = 1;
 		we_i = 1;
 		addr_i = 32'h7;
-		dat_i = 32'h9a;
+		dat_i = 32'h61626364;
+		sel_i = 4'b0100;
 		#5 stb_i = 0;
 		#5 stb_i = 1;
 		we_i = 1;
@@ -148,7 +150,7 @@ module freq_count_tb;
 		addr_i = 32'h0;
 		dat_i = 32'h0;
 		//clear flag
-		#250 stb_i = 1;
+		#500 stb_i = 1;
 		we_i = 1;
 		addr_i = 32'h5;
 		dat_i = 32'h0;

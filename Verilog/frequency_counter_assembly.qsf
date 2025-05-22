@@ -69,27 +69,11 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_P11 -to clk_i_ext
-set_location_assignment PIN_A8 -to led_port[0]
-set_location_assignment PIN_A9 -to led_port[1]
-set_location_assignment PIN_A10 -to led_port[2]
-set_location_assignment PIN_B10 -to led_port[3]
-set_location_assignment PIN_D13 -to led_port[4]
-set_location_assignment PIN_C13 -to led_port[5]
-set_location_assignment PIN_E14 -to led_port[6]
-set_location_assignment PIN_D14 -to led_port[7]
-set_location_assignment PIN_A11 -to led_port[8]
-set_location_assignment PIN_B11 -to led_port[9]
 set_location_assignment PIN_AB5 -to uart_rx_ext
 set_location_assignment PIN_AB6 -to uart_tx_ext
 set_global_assignment -name QIP_FILE pll_module.qip
 set_location_assignment PIN_AB7 -to measure_signal_i
 set_location_assignment PIN_B8 -to rst_ext
-set_location_assignment PIN_C14 -to status_led[0]
-set_location_assignment PIN_C18 -to status_led[1]
-set_location_assignment PIN_B20 -to status_led[2]
-set_location_assignment PIN_F21 -to status_led[3]
-set_location_assignment PIN_F18 -to status_led[4]
-set_location_assignment PIN_J20 -to status_led[5]
 set_location_assignment PIN_A16 -to counter_flags_led[1]
 set_location_assignment PIN_D15 -to counter_flags_led[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to measure_signal_i
@@ -111,7 +95,6 @@ set_location_assignment PIN_C17 -to tx_fsm_led[0]
 set_location_assignment PIN_B17 -to tx_fsm_led[1]
 set_location_assignment PIN_B22 -to tx_fsm_led[2]
 set_location_assignment PIN_E17 -to tx_fsm_led[3]
-set_location_assignment PIN_J3 -to altera_reserved_lai_0_0
 set_global_assignment -name SDC_FILE timing.sdc
 set_global_assignment -name QIP_FILE pll_sample_signal.qip
 set_location_assignment PIN_H19 -to phase_end_led[0]

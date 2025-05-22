@@ -22,21 +22,77 @@ module ALU(
     input ext_rst_i,
     input rst_i,
     input clk_i,
-    input sign_flag,
+    //input sign_flag,
     input carry_in_flag,
+    input borrow_in_flag,
+    input rotate_shift,
     input [31:0] operand_a,
     input [31:0] operand_b,
     input [4:0] selector,
     output [31:0] result,
     output carry_out_flag,
-    output overflow_flag
+    output borrow_out_flag
+    //output overflow_flag
     ); 
 
-    always_comb begin
+    wire [31:0] result_adder;
+    wire [31:0] result_substract;
+    wire [31:0] result_and;
+    wire [31:0] result_or;
+    wire [31:0] result_complement;
+    wire [31:0] result_xor;
+    wire [31:0] result_shift_left;
+    wire [31:0] result_shift_right;
+
+    full_scale_adder adder_one( .operand_a(operand_a), 
+                                .operand_b(operand_b),
+                                .carry_in(carry_in_flag),
+                                .carry_out(carry_out_flag),
+                                .result(result_adder)
+    );
+
+    full_scale_subtract subtract_one( .operand_a(operand_a), 
+                                .operand_b(operand_b),
+                                .borrow_in(borrow_in_flag),
+                                .borrow_out(carry_out_flag),
+                                .result(result_substract)
+    );
+
+    bit_shift_left shifter_left_one(.operand_a(operand_a),
+                                    .rotate(rotate_shift),
+                                    .result(result_shift_left)
+    );
+
+    bit_shift_right shifter_right_one(  .operand_a(operand_a),
+                                        .rotate(rotate_shift),
+                                        .result(result_shift_right)
+    );
+
+    bitwise_and and_one(.operand_a(operand_a), 
+                        .operand_b(operand_b),
+                        .result(result_and)
+    );
+
+    bitwise_or or_one(.operand_a(operand_a), 
+                        .operand_b(operand_b),
+                        .result(result_and)
+    );
+
+    bitwise_xor xor_one(.operand_a(operand_a), 
+                        .operand_b(operand_b),
+                        .result(result_and)
+    );
+
+    complement_op complement_one(.operand_a(operand_a), 
+                        .result(result_and)
+    );
+
+    /*
+    always @(*) begin
         case (selector)
             //add
             5'd0 : begin
-                output = 
+                assign result = 
             end
             //substract
             5'd1 : begin
@@ -77,7 +133,7 @@ module ALU(
 
         endcase
     end
-    
+*/   
 
 endmodule
 
@@ -94,12 +150,12 @@ module full_scale_adder (
 
 endmodule
 
-module full_scale_substract (
-    input operand_a,
-    input operand_b,
+module full_scale_subtract (
+    input [31:0] operand_a,
+    input [31:0] operand_b,
     input borrow_in,
     output borrow_out,
-    output result
+    output [31:0] result
 );
 
     assign result = operand_a - operand_b - borrow_in;
@@ -234,6 +290,7 @@ module bitwise_xor (
 
 endmodule
 
+/*
 module compare_op (
     input [31:0] operand_a,
     input [31:0] operand_b
@@ -265,3 +322,4 @@ module compare_op (
     endcase
     end
 endmodule
+*/

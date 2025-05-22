@@ -1,5 +1,5 @@
 Assembler report for frequency_counter_assembly
-Wed May 21 07:02:09 2025
+Fri May 23 01:43:54 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -38,7 +38,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed May 21 07:02:09 2025 ;
+; Assembler Status      ; Successful - Fri May 23 01:43:54 2025 ;
 ; Revision Name         ; frequency_counter_assembly            ;
 ; Top-level Entity Name ; top_level                             ;
 ; Family                ; MAX 10                                ;
@@ -53,13 +53,13 @@ on the Quartus Prime software download page.
 +--------+---------+---------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                                     ;
-+-------------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                                     ;
-+-------------------------------------------------------------------------------------------------------------------------------+
-; /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/output_files/frequency_counter_assembly.sof ;
-+-------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                    ;
++--------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                    ;
++--------------------------------------------------------------------------------------------------------------+
+; /home/raditya/Documents/Tugas Akhir/frequency-counter-TA/Verilog/output_files/frequency_counter_assembly.sof ;
++--------------------------------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------+
@@ -67,8 +67,8 @@ on the Quartus Prime software download page.
 +----------------+-----------------------------------------+
 ; Option         ; Setting                                 ;
 +----------------+-----------------------------------------+
-; JTAG usercode  ; 0x002A7A6F                              ;
-; Checksum       ; 0x002A7A6F                              ;
+; JTAG usercode  ; 0x002B72C1                              ;
+; Checksum       ; 0x002B72C1                              ;
 +----------------+-----------------------------------------+
 
 
@@ -78,18 +78,14 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Wed May 21 07:02:07 2025
+    Info: Processing started: Fri May 23 01:43:52 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off frequency_counter_assembly -c frequency_counter_assembly
-Warning (125092): Tcl Script File divider_module.qip not found
-    Info (125063): set_global_assignment -name QIP_FILE divider_module.qip
-Warning (125092): Tcl Script File multiplier_module.qip not found
-    Info (125063): set_global_assignment -name QIP_FILE multiplier_module.qip
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
-Info: Quartus Prime Assembler was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 600 megabytes
-    Info: Processing ended: Wed May 21 07:02:09 2025
+Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 593 megabytes
+    Info: Processing ended: Fri May 23 01:43:54 2025
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

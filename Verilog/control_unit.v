@@ -35,12 +35,12 @@ module control_unit(
     input ack_i,
     input tagn_i,
     output tagn_o,
-    output [9:0] out_led,
-    output [5:0] status_led,
+    //output [9:0] out_led,
+    //output [5:0] status_led,
     output blinker,
     output blinker_2,
-	 output [4:0] phase_begin,
-	 output [4:0] phase_end
+	output [4:0] phase_begin,
+	output [4:0] phase_end
     );
 
     reg [4:0] cu_fsm_internal;
@@ -49,9 +49,11 @@ module control_unit(
     reg [31:0] dat_o_internal;
     reg [3:0] sel_o_internal;
     reg [31:0] counter_timer_internal;
-	 reg [31:0] counter_timer_internal_2;
+	reg [31:0] counter_timer_internal_2;
     reg stb_o_internal;
     reg we_o_internal;
+    reg [31:0] general_purpose_reg_a;
+    reg [31:0] general_purpose_reg_b;
     reg [31:0] general_purpose_reg_1;
     reg [31:0] general_purpose_reg_2;
     reg [31:0] general_purpose_reg_3;
@@ -62,12 +64,53 @@ module control_unit(
     reg blinker_reg;
 	reg blinker_reg_2;
 
-    reg [31:0] bcd_data;
+    wire [7:0] ones;
+    wire [7:0] tens;
+    wire [7:0] hundreds;
+    wire [7:0] thousands;
+    wire [7:0] ten_thousands;
+    wire [7:0] hundred_thousands;
+    wire [7:0] millions;
+    wire [7:0] tenth_million;
+    wire [7:0] hundred_millions;
+    wire [7:0] billions;
+    reg bcd_conversion_start;
+
+    wire bcd_conversion_complete;
+
+    multiplier_module multiplier_module_inst (
+	.dataa ( dataa_sig ),
+	.datab ( datab_sig ),
+	.result ( result_sig )
+	);
+
+    divider_module divider_module_inst (
+	.denom ( denom_sig ),
+	.numer ( numer_sig ),
+	.quotient ( quotient_sig ),
+	.remain ( remain_sig )
+	);
+
+    double_dabble decimal_converter(  
+        .input_number(general_purpose_reg_1),
+        .clk_i(clk_i),
+        .conversion_start(bcd_conversion_start),
+        .conversion_complete(bcd_conversion_complete),
+        .ones(ones),
+        .tens(tens),
+        .hundreds(hundreds),
+        .thousands(thousands),
+        .ten_thousands(ten_thousands),
+        .hundred_thousands(hundred_thousands),
+        .millions(millions),
+        .tenth_million(tenth_million),
+        .hundred_millions(hundred_millions),
+        .billions(billions)
+    );
 
     always @(posedge clk_i) begin
         if (rst_i == 1'b1 || ext_rst_i == 1'b0) begin
-            general_purpose_reg_1 <= 32'h1f1f1f1f;
-            general_purpose_reg_2 <= 32'h1acacaca;
+            bcd_conversion_start <= 1'b0;
             cu_fsm_internal <= 5'd0;
             next_fsm_step <= 5'd0;
             addr_o_internal <= 32'd0;
@@ -79,7 +122,6 @@ module control_unit(
             one_hot <= 6'd0;
 			repetition <= 0;
             sel_o_internal <= 4'b0000;
-            bcd_data <= 32'd0;
             blinker_reg_2 <= 0;
             blinker_reg <= 0;
         end else begin
@@ -92,7 +134,7 @@ module control_unit(
 					dat_o_internal <= 32'h96feb5;
                     sel_o_internal <= 4'b1111;
                     one_hot <= 6'b000001;
-					cu_fsm_internal <= cu_fsm_internal + 2'd2;
+					cu_fsm_internal <= 5'd4;
 				end
                 //counter reset
                 5'd1 : begin
@@ -170,90 +212,104 @@ module control_unit(
                         repetition <= repetition + 1'b1;
                     end
                 end
-                //fill the TX buffer : part 1
+                //convert to BCD, poll until done
                 5'd6 : begin
+                    one_hot <= 6'b001111;
+					we_o_internal <= 0;
+                    stb_o_internal <= 0;
+                    addr_o_internal <= 32'h0;
+                    dat_o_internal <= 32'd0;
+                    bcd_conversion_start <= 1'b1;
+                    if (bcd_conversion_complete == 1'b1) cu_fsm_internal <= cu_fsm_internal + 5'd1;
+                    else begin 
+                        cu_fsm_internal <= cu_fsm_internal;
+                        bcd_conversion_start <= 1'b0;
+                    end
+                end
+                //fill the TX buffer : part 1
+                5'd7 : begin
                     one_hot <= 6'b011000;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_1;
+                    dat_o_internal <= ones + 8'h30;
                     sel_o_internal <= 4'b0001;
-                    cu_fsm_internal <= 5'd14;
-                    next_fsm_step <= 5'd7;
+                    cu_fsm_internal <= 5'd15;
+                    next_fsm_step <= 5'd8;
                 end
                 //fill the TX buffer : part 2
-                5'd7 : begin
+                5'd8 : begin
                     one_hot <= 6'b001100;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_1;
+                    dat_o_internal <= tens + 8'h30;
                     sel_o_internal <= 4'b0010;
-                    cu_fsm_internal <= 5'd14;
-                    next_fsm_step <= 5'd18;
-                end
-                //fill TX buffer : part 3
-                5'd8 : begin
-					we_o_internal <= 1;
-                    stb_o_internal <= 1;
-                    addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_1;
-                    sel_o_internal <= 4'b0100;
-                    cu_fsm_internal <= 5'd14;
+                    cu_fsm_internal <= 5'd15;
                     next_fsm_step <= 5'd9;
                 end
-                //fill TX buffer : part 4
+                //fill TX buffer : part 3
                 5'd9 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_1;
-                    sel_o_internal <= 4'b1000;
-                    cu_fsm_internal <= 5'd14;
+                    dat_o_internal <= hundreds + 8'h30;
+                    sel_o_internal <= 4'b0100;
+                    cu_fsm_internal <= 5'd15;
                     next_fsm_step <= 5'd10;
                 end
-                //fill the TX buffer : part 1
+                //fill TX buffer : part 4
                 5'd10 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_2;
-                    sel_o_internal <= 4'b0001;
-                    cu_fsm_internal <= 5'd14;
+                    dat_o_internal <= thousands + 8'h30;
+                    sel_o_internal <= 4'b1000;
+                    cu_fsm_internal <= 5'd15;
                     next_fsm_step <= 5'd11;
                 end
-                //fill the TX buffer : part 2
+                //fill the TX buffer : part 1
                 5'd11 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_2;
-                    sel_o_internal <= 4'b0010;
-                    cu_fsm_internal <= 5'd14;
+                    dat_o_internal <= ten_thousands + 8'h30;
+                    sel_o_internal <= 4'b0001;
+                    cu_fsm_internal <= 5'd15;
                     next_fsm_step <= 5'd12;
                 end
-                //fill TX buffer : part 3
+                //fill the TX buffer : part 2
                 5'd12 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_2;
-                    sel_o_internal <= 4'b0100;
-                    cu_fsm_internal <= 5'd14;
+                    dat_o_internal <= hundred_thousands + 8'h30;
+                    sel_o_internal <= 4'b0010;
+                    cu_fsm_internal <= 5'd15;
                     next_fsm_step <= 5'd13;
                 end
-                //fill TX buffer : part 4
+                //fill TX buffer : part 3
                 5'd13 : begin
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h7;
-                    dat_o_internal <= general_purpose_reg_2;
+                    dat_o_internal <= millions + 8'h30;
+                    sel_o_internal <= 4'b0100;
+                    cu_fsm_internal <= 5'd15;
+                    next_fsm_step <= 5'd14;
+                end
+                //fill TX buffer : part 4
+                5'd14 : begin
+					we_o_internal <= 1;
+                    stb_o_internal <= 1;
+                    addr_o_internal <= 32'h7;
+                    dat_o_internal <= tenth_million + 8'h30;
                     sel_o_internal <= 4'b1000;
-                    cu_fsm_internal <= 5'd14;
-                    next_fsm_step <= 5'd18;
+                    cu_fsm_internal <= 5'd15;
+                    next_fsm_step <= 5'd4;
                 end
                 //start UART TX sending
-                5'd14 : begin
+                5'd15 : begin
                     one_hot <= 6'b111000;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
@@ -261,41 +317,42 @@ module control_unit(
                     dat_o_internal <= 32'h80;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
-                //poll TX ready
-                5'd15 : begin
+                //poll TX frame sent complete
+                5'd16 : begin
                     one_hot <= 6'b011100;
 					we_o_internal <= 0;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h5;
                     dat_o_internal <= 32'd0;
-                    if (dat_i[4] == 0) cu_fsm_internal <= cu_fsm_internal + 5'd1;
+                    if (dat_i[5] == 0) cu_fsm_internal <= cu_fsm_internal + 5'd1;
                     else cu_fsm_internal <= cu_fsm_internal;
                 end
                 //poll TX ready
-                5'd16 : begin
+                5'd17 : begin
 					we_o_internal <= 0;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h5;
                     dat_o_internal <= 32'd0;
-                    if (dat_i[4] == 1) cu_fsm_internal <= next_fsm_step;//cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    if (dat_i[4] == 1) cu_fsm_internal <= cu_fsm_internal + 1'b1;
                     else cu_fsm_internal <= cu_fsm_internal;
                 end
                 //clear UART flag
-                5'd17 : begin
+                5'd18 : begin
                     one_hot <= 6'b001110;
 					we_o_internal <= 1;
                     stb_o_internal <= 1;
                     addr_o_internal <= 32'h5;
                     dat_o_internal <= 32'd0;
-                    cu_fsm_internal <= next_fsm_step;
-                    //cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    //cu_fsm_internal <= next_fsm_step;
+                    cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
                 //delay for 1 second
-                5'd18 : begin
+                5'd19 : begin
 					one_hot <= 6'b100000;
+                    bcd_conversion_start <= 1'b0;
                     if (counter_timer_internal[31] == 1'b1) begin 
-                        cu_fsm_internal <= 5'd4;
-                        //cu_fsm_internal <= next_fsm_step;
+                        //cu_fsm_internal <= 5'd4;
+                        cu_fsm_internal <= next_fsm_step;
                         counter_timer_internal <= 0;
 						we_o_internal <= 0;
                         sel_o_internal <= 0;
@@ -304,7 +361,7 @@ module control_unit(
 						dat_o_internal <= 32'h0;
                         blinker_reg <= ~blinker_reg;
                     end else begin 
-                        counter_timer_internal <= counter_timer_internal + 32'h56;
+                        counter_timer_internal <= counter_timer_internal + 32'h35b;
                         cu_fsm_internal <= cu_fsm_internal;
                         we_o_internal <= 0;
                         sel_o_internal <= 0;
@@ -335,6 +392,6 @@ module control_unit(
     //assign status_led = dat_o[7:0];
     assign blinker = blinker_reg;
     assign blinker_2 = blinker_reg_2;
-	 assign phase_begin = general_purpose_reg_2[4:0];
-	 assign phase_end = general_purpose_reg_2[9:5];
+	assign phase_begin = general_purpose_reg_2[4:0];
+	assign phase_end = general_purpose_reg_2[9:5];
 endmodule

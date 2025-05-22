@@ -28,8 +28,6 @@ module top_level(input rst_ext,
 
 				//for debugging purposes only
 				input switch_1,
-            	output [9:0] led_port,
-				output [5:0] status_led,
 				output [2:0] counter_flags_led,
 				output [3:0] tx_fsm_led,
 				output blinker,
@@ -72,8 +70,6 @@ module top_level(input rst_ext,
 		.ack_i(ack_o), 
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
-    	.out_led(led_port),
-		.status_led(status_led),
 		.blinker(blinker),
 		.blinker_2(blinker_2),
 		.phase_begin(phase_begin_led),
@@ -138,7 +134,7 @@ module top_level(input rst_ext,
     .ack_o(counter_ack_o),
     .tagn_i(tagn_i),
     .tagn_o(tagn_o),
-	 .signal_input(ref_measure_signal_internal),
+	.signal_input(ref_measure_signal_internal),
     //.signal_input(measure_signal_i),                     //target signal input port
     .reference_clk_1(ref_measurement_clk_1),                  //coarse reference clock
     .reference_clk_2(ref_measurement_clk_2),                   //fine reference clock, must be slightly different than the coarse reference clock
@@ -149,7 +145,6 @@ module top_level(input rst_ext,
 	);
 
 	pll_module	pll_module_inst (
-	//.areset (~rst_ext),
 	.inclk0 (clk_i_ext),
 	.c0 (ref_measurement_clk_1),
 	.c1 (ref_measurement_clk_2),
@@ -158,7 +153,7 @@ module top_level(input rst_ext,
 	.c4 (ref_measurement_clk_5),
 	.locked (signal_lock_dummy)
 	);
-	
+
 	pll_sample_signal	pll_sample_inst (
 	.inclk0 (clk_i_ext),
 	.c0 (ref_measure_signal_internal),
