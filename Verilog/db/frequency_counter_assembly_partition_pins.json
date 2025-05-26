@@ -8,31 +8,43 @@
 					"strict" : false
 				},
 				{
-					"name" : "counter_flags_led[0]",
+					"name" : "led_port[0]",
 					"strict" : false
 				},
 				{
-					"name" : "counter_flags_led[1]",
+					"name" : "led_port[1]",
 					"strict" : false
 				},
 				{
-					"name" : "counter_flags_led[2]",
+					"name" : "led_port[2]",
 					"strict" : false
 				},
 				{
-					"name" : "tx_fsm_led[0]",
+					"name" : "led_port[3]",
 					"strict" : false
 				},
 				{
-					"name" : "tx_fsm_led[1]",
+					"name" : "led_port[4]",
 					"strict" : false
 				},
 				{
-					"name" : "tx_fsm_led[2]",
+					"name" : "led_port[5]",
 					"strict" : false
 				},
 				{
-					"name" : "tx_fsm_led[3]",
+					"name" : "led_port[6]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[7]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[8]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[9]",
 					"strict" : false
 				},
 				{
@@ -44,11 +56,71 @@
 					"strict" : false
 				},
 				{
-					"name" : "rst_ext",
+					"name" : "blinker_3",
+					"strict" : false
+				},
+				{
+					"name" : "blinker_4",
+					"strict" : false
+				},
+				{
+					"name" : "phase_begin_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_begin_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_begin_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_begin_led[3]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_begin_led[4]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[1]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[2]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[3]",
+					"strict" : false
+				},
+				{
+					"name" : "phase_end_led[4]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[0]",
+					"strict" : false
+				},
+				{
+					"name" : "status_led[1]",
 					"strict" : false
 				},
 				{
 					"name" : "clk_i_ext",
+					"strict" : false
+				},
+				{
+					"name" : "rst_ext",
+					"strict" : false
+				},
+				{
+					"name" : "measure_signal_i",
 					"strict" : false
 				}
 			]

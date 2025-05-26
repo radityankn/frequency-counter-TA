@@ -76,7 +76,7 @@ module pll_module (
 				.clk (sub_wire0),
 				.locked (sub_wire6),
 				.activeclock (),
-	//			.areset (1'b0),
+				.areset (1'b0),
 				.clkbad (),
 				.clkena ({6{1'b1}}),
 				.clkloss (),
@@ -110,7 +110,7 @@ module pll_module (
 				.vcooverrange (),
 				.vcounderrange ());
 	defparam
-		altpll_component.bandwidth_type = "LOW",
+		altpll_component.bandwidth_type = "AUTO",
 		altpll_component.clk0_divide_by = 1,
 		altpll_component.clk0_duty_cycle = 20,
 		altpll_component.clk0_multiply_by = 2,
@@ -193,8 +193,8 @@ endmodule
 // Retrieval info: PRIVATE: BANDWIDTH_FEATURE_ENABLED STRING "1"
 // Retrieval info: PRIVATE: BANDWIDTH_FREQ_UNIT STRING "MHz"
 // Retrieval info: PRIVATE: BANDWIDTH_PRESET STRING "Low"
-// Retrieval info: PRIVATE: BANDWIDTH_USE_AUTO STRING "0"
-// Retrieval info: PRIVATE: BANDWIDTH_USE_PRESET STRING "1"
+// Retrieval info: PRIVATE: BANDWIDTH_USE_AUTO STRING "1"
+// Retrieval info: PRIVATE: BANDWIDTH_USE_PRESET STRING "0"
 // Retrieval info: PRIVATE: CLKBAD_SWITCHOVER_CHECK STRING "0"
 // Retrieval info: PRIVATE: CLKLOSS_CHECK STRING "0"
 // Retrieval info: PRIVATE: CLKSWITCH_CHECK STRING "0"
@@ -203,9 +203,9 @@ endmodule
 // Retrieval info: PRIVATE: CREATE_INCLK1_CHECK STRING "0"
 // Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c0"
 // Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "c0"
-// Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "Any"
+// Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "6"
 // Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "1"
-// Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "5"
+// Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: DIV_FACTOR2 NUMERIC "1"
 // Retrieval info: PRIVATE: DIV_FACTOR3 NUMERIC "1"
 // Retrieval info: PRIVATE: DIV_FACTOR4 NUMERIC "1"
@@ -239,8 +239,8 @@ endmodule
 // Retrieval info: PRIVATE: LVDS_MODE_DATA_RATE STRING "Not Available"
 // Retrieval info: PRIVATE: LVDS_MODE_DATA_RATE_DIRTY NUMERIC "0"
 // Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT0 STRING "deg"
-// Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT1 STRING "deg"
-// Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT2 STRING "deg"
+// Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT1 STRING "ps"
+// Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT2 STRING "ps"
 // Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT3 STRING "ps"
 // Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT4 STRING "ps"
 // Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
@@ -250,7 +250,7 @@ endmodule
 // Retrieval info: PRIVATE: MIRROR_CLK3 STRING "0"
 // Retrieval info: PRIVATE: MIRROR_CLK4 STRING "0"
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
-// Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "24"
+// Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR2 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR3 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR4 NUMERIC "1"
@@ -325,7 +325,7 @@ endmodule
 // Retrieval info: PRIVATE: USE_MIL_SPEED_GRADE NUMERIC "0"
 // Retrieval info: PRIVATE: ZERO_DELAY_RADIO STRING "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
-// Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "LOW"
+// Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
 // Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "1"
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "20"
 // Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "2"

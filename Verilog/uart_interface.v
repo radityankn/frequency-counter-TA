@@ -22,28 +22,21 @@ module uart_interface(
     input ext_rst_i,
     output uart_tx,
     input uart_rx,
-    output uart_led_tx,
-    output uart_led_rx,
     input rst_i,
     input clk_i,
     input [31:0] addr_i,
     input [31:0] dat_i,
-    output [31:0] dat_o,
+    output reg [31:0] dat_o,
     input we_i,
     input [3:0] sel_i,
     input cyc_i,
     input stb_i,
 	input lock_i,
-	output err_o,
-	output rty_o,
-    output ack_o,
+	output reg err_o,
+	output reg rty_o,
+    output reg ack_o,
     input tagn_i,
-    output tagn_o,
-    //below is for debugging purpose only
-    input tx_ready_inhibitor,
-    output [1:0] tx_flags,
-    output tx_start_flag,
-    output [3:0] tx_fsm
+    output reg tagn_o
     );
 
     //Below is functional register. That is, the one that we are going to access using the bus
@@ -56,7 +49,6 @@ module uart_interface(
     reg [31:0] uart_read_buffer_internal;
     reg bus_acknowledge;
     reg [7:0] uart_status_indicator;
-    reg debouncer;
 	
     //below is the buffer register used for interfacing between clock domains of the UART modules and top level
     reg uart_status_frame_sent_complete_buffer_1;
@@ -82,8 +74,7 @@ module uart_interface(
         .baud_rate_divider_constant(baud_rate_divider_constant),
         .tx_data_in(uart_buffer_tx),
         .tx_module_ready(uart_status_tx_ready),
-        .frame_sent_complete(uart_status_frame_sent_complete),
-        .tx_fsm_status(tx_fsm)
+        .frame_sent_complete(uart_status_frame_sent_complete)
     );
 
     //address for UART Registers : 
@@ -115,43 +106,43 @@ module uart_interface(
         else if (we_i == 1 && stb_i == 1) begin 
             if (addr_i == 32'h2) begin
                 uart_rx_ctrl_reg <= dat_i[7:0];
-                bus_acknowledge <= 1;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b10000010;
             end else if (addr_i == 32'h3) begin 
                 uart_tx_ctrl_reg <= dat_i[7:0];
-                bus_acknowledge <= 1;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b10000011;
             end else if (addr_i == 32'h4) begin 
                 baud_rate_divider_constant <= dat_i;
-                bus_acknowledge <= 1;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b10000100;
             end else if (addr_i == 32'h5) begin 
                 uart_status_reg <= dat_i[7:0];
-                bus_acknowledge <= 1;
+                ack_o <= 1;
             end else if (addr_i == 32'h6) begin 
                 uart_buffer_rx <= dat_i[7:0];
-                bus_acknowledge <= 1;
+                ack_o <= 1;
             end else if (addr_i == 32'h7) begin 
                 case (sel_i) 
                     4'b0001 : begin 
                         uart_buffer_tx <= dat_i[7:0];
-                        bus_acknowledge <= 1;
+                        ack_o <= 1;
                     end
                     4'b0010 : begin 
                         uart_buffer_tx <= dat_i[15:8];
-                        bus_acknowledge <= 1;
+                        ack_o <= 1;
                     end
                     4'b0100 : begin 
                         uart_buffer_tx <= dat_i[23:16];
-                        bus_acknowledge <= 1;
+                        ack_o <= 1;
                     end
                     4'b1000 : begin 
                         uart_buffer_tx <= dat_i[31:24];
-                        bus_acknowledge <= 1;
+                        ack_o <= 1;
                     end
                 endcase
             end else begin
-                bus_acknowledge <= 0;
+                ack_o <= 0;
                 //uart_status_indicator <= 8'b11111111;
             end
         end 
@@ -159,43 +150,43 @@ module uart_interface(
         //below is the code for reading the register
         else if (we_i == 0 && stb_i == 1) begin 
             if (addr_i == 32'h2) begin 
-                uart_read_buffer_internal[7:0] <= uart_rx_ctrl_reg;
-                uart_read_buffer_internal[31:8] <= 24'd0;
-                bus_acknowledge <= 1;
+                dat_o[7:0] <= uart_rx_ctrl_reg;
+                dat_o[31:8] <= 24'd0;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b00000010;
             end else if (addr_i == 32'h3) begin 
-                uart_read_buffer_internal[7:0] <= uart_tx_ctrl_reg;
-                bus_acknowledge <= 1;
-                uart_read_buffer_internal[31:8] <= 24'd0;
+                dat_o[7:0] <= uart_tx_ctrl_reg;
+                ack_o <= 1;
+                dat_o[31:8] <= 24'd0;
                 uart_status_indicator <= 8'b00000011;
             end else if (addr_i == 32'h4) begin 
-                uart_read_buffer_internal[15:0] <= baud_rate_divider_constant[15:0];
-                uart_read_buffer_internal[31:16] <= 16'd0; 
-                bus_acknowledge <= 1;
+                dat_o[15:0] <= baud_rate_divider_constant[15:0];
+                dat_o[31:16] <= 16'd0; 
+                ack_o <= 1;
                 uart_status_indicator <= 8'b00000100;
             end else if (addr_i == 32'h5) begin 
-                uart_read_buffer_internal[7:0] <= uart_status_reg;
-                uart_read_buffer_internal[31:8] <= 24'd0;
-                bus_acknowledge <= 1;
+                dat_o[7:0] <= uart_status_reg;
+                dat_o[31:8] <= 24'd0;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b00000101;
             end else if (addr_i == 32'h6) begin 
-                uart_read_buffer_internal[7:0] <= uart_buffer_rx;
-                uart_read_buffer_internal[31:8] <= 24'd0;
-                bus_acknowledge <= 1;
+                dat_o[7:0] <= uart_buffer_rx;
+                dat_o[31:8] <= 24'd0;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b00000110;
             end else if (addr_i == 32'h7) begin 
-                uart_read_buffer_internal[7:0] <= uart_buffer_tx[7:0];
-                uart_read_buffer_internal[31:8] <= 24'd0;
-                bus_acknowledge <= 1;
+                dat_o[7:0] <= uart_buffer_tx[7:0];
+                dat_o[31:8] <= 24'd0;
+                ack_o <= 1;
                 uart_status_indicator <= 8'b00000111;
             end else begin
-                uart_read_buffer_internal <= 32'd0;
-                bus_acknowledge <= 0;
+                dat_o <= 32'd0;
+                ack_o <= 0;
                 //uart_status_indicator <= 8'b10000001;
             end
         end else begin 
-            uart_read_buffer_internal <= 32'd0;
-            bus_acknowledge <= 0;
+            dat_o <= 32'd0;
+            ack_o <= 0;
         end
  
         if (uart_rx_ctrl_reg[3] == 1) begin
@@ -209,12 +200,14 @@ module uart_interface(
         if (uart_parity_error_flag == 1 && uart_status_reg[6] == 0) begin 
             uart_status_reg[6] <= 1;
         end 
-        if (uart_status_frame_sent_complete_buffer_2 == 1 && uart_status_reg[5] == 0) begin
+        if (uart_status_frame_sent_complete == 1 && uart_status_reg[5] == 0) begin
             uart_status_reg[5] <= 1'b1;
             uart_tx_ctrl_reg[7] <= 0;
         end
-
-        //buffering for UART TX module
+        
+        uart_status_reg[4] <= uart_status_tx_ready;
+        /*
+        buffering for UART TX module
         //buffering begins here
         uart_status_reg[4] <= uart_status_tx_ready_buffer_2;
         uart_status_tx_ready_buffer_2 <= uart_status_tx_ready_buffer_1;
@@ -223,29 +216,23 @@ module uart_interface(
         uart_status_frame_sent_complete_buffer_2 <= uart_status_frame_sent_complete_buffer_1;
         uart_status_frame_sent_complete_buffer_1 <= uart_status_frame_sent_complete;
         //buffering ends here
+        */
     end
-
-    assign dat_o[7:0] = uart_read_buffer_internal;
-    assign tx_flags[1] = uart_status_tx_ready;
-    assign tx_flags[0] = uart_status_frame_sent_complete;
-    assign tx_start_flag = uart_tx_ctrl_reg[7];
-    assign ack_o = bus_acknowledge;
 endmodule
 
 //the module below is for TX functionality. we try to standardize each module format so that it can be easily understandable. 
 //however, it is still possible for each module to have some peculiarity caused by their specific function. so non-conformant
 //module will be occasionaly seen
 
-module uart_tx_module(output tx_data_line,
+module uart_tx_module(  output reg tx_data_line,
                         input ext_rst_i,
                         input clk_i, 
                         input rst_i,
                         input [7:0] tx_ctrl_reg,
                         input [31:0] baud_rate_divider_constant, 
                         input [8:0] tx_data_in, 
-                        output tx_module_ready,
-                        output frame_sent_complete,
-                        output [3:0] tx_fsm_status
+                        output reg tx_module_ready,
+                        output reg frame_sent_complete
                         );
 
     //tx_ctrl_reg register control operation such as send start, parity bit odd/even, data bit numbers (8 or 9)
@@ -257,176 +244,166 @@ module uart_tx_module(output tx_data_line,
 	//reg [9:0] data_sent_internal;
     reg [31:0] baud_rate_counter_internal;
     reg [3:0] tx_fsm_internal;
-    reg tx_data_line_internal;
-    reg frame_sent_complete_internal;
-    reg tx_module_ready_internal;
 
-    wire clk_in_internal;
     wire tx_rst_i;
     wire parity_internal;
 
+    /*
     parity_detector parity_module(.data(tx_data_in), 
                                     .mode_bits(tx_ctrl_reg[4]),
                                     .mode_odd_even(tx_ctrl_reg[5]),
                                     .result(parity_internal)
     );
+    */
 
-	always @(posedge clk_in_internal) begin 
+	always @(posedge clk_i) begin 
         if (rst_i == 1 || tx_rst_i == 1 || ext_rst_i == 0) baud_rate_counter_internal = 32'd0;
+        else if (baud_rate_counter_internal[31] == 1'b1) baud_rate_counter_internal = 32'd0;
         else baud_rate_counter_internal = baud_rate_counter_internal + baud_rate_divider_constant;
-    end
-	
-	always @(posedge baud_rate_counter_internal[31]) begin 
-        if (tx_ctrl_reg[7] == 1) begin
-            if (tx_ctrl_reg[4] == 1) begin
-                case (tx_fsm_internal)
-                    //start bit
-                    4'b0000: begin
-                        tx_module_ready_internal <= 0;
-                        frame_sent_complete_internal <= 0;
-                        tx_data_line_internal <= 0; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    //data bits 1-9
-                    4'b0001 : begin
-                        tx_data_line_internal <= tx_data_in[0]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0010 : begin
-                        tx_data_line_internal <= tx_data_in[1]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0011 : begin
-                        tx_data_line_internal <= tx_data_in[2]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0100 : begin
-                        tx_data_line_internal <= tx_data_in[3]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0101 : begin
-                        tx_data_line_internal <= tx_data_in[4]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0110 : begin
-                        tx_data_line_internal <= tx_data_in[5]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0111 : begin
-                        tx_data_line_internal <= tx_data_in[6]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b1000 : begin
-                        tx_data_line_internal <= tx_data_in[7]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b1001 : begin
-                        tx_data_line_internal <= tx_data_in[8]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b1010 : begin
-                        case (tx_ctrl_reg[6])
-                            1'b1 : begin
-                                tx_data_line_internal <= parity_internal; 
-                                tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                            end
-                            1'b0 : begin
-                                tx_data_line_internal <= 1; 
-                                frame_sent_complete_internal <= 1;
-                                tx_fsm_internal <= 4'b0000;
-                            end
-                        endcase
-                    end
-                    4'b1011 : begin
-                        tx_data_line_internal <= 1; 
-                        frame_sent_complete_internal <= 1;
-                        tx_fsm_internal <= 4'b0000;
-                    end
-                endcase
-            //if it is a 8 bit data frame, then do below : 
-            end else if (tx_ctrl_reg[4] == 0) begin
-                case (tx_fsm_internal)
-                    //start bit
-                    4'b0000: begin
-                        tx_module_ready_internal <= 0;
-                        frame_sent_complete_internal <= 0;
-                        tx_data_line_internal <= 0; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    //data bits 1-8
-                    4'b0001 : begin
-                        tx_data_line_internal <= tx_data_in[0]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0010 : begin
-                        tx_data_line_internal <= tx_data_in[1]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0011 : begin
-                        tx_data_line_internal <= tx_data_in[2]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0100 : begin
-                        tx_data_line_internal <= tx_data_in[3]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0101 : begin
-                        tx_data_line_internal <= tx_data_in[4]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0110 : begin
-                        tx_data_line_internal <= tx_data_in[5]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b0111 : begin
-                        tx_data_line_internal <= tx_data_in[6]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b1000 : begin
-                        tx_data_line_internal <= tx_data_in[7]; 
-                        tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                    end
-                    4'b1001 : begin
-                        case (tx_ctrl_reg[6])
-                            1'b1 : begin
-                                tx_data_line_internal <= parity_internal; 
-                                tx_fsm_internal <= tx_fsm_internal + 1'b1;
-                            end
-                            1'b0 : begin
-                                tx_data_line_internal <= 1; 
-                                frame_sent_complete_internal <= 1;
-                                tx_fsm_internal <= 4'b0000;
-                            end
-                        endcase
-                    end
-                    4'b1010 : begin
-                        tx_data_line_internal <= 1; 
-                        frame_sent_complete_internal <= 1;
-                        tx_fsm_internal <= 4'b0000;
-                    end
-                endcase
+    
+        if (baud_rate_counter_internal[31] == 1'b1) begin 
+            if (tx_ctrl_reg[7] == 1) begin 
+                if (tx_ctrl_reg[4] == 1) begin
+                    case (tx_fsm_internal)
+                        //start bit
+                        4'b0000: begin
+                            tx_module_ready <= 0;
+                            frame_sent_complete <= 0;
+                            tx_data_line <= 0; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        //data bits 1-9
+                        4'b0001 : begin
+                            tx_data_line <= tx_data_in[0]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0010 : begin
+                            tx_data_line <= tx_data_in[1]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0011 : begin
+                            tx_data_line <= tx_data_in[2]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0100 : begin
+                            tx_data_line <= tx_data_in[3]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0101 : begin
+                            tx_data_line <= tx_data_in[4]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0110 : begin
+                            tx_data_line <= tx_data_in[5]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0111 : begin
+                            tx_data_line <= tx_data_in[6]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b1000 : begin
+                            tx_data_line <= tx_data_in[7]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b1001 : begin
+                            tx_data_line <= tx_data_in[8]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b1010 : begin
+                            case (tx_ctrl_reg[6])
+                                1'b1 : begin
+                                    tx_data_line <= ((((tx_data_in[7] ^ tx_data_in[6])^(tx_data_in[5] ^ tx_data_in[4]))^((tx_data_in[3] ^ tx_data_in[2])^(tx_data_in[1] ^ tx_data_in[0]))) ^ tx_data_in[8]) & tx_ctrl_reg[5]; 
+                                    tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                                end
+                                1'b0 : begin
+                                    tx_data_line <= 1; 
+                                    frame_sent_complete <= 1;
+                                    tx_fsm_internal <= 4'b0000;
+                                end
+                            endcase
+                        end
+                        4'b1011 : begin
+                            tx_data_line <= 1; 
+                            frame_sent_complete <= 1;
+                            tx_fsm_internal <= 4'b0000;
+                        end
+                    endcase
+                //if it is a 8 bit data frame, then do below : 
+                end else if (tx_ctrl_reg[4] == 0) begin
+                    case (tx_fsm_internal)
+                        //start bit
+                        4'b0000: begin
+                            tx_module_ready <= 0;
+                            frame_sent_complete <= 0;
+                            tx_data_line <= 0; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        //data bits 1-8
+                        4'b0001 : begin
+                            tx_data_line <= tx_data_in[0]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0010 : begin
+                            tx_data_line <= tx_data_in[1]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0011 : begin
+                            tx_data_line <= tx_data_in[2]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0100 : begin
+                            tx_data_line <= tx_data_in[3]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0101 : begin
+                            tx_data_line <= tx_data_in[4]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0110 : begin
+                            tx_data_line <= tx_data_in[5]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b0111 : begin
+                            tx_data_line <= tx_data_in[6]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b1000 : begin
+                            tx_data_line <= tx_data_in[7]; 
+                            tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                        end
+                        4'b1001 : begin
+                            case (tx_ctrl_reg[6])
+                                1'b1 : begin
+                                    tx_data_line <= (((tx_data_in[7] ^ tx_data_in[6])^(tx_data_in[5] ^ tx_data_in[4]))^((tx_data_in[3] ^ tx_data_in[2])^(tx_data_in[1] ^ tx_data_in[0]))) & tx_ctrl_reg[5]; 
+                                    tx_fsm_internal <= tx_fsm_internal + 1'b1;
+                                end
+                                1'b0 : begin
+                                    tx_data_line <= 1; 
+                                    frame_sent_complete <= 1;
+                                    tx_fsm_internal <= 4'b0000;
+                                end
+                            endcase
+                        end
+                        4'b1010 : begin
+                            tx_data_line <= 1; 
+                            frame_sent_complete <= 1;
+                            tx_fsm_internal <= 4'b0000;
+                        end
+                    endcase
+                end
+            end else if (tx_ctrl_reg[7] == 0) begin
+                tx_fsm_internal <= 4'b0000;
+                tx_module_ready <= 1;
+                frame_sent_complete <= 0;
+                tx_data_line <= 1;
             end
-        end /* else if (tx_rst_i || rst_i || ext_rst_i == 0) begin
-            tx_fsm_internal <= 4'b0000;
-            tx_module_ready_internal <= 0;
-            frame_sent_complete_internal <= 0;
-            tx_data_line_internal <= 1;
-        end */ else if (tx_ctrl_reg[7] == 0) begin
-            tx_fsm_internal <= 4'b0000;
-            tx_module_ready_internal <= 1;
-            frame_sent_complete_internal <= 0;
-            tx_data_line_internal <= 1;
         end
 	end
 
-    assign tx_fsm_status = tx_fsm_internal;
-    assign tx_module_ready = tx_module_ready_internal;
-    assign frame_sent_complete = frame_sent_complete_internal;
-    assign tx_data_line = tx_data_line_internal;
-    assign clk_in_internal = clk_i; //& tx_ctrl_reg[7];
     assign tx_rst_i = tx_ctrl_reg[3];
 endmodule
 
+/*
 module parity_detector(input [8:0] data, 
                         input mode_bits,
                         input mode_odd_even,
@@ -444,10 +421,11 @@ module parity_detector(input [8:0] data,
     //mode_bits = 1 means it uses 9 bit mode, while 0 means 8 bit mode. mode_odd_even = 1 means it is
     //odd parity (1 if the number of 1s is odd) while 0 means even parity (1 when the number of 1s are even)
 
-    assign parity_8bit = (((data[7] ^ data[6])^(data[5] ^ data[4]))^((data[3] ^ data[2])^(data[1] ^ data[0])));
+    assign parity_8bit = (((data[7] ^ data[6])^(data[5] ^ data[4]))^((data[3] ^ data[2])^(data[1] ^ data[0]))) ^ data[8];
     assign parity_9bit = parity_8bit ^ data[8];
     assign result = ((parity_9bit & mode_bits) | (parity_8bit & ~mode_bits)) & mode_odd_even; 
 endmodule
+*/
 
 //PR : 
 //- implementation of 9 bit UART (address/data bit activation is not yet known)

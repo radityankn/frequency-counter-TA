@@ -27,13 +27,16 @@ module top_level(input rst_ext,
             	output uart_tx_ext,
 
 				//for debugging purposes only
-				input switch_1,
-				output [2:0] counter_flags_led,
-				output [3:0] tx_fsm_led,
+				output [9:0] led_port,
 				output blinker,
 				output blinker_2,
+				output blinker_3,
+				output reg blinker_4,
 				output [4:0] phase_begin_led,
-				output [4:0] phase_end_led
+				output [4:0] phase_end_led,
+				//output pll_1_locked,
+				//output pll_2_locked,
+				output [1:0] status_led
 );
 
    // WB interconnect definition
@@ -70,6 +73,7 @@ module top_level(input rst_ext,
 		.ack_i(ack_o), 
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
+		.out_led(led_port),
 		.blinker(blinker),
 		.blinker_2(blinker_2),
 		.phase_begin(phase_begin_led),
@@ -99,23 +103,18 @@ module top_level(input rst_ext,
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o), 
 		.uart_rx(uart_rx_ext),
-		.uart_tx(uart_tx_ext),
-		.tx_ready_inhibitor(switch_1),
-		.tx_flags(counter_flags_led[1:0]),
-		.tx_start_flag(counter_flags_led[2]),
-		.tx_fsm(tx_fsm_led)
+		.uart_tx(uart_tx_ext)
 	);
 
 	wire [31:0] counter_dat_o;
 	wire counter_ack_o;
 	wire counter_rty_o;
 	wire counter_err_o;
-	wire ref_measurement_clk_1;
-	wire ref_measurement_clk_2;
-	wire ref_measurement_clk_3;
-	wire ref_measurement_clk_4;
-	wire ref_measurement_clk_5;
+	wire [3:0] ref_measurement_clk_interpolate;
+	wire ref_measurement_clk_main;
 	wire ref_measure_signal_internal;
+	wire ref_measurement_clk_main_after_divided;
+	wire ref_measure_signal_internal_after_divided;
 
 	frequency_counter counter_module(
 	.ext_rst_i(rst_ext),
@@ -134,31 +133,54 @@ module top_level(input rst_ext,
     .ack_o(counter_ack_o),
     .tagn_i(tagn_i),
     .tagn_o(tagn_o),
-	.signal_input(ref_measure_signal_internal),
-    //.signal_input(measure_signal_i),                     //target signal input port
-    .reference_clk_1(ref_measurement_clk_1),                  //coarse reference clock
-    .reference_clk_2(ref_measurement_clk_2),                   //fine reference clock, must be slightly different than the coarse reference clock
-	.reference_clk_3(ref_measurement_clk_3), 
-	.reference_clk_4(ref_measurement_clk_4), 
-	.reference_clk_5(ref_measurement_clk_5), 
-	.counter_flags(counter_flags_led_dummy)
+	 //.signal_input(ref_measure_signal_internal),
+    .signal_input(measure_signal_i),                     //target signal input port
+    .reference_clk_interpolate(ref_measurement_clk_interpolate),                  //coarse reference clock
+	.reference_clk_main(ref_measurement_clk_main),
+	.blinker_3(blinker_3),
+	//.register_window(led_port),
+	.status(status_led)
 	);
 
-	pll_module	pll_module_inst (
+	pll_module ref_pll_module (
 	.inclk0 (clk_i_ext),
-	.c0 (ref_measurement_clk_1),
-	.c1 (ref_measurement_clk_2),
-	.c2 (ref_measurement_clk_3),
-	.c3 (ref_measurement_clk_4),
-	.c4 (ref_measurement_clk_5),
-	.locked (signal_lock_dummy)
+	.c0 (ref_measurement_clk_main),
+	.c1 (ref_measurement_clk_interpolate[3]),
+	.c2 (ref_measurement_clk_interpolate[2]),
+	.c3 (ref_measurement_clk_interpolate[1]),
+	.c4 (ref_measurement_clk_interpolate[0]),
+	.locked (pll_1_locked_dummy)
 	);
 
-	pll_sample_signal	pll_sample_inst (
+	pll_sample_signal sample_pll_module (
 	.inclk0 (clk_i_ext),
 	.c0 (ref_measure_signal_internal),
-	.locked (signal_lock)
+	.locked (pll_2_locked_dummy)
 	);
+	
+	reg [31:0] counter_pll_2;
+	reg [31:0] counter_pll_divider_1;
+	reg [31:0] counter_pll_divider_2;
+	
+	always @(posedge ref_measure_signal_internal) begin
+		if (counter_pll_2[31] == 1'b1) begin
+			blinker_4 <= ~blinker_4;
+			counter_pll_2 <= 32'd0;
+		end else begin
+			counter_pll_2 <= counter_pll_2 + 32'h1ad;
+		end
+	end
+	
+	always @(posedge ref_measure_signal_internal) begin
+		counter_pll_divider_2 <= counter_pll_divider_2 + 32'h1ad;
+	end
+	assign ref_measure_signal_internal_after_divided = counter_pll_divider_2[31];
+
+	always @(posedge ref_measurement_clk_main) begin
+		counter_pll_divider_1 <= counter_pll_divider_1 + 32'h1ad;
+	end
+	assign ref_measurement_clk_main_after_divided = counter_pll_divider_1[31];
+
 	
 	//assign measure_signal_i = ref_measure_signal_i;
 	//assign measure_signal_debug = ref_measurement_clk_1;

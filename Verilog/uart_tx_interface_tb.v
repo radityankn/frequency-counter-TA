@@ -64,8 +64,7 @@ module freq_count_tb;
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o), 
 		.uart_rx(uart_rx),
-		.uart_tx(uart_tx),
-		.tx_ready_inhibitor(inhibitor)
+		.uart_tx(uart_tx)
 	);
 		
 	initial begin

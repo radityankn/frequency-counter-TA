@@ -64,8 +64,8 @@ module freq_count_tb;
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o), 
 		.signal_input(signal_input),
-		.reference_clk_1(reference_clk_1),
-		.reference_clk_2(reference_clk_2)
+		.reference_clk_main(reference_clk_1),
+		.reference_clk_interpolate(reference_clk_2)
 	);
 		
 	initial begin
@@ -86,15 +86,19 @@ module freq_count_tb;
 		signal_input = 0;
 		reference_clk_1 = 0;
 		reference_clk_2 = 0;
+		//global reset
 		#100 rst_i = 0;
+		//reset the counter
 		#85 we_i = 1;
 		stb_i = 1;
 		addr_i = 32'h8;
 		dat_i = 8'b00000001;
+		//waiting until reset is deasserted
 		#10 we_i = 0;
 		stb_i = 0;
 		addr_i = 8'b0000000;
 		dat_i = 8'b00000000;
+		//start measurement
 		#10 we_i = 1;
 		stb_i = 1;
 		addr_i = 32'h8;
@@ -103,10 +107,12 @@ module freq_count_tb;
 		stb_i = 0;
 		addr_i = 32'd0;
 		dat_i = 8'b00000000;
-		#800 we_i = 0;
+		//read the result
+		#900 we_i = 0;
 		stb_i = 1;
 		addr_i = 32'd9;
 		dat_i = 32'd0;
+		//reset the counter (again)
 		#10 we_i = 1;
 		stb_i = 1;
 		addr_i = 32'h8;
@@ -115,6 +121,7 @@ module freq_count_tb;
 		stb_i = 0;
 		addr_i = 8'b0000000;
 		dat_i = 8'b00000000;
+		//start measurement (again)
 		#10 we_i = 1;
 		stb_i = 1;
 		addr_i = 32'h8;
@@ -123,7 +130,7 @@ module freq_count_tb;
 		stb_i = 0;
 		addr_i = 32'd0;
 		dat_i = 8'b00000000;
-		#850 we_i = 0;
+		#900 we_i = 0;
 		stb_i = 1;
 		addr_i = 32'd9;
 		dat_i = 32'd0;

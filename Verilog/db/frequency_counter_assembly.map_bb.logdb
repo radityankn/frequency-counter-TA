@@ -1,1 +1,3 @@
 v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,control_unit:control_module|lpm_mult:Mult0|mult_5qs:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,control_unit:control_module|lpm_mult:Mult0|mult_5qs:auto_generated|mac_out2,
