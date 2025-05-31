@@ -22,7 +22,6 @@
 module top_level(input rst_ext,
             	input clk_i_ext,
 				input measure_signal_i,
-				output measure_signal_debug,
             	input uart_rx_ext,
             	output uart_tx_ext,
 
@@ -32,11 +31,8 @@ module top_level(input rst_ext,
 				output blinker_2,
 				output blinker_3,
 				output reg blinker_4,
-				output [4:0] phase_begin_led,
-				output [4:0] phase_end_led,
-				//output pll_1_locked,
-				//output pll_2_locked,
 				output [1:0] status_led
+				//output [4:0] phase_shift_pin
 );
 
    // WB interconnect definition
@@ -73,11 +69,8 @@ module top_level(input rst_ext,
 		.ack_i(ack_o), 
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
-		.out_led(led_port),
 		.blinker(blinker),
-		.blinker_2(blinker_2),
-		.phase_begin(phase_begin_led),
-		.phase_end(phase_end_led)
+		.blinker_2(blinker_2)
     );
 	
 	wire [31:0] uart_dat_o;
@@ -110,7 +103,7 @@ module top_level(input rst_ext,
 	wire counter_ack_o;
 	wire counter_rty_o;
 	wire counter_err_o;
-	wire [3:0] ref_measurement_clk_interpolate;
+	wire ref_measurement_clk_interpolate;
 	wire ref_measurement_clk_main;
 	wire ref_measure_signal_internal;
 	wire ref_measurement_clk_main_after_divided;
@@ -138,49 +131,73 @@ module top_level(input rst_ext,
     .reference_clk_interpolate(ref_measurement_clk_interpolate),                  //coarse reference clock
 	.reference_clk_main(ref_measurement_clk_main),
 	.blinker_3(blinker_3),
-	//.register_window(led_port),
+	.register_window(led_port),
 	.status(status_led)
 	);
 
 	pll_module ref_pll_module (
 	.inclk0 (clk_i_ext),
 	.c0 (ref_measurement_clk_main),
-	.c1 (ref_measurement_clk_interpolate[3]),
-	.c2 (ref_measurement_clk_interpolate[2]),
-	.c3 (ref_measurement_clk_interpolate[1]),
-	.c4 (ref_measurement_clk_interpolate[0]),
+	.c1 (ref_measurement_clk_interpolate),
 	.locked (pll_1_locked_dummy)
 	);
-
+	
+	/*
 	pll_sample_signal sample_pll_module (
 	.inclk0 (clk_i_ext),
 	.c0 (ref_measure_signal_internal),
 	.locked (pll_2_locked_dummy)
 	);
+	*/
 	
-	reg [31:0] counter_pll_2;
 	reg [31:0] counter_pll_divider_1;
-	reg [31:0] counter_pll_divider_2;
-	
-	always @(posedge ref_measure_signal_internal) begin
-		if (counter_pll_2[31] == 1'b1) begin
-			blinker_4 <= ~blinker_4;
-			counter_pll_2 <= 32'd0;
-		end else begin
-			counter_pll_2 <= counter_pll_2 + 32'h1ad;
-		end
-	end
-	
-	always @(posedge ref_measure_signal_internal) begin
-		counter_pll_divider_2 <= counter_pll_divider_2 + 32'h1ad;
-	end
-	assign ref_measure_signal_internal_after_divided = counter_pll_divider_2[31];
+	/*
+	reg [6:0] freq_divider_interpolate_1;
+	reg [6:0] freq_divider_interpolate_2;
+	reg [6:0] freq_divider_interpolate_3;
+	reg [6:0] freq_divider_interpolate_4;
+	reg [6:0] freq_divider_interpolate_5;
+	*/
 
 	always @(posedge ref_measurement_clk_main) begin
 		counter_pll_divider_1 <= counter_pll_divider_1 + 32'h1ad;
 	end
 	assign ref_measurement_clk_main_after_divided = counter_pll_divider_1[31];
-
+	
+	
+	/*
+	always @(posedge ref_measurement_clk_main) begin
+		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_5 <= 7'd0;
+		else freq_divider_interpolate_5 <= freq_divider_interpolate_5 + 1'b1; 
+	end
+	*/
+	//assign phase_shift_pin[4] = ref_measurement_clk_main;
+	
+	/*
+	always @(posedge ref_measurement_clk_interpolate) begin
+		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_4 <= 7'd0;
+		else freq_divider_interpolate_4 <= freq_divider_interpolate_4 + 1'b1; 
+	end
+	assign phase_shift_pin[3] = ref_measurement_clk_interpolate[3];
+	
+	always @(posedge ref_measurement_clk_interpolate[2]) begin
+		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_3 <= 7'd0;
+		else freq_divider_interpolate_3 <= freq_divider_interpolate_3 + 1'b1; 
+	end
+	assign phase_shift_pin[2] = ref_measurement_clk_interpolate[2];
+	
+	always @(posedge ref_measurement_clk_interpolate[1]) begin
+		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_2 <= 7'd0;
+		else freq_divider_interpolate_2 <= freq_divider_interpolate_2 + 1'b1; 
+	end
+	assign phase_shift_pin[1] = ref_measurement_clk_interpolate[1];
+	
+	always @(posedge ref_measurement_clk_interpolate[0]) begin
+		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_1 <= 7'd0;
+		else freq_divider_interpolate_1 <= freq_divider_interpolate_1 + 1'b1; 
+	end
+	assign phase_shift_pin[0] = ref_measurement_clk_interpolate[0];
+	*/
 	
 	//assign measure_signal_i = ref_measure_signal_i;
 	//assign measure_signal_debug = ref_measurement_clk_1;

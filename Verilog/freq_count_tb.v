@@ -108,12 +108,12 @@ module freq_count_tb;
 		addr_i = 32'd0;
 		dat_i = 8'b00000000;
 		//read the result
-		#900 we_i = 0;
+		#1200 we_i = 0;
 		stb_i = 1;
 		addr_i = 32'd9;
 		dat_i = 32'd0;
 		//reset the counter (again)
-		#10 we_i = 1;
+		#100 we_i = 1;
 		stb_i = 1;
 		addr_i = 32'h8;
 		dat_i = 8'b00000001;
@@ -130,7 +130,7 @@ module freq_count_tb;
 		stb_i = 0;
 		addr_i = 32'd0;
 		dat_i = 8'b00000000;
-		#900 we_i = 0;
+		#1200 we_i = 0;
 		stb_i = 1;
 		addr_i = 32'd9;
 		dat_i = 32'd0;

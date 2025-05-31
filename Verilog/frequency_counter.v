@@ -32,7 +32,7 @@ module frequency_counter(
     input tagn_i,
     input signal_input,                     //target signal input port
     input reference_clk_main,                  //reference clock, 100MHz, with different phase shift
-    input [3:0] reference_clk_interpolate,
+    input reference_clk_interpolate,
     output reg [31:0] dat_o,
     output reg err_o,
     output reg rty_o,
@@ -67,7 +67,7 @@ module frequency_counter(
     //for synchronization between clock domains
 
     always @(posedge clk_i) begin
-        measurement_end_buffer_1 measurement_end;
+        measurement_end_buffer_1 <= measurement_end;
         measurement_end_buffer_2 <= measurement_end_buffer_1;
         counter_ready_buffer_1 <= counter_ready;
         counter_ready_buffer_2 <= counter_ready_buffer_1;
@@ -107,34 +107,11 @@ module frequency_counter(
             end
         end
     
-        if (measurement_end_buffer_2 == 1) begin 
+        if (measurement_end_buffer_2 == 1 & counter_control_reg[6] == 0) begin 
             counter_control_reg[6] <= 1;
             counter_control_reg[7] <= 0;
             measurement_count_reg <= measurement_count_internal;
-            case (phase_count_intermediate[4:0]) 
-                5'b10000 : phase_count_reg[4:0] <= 0;
-                5'b11000 : phase_count_reg[4:0] <= 1;
-                5'b11100 : phase_count_reg[4:0] <= 2;
-                5'b11110 : phase_count_reg[4:0] <= 3;
-                5'b11111 : phase_count_reg[4:0] <= 4;
-                5'b01111 : phase_count_reg[4:0] <= 0;
-                5'b00111 : phase_count_reg[4:0] <= 1;
-                5'b00011 : phase_count_reg[4:0] <= 2;
-                5'b00001 : phase_count_reg[4:0] <= 3;
-                5'b00000 : phase_count_reg[4:0] <= 4;
-            endcase
-            case (phase_count_intermediate[9:5]) 
-                5'b10000 : phase_count_reg[9:5] <= 0;
-                5'b11000 : phase_count_reg[9:5] <= 1;
-                5'b11100 : phase_count_reg[9:5] <= 2;
-                5'b11110 : phase_count_reg[9:5] <= 3;
-                5'b11111 : phase_count_reg[9:5] <= 4;
-                5'b01111 : phase_count_reg[9:5] <= 0;
-                5'b00111 : phase_count_reg[9:5] <= 1;
-                5'b00011 : phase_count_reg[9:5] <= 2;
-                5'b00001 : phase_count_reg[9:5] <= 3;
-                5'b00000 : phase_count_reg[9:5] <= 4;
-            endcase
+            phase_count_reg <= phase_count_intermediate;
         end else if (counter_control_reg[0] == 1) counter_control_reg <= 8'd0;
 
         counter_control_reg[5] <= counter_ready_buffer_2;
@@ -146,8 +123,8 @@ module frequency_counter(
     */
 
     reg [31:0] measurement_count_internal;       //front-end measurement counter register, where counting happens and data stored before being pushed to the bus-facing register
-    reg [4:0] phase_count_internal;             //front-end measurement counter register, where counting happens and data stored before being pushed to the bus-facing register
-    reg [9:0] phase_count_intermediate;
+    reg [3:0] phase_count_internal;             //front-end measurement counter register, where counting happens and data stored before being pushed to the bus-facing register
+    reg [7:0] phase_count_intermediate;
     reg [15:0] measurement_state_machine;        //state machine to indicate whether input signal rising edge is present or not
     reg measurement_began;                       //state of the measurement state machine from the last clock cycle
     reg measurement_end;                     //register of whether a measurement has been done or not, useful when waiting for rising edge
@@ -204,7 +181,7 @@ module frequency_counter(
                     measurement_state_machine <= measurement_state_machine;
                 end
             end
-            16'd999 : begin
+            16'd1000 : begin
                 if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) begin 
                     measurement_state_machine <= 16'd0;
                 end else if (measurement_begin_buffer_2 == 1'b0) begin
@@ -229,47 +206,21 @@ module frequency_counter(
         //Interpolation register for the beginning of measurement, at rising edge of measurement_begin
         if (measurement_begin_buffer_2 == 1'b1 && interpolation_in_beginning_done == 1'b0) begin 
             interpolation_in_beginning_done <= 1'b1;
-            phase_count_intermediate[4] <= phase_count_internal[4];
-            phase_count_intermediate[3] <= phase_count_internal[3];
-            phase_count_intermediate[2] <= phase_count_internal[2];
-            phase_count_intermediate[1] <= phase_count_internal[1];
-            phase_count_intermediate[0] <= phase_count_internal[0];
+            phase_count_intermediate[3:0] <= phase_count_internal;
         end
 
         //interplation for end of measurement, at the end of measurement_state_machine
-        else if (measurement_state_machine == 16'd999 & interpolation_in_end_done == 1'b0) begin
+        else if (measurement_state_machine == 16'd1000 & interpolation_in_end_done == 1'b0) begin
             interpolation_in_end_done <= 1'b1;
-            phase_count_intermediate[9] <= phase_count_internal[4];
-            phase_count_intermediate[8] <= phase_count_internal[3];
-            phase_count_intermediate[7] <= phase_count_internal[2];
-            phase_count_intermediate[6] <= phase_count_internal[1];
-            phase_count_intermediate[5] <= phase_count_internal[0];
+            phase_count_intermediate[7:4] <= phase_count_internal;
         end
 
         else if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) begin 
-            phase_count_intermediate[9] <= 1'b0;
-            phase_count_intermediate[8] <= 1'b0;
-            phase_count_intermediate[7] <= 1'b0;
-            phase_count_intermediate[6] <= 1'b0;
-            phase_count_intermediate[5] <= 1'b0;
-            phase_count_intermediate[4] <= 1'b0;
-            phase_count_intermediate[3] <= 1'b0;
-            phase_count_intermediate[2] <= 1'b0;
-            phase_count_intermediate[1] <= 1'b0;
-            phase_count_intermediate[0] <= 1'b0;
+            phase_count_intermediate[7:0] <= 8'b0;
         end
 
         else begin
-            phase_count_intermediate[9] <= phase_count_intermediate[9];
-            phase_count_intermediate[8] <= phase_count_intermediate[8];
-            phase_count_intermediate[7] <= phase_count_intermediate[7];
-            phase_count_intermediate[6] <= phase_count_intermediate[6];
-            phase_count_intermediate[5] <= phase_count_intermediate[5];
-            phase_count_intermediate[4] <= phase_count_intermediate[4];
-            phase_count_intermediate[3] <= phase_count_intermediate[3];
-            phase_count_intermediate[2] <= phase_count_intermediate[2];
-            phase_count_intermediate[1] <= phase_count_intermediate[1];
-            phase_count_intermediate[0] <= phase_count_intermediate[0];
+            phase_count_intermediate[7:0] <= phase_count_intermediate[7:0];
         end 
         //if (counter_pll_1[31] == 1'b1) begin
 			blinker_3 <= ~blinker_3;
@@ -282,24 +233,24 @@ module frequency_counter(
     always @(posedge reference_clk_main) begin
         //push to bus-facing register if measurement is done
         if (rst_i == 1'b1 || counter_reset_internal == 1'b1) measurement_count_internal <= 32'd0;
-        else if (measurement_begin == 1'b1) begin 
+        else if (measurement_began == 1'b1) begin 
             status[1] <= 1'b1;
 		    if (measurement_end == 1'b1) begin
 				measurement_count_internal <= measurement_count_internal;
             end else measurement_count_internal <= measurement_count_internal + 1'b1;
-        end
-        else begin 
+        end else begin 
             measurement_count_internal <= 32'd0;
             status[1] <= 1'b0;
         end
     end
 
     //internal interpolation measurement begins here, using flip-flop that goes 1 and 0 like waves
-    always @(posedge reference_clk_main) begin
-        if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) phase_count_internal[4] <= 1'b0;
-        else phase_count_internal[4] <= ~phase_count_internal[4];
+    always @(posedge reference_clk_interpolate) begin
+        if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) phase_count_internal <= 4'b0;
+        else phase_count_internal <= phase_count_internal + 1'b1;
     end
 
+    /*
     always @(posedge reference_clk_interpolate[3]) begin
         if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) phase_count_internal[3] <= 1'b0;
         else phase_count_internal[3] <= ~phase_count_internal[3];
@@ -319,9 +270,10 @@ module frequency_counter(
         if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) phase_count_internal[0] <= 1'b0;
         else phase_count_internal[0] <= ~phase_count_internal[0];
     end
+    */
 
     assign counter_reset_internal = counter_control_reg[0]; 
-    assign register_window = measurement_count_internal[9:0];
+    assign register_window = phase_count_intermediate;
 endmodule  
 
 

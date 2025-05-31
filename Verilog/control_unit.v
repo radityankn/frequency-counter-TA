@@ -35,11 +35,8 @@ module control_unit(
     input ack_i,
     input tagn_i,
     output reg tagn_o,
-    output [9:0] out_led,
     output reg blinker,
-    output reg blinker_2,
-	output [4:0] phase_begin,
-	output [4:0] phase_end
+    output reg blinker_2
     );
 
     reg [4:0] cu_fsm_internal;
@@ -206,7 +203,7 @@ module control_unit(
                         repetition <= 1'b0;
                     end
                     else begin
-                        general_purpose_reg_2 <= dat_i;
+                        general_purpose_reg_4 <= dat_i;
                         cu_fsm_internal <= cu_fsm_internal;
                         repetition <= repetition + 1'b1;
                     end
@@ -230,13 +227,13 @@ module control_unit(
                 //multiply by 100 to get frequency
                 5'd7 : begin
                     general_purpose_reg_3 <= general_purpose_reg_2 * 32'd100;
-                    cu_fsm_internal <= cu_fsm_internal + 5'd2;
+                    cu_fsm_internal <= cu_fsm_internal + 5'd1;
                     repetition <= 1'b0;
                 end
                 //get the frequency result
                 5'd8 : begin 
                     cu_fsm_internal <= cu_fsm_internal + 5'd1;
-                    general_purpose_reg_1 <= general_purpose_reg_3;
+                    general_purpose_reg_3 <= general_purpose_reg_4;
                 end
                 //convert to BCD, poll until done
                 5'd9 : begin
@@ -427,8 +424,4 @@ module control_unit(
             end
         end
     end
-
-    assign out_led = general_purpose_reg_4;
-	assign phase_begin = general_purpose_reg_2[4:0];
-	assign phase_end = general_purpose_reg_2[9:5];
 endmodule
