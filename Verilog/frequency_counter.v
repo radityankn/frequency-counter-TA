@@ -246,7 +246,7 @@ module frequency_counter(
 
     //internal interpolation measurement begins here, using flip-flop that goes 1 and 0 like waves
     always @(posedge reference_clk_interpolate) begin
-        if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) phase_count_internal <= 4'b0;
+        if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) phase_count_internal <= 2'b0;
         else phase_count_internal <= phase_count_internal + 1'b1;
     end
 

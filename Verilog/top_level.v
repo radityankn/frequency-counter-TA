@@ -138,8 +138,13 @@ module top_level(input rst_ext,
 	pll_module ref_pll_module (
 	.inclk0 (clk_i_ext),
 	.c0 (ref_measurement_clk_main),
-	.c1 (ref_measurement_clk_interpolate),
 	.locked (pll_1_locked_dummy)
+	);
+	
+	pll_interpolate ref_pll_interpolate (
+	.inclk0 (clk_i_ext),
+	.c0 (ref_measurement_clk_interpolate),
+	.locked (pll_2_locked_dummy)
 	);
 	
 	/*

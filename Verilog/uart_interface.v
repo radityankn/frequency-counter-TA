@@ -403,30 +403,6 @@ module uart_tx_module(  output reg tx_data_line,
     assign tx_rst_i = tx_ctrl_reg[3];
 endmodule
 
-/*
-module parity_detector(input [8:0] data, 
-                        input mode_bits,
-                        input mode_odd_even,
-                        output result );
-    wire parity_8bit;
-    wire parity_9bit;
-
-    //parity is basically XOR-ing all bits in the given data, to look at the odd/even number of 1s
-    //here we XOR-ing each bit with the adjacent bit, effectively creating a simple parity checker 
-    //out of a logic gate, which saves resources
-
-    //there are two mode selector, based on odd/even and the number of bits, which can be used as needed, 
-    //making it convenient to use 
-
-    //mode_bits = 1 means it uses 9 bit mode, while 0 means 8 bit mode. mode_odd_even = 1 means it is
-    //odd parity (1 if the number of 1s is odd) while 0 means even parity (1 when the number of 1s are even)
-
-    assign parity_8bit = (((data[7] ^ data[6])^(data[5] ^ data[4]))^((data[3] ^ data[2])^(data[1] ^ data[0]))) ^ data[8];
-    assign parity_9bit = parity_8bit ^ data[8];
-    assign result = ((parity_9bit & mode_bits) | (parity_8bit & ~mode_bits)) & mode_odd_even; 
-endmodule
-*/
-
 //PR : 
 //- implementation of 9 bit UART (address/data bit activation is not yet known)
 //- tidying up to improve format consistency between modules
