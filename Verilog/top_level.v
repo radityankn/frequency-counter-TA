@@ -19,10 +19,10 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module top_level(input rst_ext,
+module top_level(input rst_ext_unbuffered,
             	input clk_i_ext,
 				input measure_signal_i,
-            	input uart_rx_ext,
+            	//input uart_rx_ext,
             	output uart_tx_ext,
 
 				//for debugging purposes only
@@ -30,12 +30,13 @@ module top_level(input rst_ext,
 				output blinker,
 				output blinker_2,
 				output blinker_3,
-				output reg blinker_4,
+				//output reg blinker_4,
 				output [1:0] status_led
 				//output [4:0] phase_shift_pin
 );
 
    // WB interconnect definition
+   	wire rst_ext;
 	wire rst_i;
 	wire clk_i;
 	wire tagn_i;
@@ -70,7 +71,8 @@ module top_level(input rst_ext,
 		.tagn_i(tagn_i), 
 		.tagn_o(tagn_o),
 		.blinker(blinker),
-		.blinker_2(blinker_2)
+		.blinker_2(blinker_2),
+		.register_window(led_port)
     );
 	
 	wire [31:0] uart_dat_o;
@@ -131,7 +133,7 @@ module top_level(input rst_ext,
     .reference_clk_interpolate(ref_measurement_clk_interpolate),                  //coarse reference clock
 	.reference_clk_main(ref_measurement_clk_main),
 	.blinker_3(blinker_3),
-	.register_window(led_port),
+	//.register_window(led_port),
 	.status(status_led)
 	);
 
@@ -147,65 +149,15 @@ module top_level(input rst_ext,
 	.locked (pll_2_locked_dummy)
 	);
 	
-	/*
-	pll_sample_signal sample_pll_module (
-	.inclk0 (clk_i_ext),
-	.c0 (ref_measure_signal_internal),
-	.locked (pll_2_locked_dummy)
-	);
-	*/
-	
-	reg [31:0] counter_pll_divider_1;
-	/*
-	reg [6:0] freq_divider_interpolate_1;
-	reg [6:0] freq_divider_interpolate_2;
-	reg [6:0] freq_divider_interpolate_3;
-	reg [6:0] freq_divider_interpolate_4;
-	reg [6:0] freq_divider_interpolate_5;
-	*/
+	reg [2:0] rst_ext_buffered;
 
-	always @(posedge ref_measurement_clk_main) begin
-		counter_pll_divider_1 <= counter_pll_divider_1 + 32'h1ad;
+	always @(posedge clk_i_ext) begin
+		rst_ext_buffered[0] <= rst_ext_unbuffered;
+		rst_ext_buffered[1] <= rst_ext_buffered[0];
+		rst_ext_buffered[2] <= rst_ext_buffered[1];
 	end
-	assign ref_measurement_clk_main_after_divided = counter_pll_divider_1[31];
 	
-	
-	/*
-	always @(posedge ref_measurement_clk_main) begin
-		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_5 <= 7'd0;
-		else freq_divider_interpolate_5 <= freq_divider_interpolate_5 + 1'b1; 
-	end
-	*/
-	//assign phase_shift_pin[4] = ref_measurement_clk_main;
-	
-	/*
-	always @(posedge ref_measurement_clk_interpolate) begin
-		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_4 <= 7'd0;
-		else freq_divider_interpolate_4 <= freq_divider_interpolate_4 + 1'b1; 
-	end
-	assign phase_shift_pin[3] = ref_measurement_clk_interpolate[3];
-	
-	always @(posedge ref_measurement_clk_interpolate[2]) begin
-		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_3 <= 7'd0;
-		else freq_divider_interpolate_3 <= freq_divider_interpolate_3 + 1'b1; 
-	end
-	assign phase_shift_pin[2] = ref_measurement_clk_interpolate[2];
-	
-	always @(posedge ref_measurement_clk_interpolate[1]) begin
-		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_2 <= 7'd0;
-		else freq_divider_interpolate_2 <= freq_divider_interpolate_2 + 1'b1; 
-	end
-	assign phase_shift_pin[1] = ref_measurement_clk_interpolate[1];
-	
-	always @(posedge ref_measurement_clk_interpolate[0]) begin
-		if (rst_i == 1 || rst_ext == 0) freq_divider_interpolate_1 <= 7'd0;
-		else freq_divider_interpolate_1 <= freq_divider_interpolate_1 + 1'b1; 
-	end
-	assign phase_shift_pin[0] = ref_measurement_clk_interpolate[0];
-	*/
-	
-	//assign measure_signal_i = ref_measure_signal_i;
-	//assign measure_signal_debug = ref_measurement_clk_1;
+	assign rst_ext = rst_ext_buffered[2];
 	assign clk_i = clk_i_ext;
 	assign dat_o = (uart_dat_o | counter_dat_o | 1'd0);
 	assign err_o = (uart_err_o | counter_err_o | 1'd0);

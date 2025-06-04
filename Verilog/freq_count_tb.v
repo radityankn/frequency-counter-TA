@@ -84,8 +84,8 @@ module freq_count_tb;
 		lock_i = 0;
 		tagn_i = 0;
 		signal_input = 0;
-		reference_clk_1 = 0;
-		reference_clk_2 = 0;
+		reference_clk_1 = 1;
+		reference_clk_2 = 1;
 		//global reset
 		#100 rst_i = 0;
 		//reset the counter
@@ -140,5 +140,6 @@ module freq_count_tb;
 	always #5 clk_i = !clk_i;
 	always #40 signal_input = !signal_input;
 	always #2 reference_clk_1 = !reference_clk_1;
+	always #0.5 reference_clk_2 = !reference_clk_2;
 endmodule
 

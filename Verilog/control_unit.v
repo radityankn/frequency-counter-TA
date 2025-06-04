@@ -36,14 +36,15 @@ module control_unit(
     input tagn_i,
     output reg tagn_o,
     output reg blinker,
-    output reg blinker_2
+    output reg blinker_2,
+	output [9:0] register_window
     );
 
     reg [4:0] cu_fsm_internal;
     reg [4:0] next_fsm_step;
     reg [31:0] counter_timer_internal;
 	reg [31:0] counter_timer_internal_2;
-    reg [31:0] general_purpose_reg_a;
+    reg [43:0] general_purpose_reg_a;
     reg [31:0] general_purpose_reg_b;
     reg [31:0] general_purpose_reg_1;
     reg [31:0] general_purpose_reg_2;
@@ -210,24 +211,24 @@ module control_unit(
                 end
                 //move to divider 
                 5'd6 : begin
-                    if (repetition == 8'd21) begin
+                    if (repetition == 8'd0) begin
+                        general_purpose_reg_a <= 44'd10000000000000;
+                        general_purpose_reg_b <= (general_purpose_reg_1 * 8'd100) + (general_purpose_reg_4 * 8'd25);
+                        cu_fsm_internal <= cu_fsm_internal;
+                        repetition <= repetition + 1'b1;
+                    end else if (repetition == 8'd21) begin
                         general_purpose_reg_2 <= divider_result;
                         cu_fsm_internal <= cu_fsm_internal + 1'b1;
                         repetition <= 1'b0;
-                    end else if (repetition == 8'd0) begin
-                        general_purpose_reg_a <= 32'd1000000000;
-                        general_purpose_reg_b <= general_purpose_reg_1;
-                        cu_fsm_internal <= cu_fsm_internal;
-                        repetition <= repetition + 1'b1;
-					end else begin
+                    end else begin
                         cu_fsm_internal <= cu_fsm_internal;
                         repetition <= repetition + 1'b1;
 					end
                 end
                 //multiply by 100 to get frequency
                 5'd7 : begin
-                    general_purpose_reg_3 <= general_purpose_reg_2 * 32'd100;
-                    cu_fsm_internal <= cu_fsm_internal + 5'd1;
+                    general_purpose_reg_3 <= general_purpose_reg_2;// * 8'd100;
+                    cu_fsm_internal <= cu_fsm_internal + 5'd2;
                     repetition <= 1'b0;
                 end
                 //get the frequency result
@@ -350,7 +351,7 @@ module control_unit(
                     dat_o <= 32'd13;
                     sel_o <= 4'b0001;
                     cu_fsm_internal <= 5'd20;
-                    next_fsm_step <= 5'd2;
+                    next_fsm_step <= 5'd25;
                 end
                 //start UART TX sending
                 5'd20 : begin
@@ -368,7 +369,7 @@ module control_unit(
                     stb_o <= 1'b1;
                     addr_o <= 32'h5;
                     dat_o <= 32'd0;
-                    if (dat_i[5] == 1'b0) cu_fsm_internal <= cu_fsm_internal + 5'd1;
+                    if (dat_i[5] == 1'b1) cu_fsm_internal <= cu_fsm_internal + 5'd1;
                     else cu_fsm_internal <= cu_fsm_internal;
                 end
                 //poll TX ready
@@ -377,7 +378,7 @@ module control_unit(
                     stb_o <= 1'b1;
                     addr_o <= 32'h5;
                     dat_o <= 32'd0;
-                    if (dat_i[4] == 1) cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                    if (dat_i[4] == 1'b1) cu_fsm_internal <= cu_fsm_internal + 5'd1;
                     else cu_fsm_internal <= cu_fsm_internal;
                 end
                 //clear UART flag
@@ -390,13 +391,35 @@ module control_unit(
                     //cu_fsm_internal <= next_fsm_step;
                     cu_fsm_internal <= cu_fsm_internal + 1'b1;
                 end
-                //delay for 1 second
+                //delay for 0.001 second
                 5'd24 : begin
 					one_hot <= 6'b100000;
                     bcd_conversion_start <= 1'b0;
                     if (counter_timer_internal[31] == 1'b1) begin 
                         //cu_fsm_internal <= 5'd4;
                         cu_fsm_internal <= next_fsm_step;
+                        counter_timer_internal <= 32'd0;
+						we_o <= 1'b0;
+                        sel_o <= 1'b0;
+						stb_o <= 1'b0;
+						addr_o <= 32'h0;
+						dat_o <= 32'h0;
+                        //blinker <= ~blinker;
+                    end else begin 
+                        counter_timer_internal <= counter_timer_internal + 32'h14f8b;
+                        cu_fsm_internal <= cu_fsm_internal;
+                        we_o <= 1'b0;
+                        sel_o <= 1'b0;
+						stb_o <= 1'b0;
+						addr_o <= 32'h0;
+						dat_o <= 32'h0;
+                    end
+                end
+                //delay for 1 second
+                5'd25 : begin
+                    if (counter_timer_internal[31] == 1'b1) begin 
+                        //cu_fsm_internal <= 5'd4;
+                        cu_fsm_internal <= 5'd2;
                         counter_timer_internal <= 1'b0;
 						we_o <= 1'b0;
                         sel_o <= 1'b0;
@@ -405,7 +428,7 @@ module control_unit(
 						dat_o <= 32'h0;
                         blinker <= ~blinker;
                     end else begin 
-                        counter_timer_internal <= counter_timer_internal + 32'h14f8b;
+                        counter_timer_internal <= counter_timer_internal + 32'h56;
                         cu_fsm_internal <= cu_fsm_internal;
                         we_o <= 1'b0;
                         sel_o <= 1'b0;
@@ -424,4 +447,6 @@ module control_unit(
             end
         end
     end
+
+    assign register_window = cu_fsm_internal;
 endmodule
