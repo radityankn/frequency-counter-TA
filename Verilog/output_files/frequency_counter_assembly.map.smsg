@@ -1,1 +1,2 @@
-Warning (10268): Verilog HDL information at uart_interface.v(259): always construct contains both blocking and non-blocking assignments File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 259
+Warning (10268): Verilog HDL information at uart_interface.v(261): always construct contains both blocking and non-blocking assignments File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/uart_interface.v Line: 261
+Warning (10268): Verilog HDL information at frequency_counter.v(162): always construct contains both blocking and non-blocking assignments File: /home/raditya/Documents/mySpace/Projects/Tugas Akhir/frequency-counter-TA/Verilog/frequency_counter.v Line: 162

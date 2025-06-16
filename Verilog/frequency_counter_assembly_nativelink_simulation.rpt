@@ -46,13 +46,12 @@ Questa Intel FPGA Info: # Modifying modelsim.ini
 Questa Intel FPGA Info: # 
 Questa Intel FPGA Info: # vlog -vlog01compat -work work +incdir+. {frequency_counter_assembly.vo}
 Questa Intel FPGA Info: # Questa Intel Starter FPGA Edition-64 vlog 2024.3 Compiler 2024.09 Sep 10 2024
-Questa Intel FPGA Info: # Start time: 15:28:18 on Jun 03,2025
+Questa Intel FPGA Info: # Start time: 15:56:04 on Jun 15,2025
 Questa Intel FPGA Info: # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." frequency_counter_assembly.vo 
 Questa Intel FPGA Info: # -- Compiling module top_level
 Questa Intel FPGA Info: # 
 Questa Intel FPGA Info: # Top level modules:
 Questa Intel FPGA Info: # 	top_level
-Questa Intel FPGA Info: # End time: 15:28:19 on Jun 03,2025, Elapsed time: 0:00:01
+Questa Intel FPGA Info: # End time: 15:56:04 on Jun 15,2025, Elapsed time: 0:00:00
 Questa Intel FPGA Info: # Errors: 0, Warnings: 0
-Questa Intel FPGA Info: # 
 Info: NativeLink simulation flow was successful

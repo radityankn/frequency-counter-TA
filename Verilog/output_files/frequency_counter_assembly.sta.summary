@@ -2,112 +2,148 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : -2.477
+TNS   : -4.917
+
+Type  : Slow 1200mV 85C Model Setup 'measure_signal_i'
+Slack : -1.061
+TNS   : -4.175
+
 Type  : Slow 1200mV 85C Model Setup 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
-Slack : 4.103
+Slack : 2.651
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Setup 'clk_i'
-Slack : 4.547
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Setup 'measure_signal_i'
-Slack : 13.073
+Slack : 4.560
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk_i'
-Slack : 0.269
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
 Slack : 0.341
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'measure_signal_i'
-Slack : 0.637
+Slack : 0.378
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
+Slack : 0.418
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : 0.427
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : 0.097
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
-Slack : 4.717
+Slack : 4.725
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_i'
-Slack : 9.463
+Slack : 9.456
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'measure_signal_i'
-Slack : 49.720
+Slack : 49.709
 TNS   : 0.000
 
+Type  : Slow 1200mV 0C Model Setup 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : -1.821
+TNS   : -3.608
+
+Type  : Slow 1200mV 0C Model Setup 'measure_signal_i'
+Slack : -1.075
+TNS   : -4.245
+
 Type  : Slow 1200mV 0C Model Setup 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
-Slack : 4.425
+Slack : 3.444
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'clk_i'
-Slack : 4.966
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Setup 'measure_signal_i'
-Slack : 13.692
+Slack : 5.279
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk_i'
-Slack : 0.268
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
 Slack : 0.306
 TNS   : 0.000
 
+Type  : Slow 1200mV 0C Model Hold 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
+Slack : 0.338
+TNS   : 0.000
+
 Type  : Slow 1200mV 0C Model Hold 'measure_signal_i'
-Slack : 0.575
+Slack : 0.339
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : 0.348
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : 0.097
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
-Slack : 4.711
+Slack : 4.713
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_i'
-Slack : 9.482
+Slack : 9.484
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'measure_signal_i'
-Slack : 49.757
+Slack : 49.728
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Setup 'clk_i'
-Slack : 7.240
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Setup 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
-Slack : 7.694
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Setup 'measure_signal_i'
-Slack : 16.526
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'clk_i'
-Slack : 0.105
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
+Type  : Fast 1200mV 0C Model Setup 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
 Slack : 0.147
 TNS   : 0.000
 
+Type  : Fast 1200mV 0C Model Setup 'measure_signal_i'
+Slack : 0.501
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
+Slack : 6.834
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk_i'
+Slack : 7.564
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_i'
+Slack : 0.148
+TNS   : 0.000
+
 Type  : Fast 1200mV 0C Model Hold 'measure_signal_i'
-Slack : 0.254
+Slack : 0.166
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
+Slack : 0.208
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : 0.214
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pll_interpolate:ref_pll_interpolate|altpll:altpll_component|pll_interpolate_altpll:auto_generated|wire_pll1_clk[0]'
+Slack : 0.500
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pll_module:ref_pll_module|altpll:altpll_component|pll_module_altpll1:auto_generated|wire_pll1_clk[0]'
-Slack : 4.781
+Slack : 4.803
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_i'
-Slack : 9.409
+Slack : 9.465
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'measure_signal_i'
-Slack : 49.424
+Slack : 49.398
 TNS   : 0.000
 
 ------------------------------------------------------------

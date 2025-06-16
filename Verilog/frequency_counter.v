@@ -119,10 +119,12 @@ module frequency_counter(
             counter_control_reg[6] <= 1;
             counter_control_reg[7] <= 0;
             measurement_count_reg <= measurement_count_internal;
-            if (phase_count_intermediate[5:4] > phase_count_intermediate[1:0]) begin
-                phase_count_reg <= phase_count_intermediate[7:4] - phase_count_intermediate[3:0];
+            if (phase_count_intermediate[5:4] < phase_count_intermediate[1:0]) begin
+                phase_count_reg <= 8'd4 - (phase_count_intermediate[7:4] - phase_count_intermediate[3:0]);
+            end else if (phase_count_intermediate[5:4] == phase_count_intermediate[1:0]) begin 
+                phase_count_reg <= 8'd4 - (phase_count_intermediate[3:0] - phase_count_intermediate[7:4]);
             end else begin 
-                phase_count_reg <= phase_count_intermediate[3:0] - phase_count_intermediate[7:4];
+                phase_count_reg <= 8'd8 - (phase_count_intermediate[3:0] - phase_count_intermediate[7:4]);
             end
             //phase_count_reg <= phase_count_intermediate;
         end else if (counter_control_reg[0] == 1) counter_control_reg <= 8'd0;

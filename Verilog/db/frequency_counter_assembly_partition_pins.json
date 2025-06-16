@@ -8,6 +8,26 @@
 					"strict" : false
 				},
 				{
+					"name" : "led_port[0]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[1]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[2]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[3]",
+					"strict" : false
+				},
+				{
+					"name" : "led_port[4]",
+					"strict" : false
+				},
+				{
 					"name" : "blinker",
 					"strict" : false
 				},
@@ -28,11 +48,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "rst_ext",
+					"name" : "measure_signal_i",
 					"strict" : false
 				},
 				{
-					"name" : "measure_signal_i",
+					"name" : "rst_ext_unbuffered",
 					"strict" : false
 				}
 			]
