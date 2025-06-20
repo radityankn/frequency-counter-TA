@@ -209,32 +209,32 @@ module control_unit(
                         repetition <= repetition + 1'b1;
                     end
                 end
-                //move to divider 
+                //multiply by 100 to get frequency
                 5'd6 : begin
+                    general_purpose_reg_1 <= general_purpose_reg_1 * 8'd100;
+                    general_purpose_reg_4 <= general_purpose_reg_4 * 8'd25;
+                    cu_fsm_internal <= cu_fsm_internal + 5'd1;
+                end
+                //move to divider 
+                5'd7 : begin
                     if (repetition == 8'd0) begin
                         general_purpose_reg_a <= 44'd10000000000000;
-                        general_purpose_reg_b <= (general_purpose_reg_1 * 8'd100) + (general_purpose_reg_4 * 8'd25);
+                        general_purpose_reg_b <= general_purpose_reg_1 + general_purpose_reg_4;
                         cu_fsm_internal <= cu_fsm_internal;
                         repetition <= repetition + 1'b1;
                     end else if (repetition == 8'd21) begin
-                        general_purpose_reg_2 <= divider_result;
-                        cu_fsm_internal <= cu_fsm_internal + 1'b1;
+                        general_purpose_reg_3 <= divider_result;
+                        cu_fsm_internal <= cu_fsm_internal + 5'd2;
                         repetition <= 1'b0;
                     end else begin
                         cu_fsm_internal <= cu_fsm_internal;
                         repetition <= repetition + 1'b1;
 					end
                 end
-                //multiply by 100 to get frequency
-                5'd7 : begin
-                    general_purpose_reg_3 <= general_purpose_reg_2;// * 8'd100;
-                    cu_fsm_internal <= cu_fsm_internal + 5'd2;
-                    repetition <= 1'b0;
-                end
                 //get the frequency result
                 5'd8 : begin 
                     cu_fsm_internal <= cu_fsm_internal + 5'd1;
-                    general_purpose_reg_3 <= general_purpose_reg_4;
+                    general_purpose_reg_3 <= general_purpose_reg_1;//general_purpose_reg_4;
                 end
                 //convert to BCD, poll until done
                 5'd9 : begin
@@ -351,7 +351,7 @@ module control_unit(
                     dat_o <= 32'd13;
                     sel_o <= 4'b0001;
                     cu_fsm_internal <= 5'd20;
-                    next_fsm_step <= 5'd25;
+                    next_fsm_step <= 5'd2;//5;
                 end
                 //start UART TX sending
                 5'd20 : begin

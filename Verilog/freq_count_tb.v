@@ -112,6 +112,7 @@ module freq_count_tb;
 		stb_i = 1;
 		addr_i = 32'd9;
 		dat_i = 32'd0;
+		#1200 $finish;
 		//reset the counter (again)
 		#100 we_i = 1;
 		stb_i = 1;

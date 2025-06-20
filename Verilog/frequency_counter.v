@@ -56,7 +56,8 @@ module frequency_counter(
     //control register bit function : 
     // - bit 7 : measurement begin (1 for start, 0 for stop) 
     // - bit 6 : measurement is done flag (do not write 1, only write 0 for resetting)
-    // - bit 0 : counter reset
+    // - bit 5 : counter ready flag
+    // - bit 0 : counter reset signal
 
     reg measurement_end_buffer_1;
     reg measurement_end_buffer_2;
@@ -119,12 +120,12 @@ module frequency_counter(
             counter_control_reg[6] <= 1;
             counter_control_reg[7] <= 0;
             measurement_count_reg <= measurement_count_internal;
-            if (phase_count_intermediate[5:4] < phase_count_intermediate[1:0]) begin
+            if (phase_count_intermediate[5:4] > phase_count_intermediate[1:0]) begin
                 phase_count_reg <= 8'd4 - (phase_count_intermediate[7:4] - phase_count_intermediate[3:0]);
             end else if (phase_count_intermediate[5:4] == phase_count_intermediate[1:0]) begin 
                 phase_count_reg <= 8'd4 - (phase_count_intermediate[3:0] - phase_count_intermediate[7:4]);
             end else begin 
-                phase_count_reg <= 8'd8 - (phase_count_intermediate[3:0] - phase_count_intermediate[7:4]);
+                phase_count_reg <= 8'd4 - (phase_count_intermediate[3:0] - phase_count_intermediate[7:4]);
             end
             //phase_count_reg <= phase_count_intermediate;
         end else if (counter_control_reg[0] == 1) counter_control_reg <= 8'd0;
@@ -178,7 +179,7 @@ module frequency_counter(
                     measurement_state_machine <= measurement_state_machine;
                 end
             end
-            16'd1000 : begin
+            16'd1000 : begin //16'd1000
                 if (rst_i == 1 || ext_rst_i == 0 || counter_reset_internal == 1) begin 
                     measurement_state_machine <= 16'd0;
                 end else if (measurement_begin_buffer_2 == 1'b0) begin
